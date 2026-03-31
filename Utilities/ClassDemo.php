@@ -1,6 +1,6 @@
 <?php
 
-namespace badeggcup\Utilities;
+namespace BadEggCup\Utilities;
 
 if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly.

@@ -18,11 +18,14 @@
  * License:           GPL-3.0-or-later
  */
 
-namespace badeggcup;
+namespace BadEggCup;
 
 if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly.
 }
+
+define("BADEGGCUP_FILE", __FILE__);
+define("BADEGGCUP_DIR", __DIR__);
 
 foreach (glob(__DIR__ . '/*/*.php') as $badeggcup_file) {
     $badeggcup_pathinfo = pathinfo($badeggcup_file);
