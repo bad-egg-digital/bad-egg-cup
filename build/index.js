@@ -2,6 +2,18 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/index.scss"
+/*!************************!*\
+  !*** ./src/index.scss ***!
+  \************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ },
+
 /***/ "react/jsx-runtime"
 /*!**********************************!*\
   !*** external "ReactJSXRuntime" ***!
@@ -32,6 +44,16 @@ module.exports = window["wp"]["components"];
 
 /***/ },
 
+/***/ "@wordpress/data"
+/*!******************************!*\
+  !*** external ["wp","data"] ***!
+  \******************************/
+(module) {
+
+module.exports = window["wp"]["data"];
+
+/***/ },
+
 /***/ "@wordpress/dom-ready"
 /*!**********************************!*\
   !*** external ["wp","domReady"] ***!
@@ -59,6 +81,16 @@ module.exports = window["wp"]["element"];
 (module) {
 
 module.exports = window["wp"]["i18n"];
+
+/***/ },
+
+/***/ "@wordpress/notices"
+/*!*********************************!*\
+  !*** external ["wp","notices"] ***!
+  \*********************************/
+(module) {
+
+module.exports = window["wp"]["notices"];
 
 /***/ }
 
@@ -143,18 +175,26 @@ var __webpack_exports__ = {};
   !*** ./src/index.js ***!
   \**********************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/dom-ready */ "@wordpress/dom-ready");
-/* harmony import */ var _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/api-fetch */ "@wordpress/api-fetch");
-/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _index_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.scss */ "./src/index.scss");
+/* harmony import */ var _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/dom-ready */ "@wordpress/dom-ready");
+/* harmony import */ var _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/api-fetch */ "@wordpress/api-fetch");
+/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _wordpress_notices__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/notices */ "@wordpress/notices");
+/* harmony import */ var _wordpress_notices__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_notices__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__);
+
+
+
 
 
 
@@ -162,148 +202,138 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const useSettings = () => {
-  const [message, setMessage] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)('Hello, World!');
-  const [display, setDisplay] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)(true);
-  const [size, setSize] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)('medium');
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useEffect)(() => {
-    _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_2___default()({
+  const [supportDefaultPost, setSupportDefaultPost] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_6__.useState)(false);
+  const [supportPostRewrite, setSupportPostRewrite] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_6__.useState)(false);
+  const [supportPostTag, setSupportPostTag] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_6__.useState)(false);
+  const [supportPostCategory, setSupportPostCategory] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_6__.useState)(false);
+  const [supportComments, setSupportComments] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_6__.useState)(false);
+  const {
+    createSuccessNotice
+  } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_4__.useDispatch)(_wordpress_notices__WEBPACK_IMPORTED_MODULE_5__.store);
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_6__.useEffect)(() => {
+    _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_3___default()({
       path: '/wp/v2/settings'
     }).then(settings => {
-      setMessage(settings.badeggcup.message);
-      setDisplay(settings.badeggcup.display);
-      setSize(settings.badeggcup.size);
+      setSupportDefaultPost(settings.badeggcup.supportDefaultPost);
+      setSupportPostRewrite(settings.badeggcup.supportPostRewrite);
+      setSupportPostTag(settings.badeggcup.supportPostTag);
+      setSupportPostCategory(settings.badeggcup.supportPostCategory);
+      setSupportComments(settings.badeggcup.supportComments);
     });
   }, []);
   const saveSettings = () => {
-    _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_2___default()({
+    _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_3___default()({
       path: '/wp/v2/settings',
       method: 'POST',
       data: {
         badeggcup: {
-          message,
-          display,
-          size
+          supportDefaultPost,
+          supportPostRewrite,
+          supportPostTag,
+          supportPostCategory,
+          supportComments
         }
       }
+    }).then(() => {
+      createSuccessNotice((0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Settings saved.', 'badeggcup'));
     });
   };
   return {
-    message,
-    setMessage,
-    display,
-    setDisplay,
-    size,
-    setSize,
+    supportDefaultPost,
+    setSupportDefaultPost,
+    supportPostRewrite,
+    setSupportPostRewrite,
+    supportPostTag,
+    setSupportPostTag,
+    supportPostCategory,
+    setSupportPostCategory,
+    supportComments,
+    setSupportComments,
     saveSettings
   };
 };
-const MessageControl = ({
-  value,
-  onChange
-}) => {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.TextareaControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Message', 'badeggcup'),
-    value: value,
-    onChange: onChange,
-    __nextHasNoMarginBottom: true
-  });
-};
-const DisplayControl = ({
-  value,
-  onChange
-}) => {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.ToggleControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Display', 'badeggcup'),
-    checked: value,
-    onChange: onChange,
-    __nextHasNoMarginBottom: true
-  });
-};
-const SizeControl = ({
-  value,
-  onChange
-}) => {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.FontSizePicker, {
-    fontSizes: [{
-      name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Small', 'badeggcup'),
-      size: 'small',
-      slug: 'small'
-    }, {
-      name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Medium', 'badeggcup'),
-      size: 'medium',
-      slug: 'medium'
-    }, {
-      name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Large', 'badeggcup'),
-      size: 'large',
-      slug: 'large'
-    }, {
-      name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Extra Large', 'badeggcup'),
-      size: 'x-large',
-      slug: 'x-large'
-    }],
-    value: value,
-    onChange: onChange,
-    disableCustomFontSizes: true
-  });
-};
-const SaveButton = ({
-  onClick
-}) => {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.Button, {
-    variant: "primary",
-    onClick: onClick,
-    __next40pxDefaultSize: true,
-    children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Save', 'badeggcup')
-  });
-};
-const SettingsTitle = () => {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalHeading, {
-    level: 1,
-    children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Website Options', 'badeggcup')
+const Notices = () => {
+  const {
+    removeNotice
+  } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_4__.useDispatch)(_wordpress_notices__WEBPACK_IMPORTED_MODULE_5__.store);
+  const notices = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_4__.useSelect)(select => select(_wordpress_notices__WEBPACK_IMPORTED_MODULE_5__.store).getNotices());
+  if (notices.length === 0) {
+    return null;
+  }
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.NoticeList, {
+    notices: notices,
+    onRemove: removeNotice
   });
 };
 const OptionsPage = () => {
   const {
-    message,
-    setMessage,
-    display,
-    setDisplay,
-    size,
-    setSize,
+    supportDefaultPost,
+    setSupportDefaultPost,
+    supportPostRewrite,
+    setSupportPostRewrite,
+    supportPostTag,
+    setSupportPostTag,
+    supportPostCategory,
+    setSupportPostCategory,
+    supportComments,
+    setSupportComments,
     saveSettings
   } = useSettings();
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(SettingsTitle, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.Panel, {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelRow, {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(MessageControl, {
-            value: message,
-            onChange: value => setMessage(value)
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelRow, {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(DisplayControl, {
-            value: display,
-            onChange: value => setDisplay(value)
-          })
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(Notices, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.__experimentalHeading, {
+      level: 1,
+      children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Website Options', 'badeggcup')
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.Panel, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.PanelBody, {
+        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Theme Support', 'badeggcup'),
+        className: "badeggcup-theme-supports",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.CheckboxControl, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Default Post Type', 'badeggcup'),
+          checked: supportDefaultPost,
+          onChange: value => {
+            setSupportDefaultPost(value);
+            if (!value) {
+              setSupportPostRewrite(false);
+              setSupportPostCategory(false);
+              setSupportPostTag(false);
+            }
+          },
+          __nextHasNoMarginBottom: true
+        }), supportDefaultPost ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.Fragment, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.CheckboxControl, {
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Post Rewrites', 'badeggcup'),
+            checked: supportPostRewrite,
+            onChange: value => setSupportPostRewrite(value),
+            __nextHasNoMarginBottom: true
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.CheckboxControl, {
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Post Tags', 'badeggcup'),
+            checked: supportPostTag,
+            onChange: value => setSupportPostTag(value),
+            __nextHasNoMarginBottom: true
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.CheckboxControl, {
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Post Categories', 'badeggcup'),
+            checked: supportPostCategory,
+            onChange: value => setSupportPostCategory(value),
+            __nextHasNoMarginBottom: true
+          })]
+        }) : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.CheckboxControl, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Comments', 'badeggcup'),
+          checked: supportComments,
+          onChange: value => setSupportComments(value),
+          __nextHasNoMarginBottom: true
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
-        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Appearance', 'badeggcup'),
-        initialOpen: false,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelRow, {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(SizeControl, {
-            value: size,
-            onChange: value => setSize(value)
-          })
-        })
-      })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(SaveButton, {
-      onClick: saveSettings
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.Button, {
+      variant: "primary",
+      onClick: saveSettings,
+      __next40pxDefaultSize: true,
+      children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Save', 'badeggcup')
     })]
   });
 };
-_wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0___default()(() => {
-  const root = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.createRoot)(document.getElementById('badeggcup-options'));
-  root.render(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(OptionsPage, {}));
+_wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_1___default()(() => {
+  const root = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_6__.createRoot)(document.getElementById('badeggcup-options'));
+  root.render(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(OptionsPage, {}));
 });
 })();
 

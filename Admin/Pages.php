@@ -56,14 +56,23 @@ class Pages
             ],
         );
 
+        wp_enqueue_style(
+            'badeggcup-style',
+            plugins_url( 'build/index.css', BADEGGCUP_FILE ),
+            array_filter(
+                $asset['dependencies'],
+                function ( $style ) {
+                    return wp_style_is( $style, 'registered' );
+                }
+            ),
+            $asset['version'],
+        );
+
     }
 
     public function options_schema()
     {
         $default = [
-            'message' => __( 'Hello, World!', 'badeggcup' ),
-            'display' => true,
-            'size'    => 'medium',
             'supportDefaultPost' => false,
             'supportPostrewrite' => false,
             'supportPostTag' => false,
@@ -73,21 +82,6 @@ class Pages
         $schema  = [
             'type'       => 'object',
             'properties' => [
-                'message' => [
-                    'type' => 'string',
-                ],
-                'display' => [
-                    'type' => 'boolean',
-                ],
-                'size'    => [
-                    'type' => 'string',
-                    'enum' => [
-                        'small',
-                        'medium',
-                        'large',
-                        'x-large',
-                    ],
-                ],
                 'supportDefaultPost' => [
                     'type' => 'boolean',
                 ],

@@ -1,6 +1,10 @@
+import './index.scss';
+
 import domReady from '@wordpress/dom-ready';
 import { __ } from '@wordpress/i18n';
 import apiFetch from '@wordpress/api-fetch';
+import { useDispatch, useSelect } from '@wordpress/data';
+import { store as noticesStore } from '@wordpress/notices';
 
 import {
   createRoot,
@@ -11,166 +15,156 @@ import {
 import {
   Panel,
   PanelBody,
-  PanelRow,
-  TextareaControl,
-  ToggleControl,
-  FontSizePicker,
+  CheckboxControl,
   Button,
   __experimentalHeading as Heading,
+  NoticeList,
 } from '@wordpress/components';
 
 const useSettings = () => {
-  const [ message, setMessage ] = useState('Hello, World!');
-  const [ display, setDisplay ] = useState(true);
-  const [ size, setSize ] = useState('medium');
+  const [ supportDefaultPost, setSupportDefaultPost ] = useState( false );
+  const [ supportPostRewrite, setSupportPostRewrite ] = useState( false );
+  const [ supportPostTag, setSupportPostTag ] = useState( false );
+  const [ supportPostCategory, setSupportPostCategory ] = useState( false );
+  const [ supportComments, setSupportComments ] = useState( false );
+  const { createSuccessNotice } = useDispatch( noticesStore );
 
   useEffect( () => {
     apiFetch( { path: '/wp/v2/settings' } ).then( ( settings ) => {
-      setMessage( settings.badeggcup.message );
-      setDisplay( settings.badeggcup.display );
-      setSize( settings.badeggcup.size );
+      setSupportDefaultPost( settings.badeggcup.supportDefaultPost );
+      setSupportPostRewrite( settings.badeggcup.supportPostRewrite );
+      setSupportPostTag( settings.badeggcup.supportPostTag );
+      setSupportPostCategory( settings.badeggcup.supportPostCategory );
+      setSupportComments( settings.badeggcup.supportComments );
     } );
   }, [] );
 
   const saveSettings = () => {
-      apiFetch( {
-        path: '/wp/v2/settings',
-        method: 'POST',
-        data: {
-          badeggcup: {
-            message,
-            display,
-            size,
-          },
-        },
-      } );
+    apiFetch( {
+      path: '/wp/v2/settings',
+      method: 'POST',
+      data: {
+        badeggcup: {
+          supportDefaultPost,
+          supportPostRewrite,
+          supportPostTag,
+          supportPostCategory,
+          supportComments,
+        }
+      },
+    }).then( () => {
+      createSuccessNotice(
+        __( 'Settings saved.', 'badeggcup' )
+      );
+    });
   };
 
   return {
-      message,
-      setMessage,
-      display,
-      setDisplay,
-      size,
-      setSize,
+      supportDefaultPost,
+      setSupportDefaultPost,
+      supportPostRewrite,
+      setSupportPostRewrite,
+      supportPostTag,
+      setSupportPostTag,
+      supportPostCategory,
+      setSupportPostCategory,
+      supportComments,
+      setSupportComments,
       saveSettings,
   };
 };
 
-const MessageControl = ( { value, onChange } ) => {
-  return (
-    <TextareaControl
-      label={ __( 'Message', 'badeggcup' ) }
-      value={ value }
-      onChange={ onChange }
-      __nextHasNoMarginBottom
-    />
+const Notices = () => {
+  const { removeNotice } = useDispatch( noticesStore );
+  const notices = useSelect( ( select ) =>
+    select( noticesStore ).getNotices()
   );
-};
 
-const DisplayControl = ( { value, onChange } ) => {
-  return (
-    <ToggleControl
-        label={ __( 'Display', 'badeggcup' ) }
-        checked={ value }
-        onChange={ onChange }
-        __nextHasNoMarginBottom
-    />
-  );
-};
+  if ( notices.length === 0 ) {
+      return null;
+  }
 
-const SizeControl = ( { value, onChange } ) => {
-  return (
-    <FontSizePicker
-      fontSizes={[
-        {
-          name: __( 'Small', 'badeggcup' ),
-          size: 'small',
-          slug: 'small',
-        },
-        {
-          name: __( 'Medium', 'badeggcup' ),
-          size: 'medium',
-          slug: 'medium',
-        },
-        {
-          name: __( 'Large', 'badeggcup' ),
-          size: 'large',
-          slug: 'large',
-        },
-        {
-          name: __( 'Extra Large', 'badeggcup' ),
-          size: 'x-large',
-          slug: 'x-large',
-        },
-      ]}
-      value={ value }
-      onChange={ onChange }
-      disableCustomFontSizes={ true }
-    />
-  );
-};
-
-const SaveButton = ( { onClick } ) => {
-  return (
-    <Button variant="primary" onClick={ onClick } __next40pxDefaultSize>
-      { __( 'Save', 'badeggcup' ) }
-    </Button>
-  );
-};
-
-const SettingsTitle = () => {
-  return (
-    <Heading level={ 1 }>
-      { __( 'Website Options', 'badeggcup' ) }
-    </Heading>
-  );
+  return <NoticeList notices={ notices } onRemove={ removeNotice } />;
 };
 
 const OptionsPage = () => {
 
   const {
-    message,
-    setMessage,
-    display,
-    setDisplay,
-    size,
-    setSize,
+    supportDefaultPost,
+    setSupportDefaultPost,
+    supportPostRewrite,
+    setSupportPostRewrite,
+    supportPostTag,
+    setSupportPostTag,
+    supportPostCategory,
+    setSupportPostCategory,
+    supportComments,
+    setSupportComments,
     saveSettings,
   } = useSettings();
 
   return (
     <>
-      <SettingsTitle />
-      <Panel>
-        <PanelBody>
+      <Notices />
 
-          <PanelRow>
-            <MessageControl
-              value={ message }
-              onChange={ ( value ) => setMessage( value ) }
-            />
-          </PanelRow>
-          <PanelRow>
-            <DisplayControl
-              value={ display }
-              onChange={ ( value ) => setDisplay( value ) }
-            />
-          </PanelRow>
-        </PanelBody>
-        <PanelBody
-            title={ __( 'Appearance', 'badeggcup' ) }
-            initialOpen={ false }
-        >
-            <PanelRow>
-              <SizeControl
-                value={ size }
-                onChange={ ( value ) => setSize( value ) }
-              />
-            </PanelRow>
+      <Heading level={ 1 }>
+        { __( 'Website Options', 'badeggcup' ) }
+      </Heading>
+
+      <Panel>
+        <PanelBody title={ __('Theme Support', 'badeggcup') } className="badeggcup-theme-supports">
+          <CheckboxControl
+            label={ __( 'Default Post Type', 'badeggcup' ) }
+            checked={ supportDefaultPost }
+            onChange={ ( value => {
+              setSupportDefaultPost( value );
+
+              if(!value) {
+                setSupportPostRewrite(false);
+                setSupportPostCategory(false);
+                setSupportPostTag(false);
+              }
+            } ) }
+            __nextHasNoMarginBottom
+          />
+
+          {
+            (supportDefaultPost) ? (
+              <>
+                <CheckboxControl
+                  label={ __( 'Post Rewrites', 'badeggcup' ) }
+                  checked={ supportPostRewrite }
+                  onChange={ ( value => setSupportPostRewrite( value ) ) }
+                  __nextHasNoMarginBottom
+                />
+                <CheckboxControl
+                  label={ __( 'Post Tags', 'badeggcup' ) }
+                  checked={ supportPostTag }
+                  onChange={ ( value => setSupportPostTag( value ) ) }
+                  __nextHasNoMarginBottom
+                />
+                <CheckboxControl
+                  label={ __( 'Post Categories', 'badeggcup' ) }
+                  checked={ supportPostCategory }
+                  onChange={ ( value => setSupportPostCategory( value ) ) }
+                  __nextHasNoMarginBottom
+                />
+              </>
+            ) : null
+          }
+
+          <CheckboxControl
+            label={ __( 'Comments', 'badeggcup' ) }
+            checked={ supportComments }
+            onChange={ ( value => setSupportComments( value ) ) }
+            __nextHasNoMarginBottom
+          />
         </PanelBody>
       </Panel>
-      <SaveButton onClick={ saveSettings } />
+
+      <Button variant="primary" onClick={ saveSettings } __next40pxDefaultSize>
+        { __( 'Save', 'badeggcup' ) }
+      </Button>
     </>
   );
 };
