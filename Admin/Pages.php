@@ -73,30 +73,43 @@ class Pages
     public function options_schema()
     {
         $default = [
-            'supportDefaultPost' => false,
-            'supportPostrewrite' => false,
-            'supportPostTag' => false,
-            'supportPostCategory' => false,
-            'supportComments' => false,
+            'colours' => [
+                '#395786',
+                '#a094b1',
+            ],
+            'supports' => [
+                'defaultPost' => false,
+                'postRewrite' => false,
+                'postCategory' => false,
+                'postTag' => false,
+                'comments' => false,
+            ],
         ];
         $schema  = [
             'type'       => 'object',
             'properties' => [
-                'supportDefaultPost' => [
-                    'type' => 'boolean',
-                ],
-                'supportPostRewrite' => [
-                    'type' => 'boolean',
-                ],
-                'supportPostTag' => [
-                    'type' => 'boolean',
-                ],
-                'supportPostCategory' => [
-                    'type' => 'boolean',
-                ],
-                'supportComments' => [
-                    'type' => 'boolean',
-                ],
+                // Colours
+                'colours' => [ 'type' => 'array' ],
+
+                // Company Info
+                // 'companyLegalName' => [ 'type' => 'string' ],
+                // 'companyNumber' => [ 'type' => 'string' ],
+                // 'companyTel' => [ 'type' => 'string' ],
+                // 'companyEmail' => [ 'type' => 'string' ],
+                // 'companyAddress' => [ 'type' => 'string' ],
+                // 'companyMailing' => [ 'type' => 'string' ],
+
+                // Theme Supports
+                'supports' => [
+                    'type' => 'object',
+                    'properties' => [
+                        'defaultPost' => [ 'type' => 'boolean' ],
+                        'postRewrite' => [ 'type' => 'boolean' ],
+                        'postCategory' => [ 'type' => 'boolean' ],
+                        'postTag' => [ 'type' => 'boolean' ],
+                        'comments' => [ 'type' => 'boolean' ],
+                    ]
+                ]
             ],
         ];
 
