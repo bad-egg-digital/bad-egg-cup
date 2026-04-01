@@ -16,11 +16,16 @@ import {
   Panel,
   PanelBody,
   PanelRow,
+  Flex,
+  FlexItem,
+  Card,
+  CardBody,
   ColorPalette,
-  RangeControl,
+  TextControl,
   CheckboxControl,
   Spinner,
   Button,
+  __experimentalDivider as Divider,
   __experimentalHeading as Heading,
   NoticeList,
 } from '@wordpress/components';
@@ -40,6 +45,17 @@ const latinate = {
   12: 'duodenary',
 };
 
+const addressDefaults = {
+  line1: '',
+  line2: '',
+  line3: '',
+  line4: '',
+  city: '',
+  county: '',
+  postCode: '',
+  country: '',
+}
+
 const Notices = () => {
   const { removeNotice } = useDispatch( noticesStore );
   const notices = useSelect( ( select ) =>
@@ -55,7 +71,6 @@ const Notices = () => {
 
 const OptionsPage = () => {
   const [ loadState, setLoadState ] = useState(false);
-  const [ colourCount, setColourCount ] = useState(3);
 
   const [ colours, setColours ] = useState({
     primary: '#395786',
@@ -72,12 +87,23 @@ const OptionsPage = () => {
     duodenary: '',
   });
 
+  const [ company, setCompany ] = useState({
+    name: '',
+    nameLegal: '',
+    number: '',
+    tel: '',
+    email: '',
+    address: addressDefaults,
+    addressMailing: addressDefaults,
+  });
+
   const [ supports, setSupports ] = useState({
     defaultPost: false,
     postRewrite: false,
     postCategory: false,
     postTag: false,
     comments: false,
+    mailingAddress: false,
   });
 
   const { createSuccessNotice } = useDispatch( noticesStore );
@@ -86,10 +112,12 @@ const OptionsPage = () => {
     apiFetch( { path: '/wp/v2/settings' } ).then( ( settings ) => {
       setLoadState(true);
 
-      setColourCount( settings.badeggcup.colourCount || 2);
-
       if(settings?.badeggcup?.colours) {
         setColours( settings.badeggcup.colours );
+      }
+
+      if(settings?.badeggcup?.company) {
+        setCompany( settings.badeggcup.company );
       }
 
       if(settings?.badeggcup?.supports) {
@@ -106,7 +134,7 @@ const OptionsPage = () => {
       data: {
         badeggcup: {
           colours,
-          colourCount,
+          company,
           supports,
         }
       },
@@ -130,30 +158,12 @@ const OptionsPage = () => {
           <>
 
             <PanelBody title={ __('Brand Colours', 'badeggcup') } className="badeggcup-brand-colours">
-              <RangeControl
-                __next40pxDefaultSize
-                __nextHasNoMarginBottom
-                label="Number of colours"
-                value={ colourCount }
-                onChange={ ( value ) => {
-                  setColourCount( value );
-
-                  for (let colour = value + 1; colour <= 12; colour++) {
-                    setColours(prev => ({
-                      ...prev,
-                      [latinate[colour]]: '',
-                    }));
-                  }
-                }}
-                min={ 1 }
-                max={ 12 }
-              />
               <PanelRow>
                 {
                   Object.keys(colours).map((colour, index) => {
                     const hex = colours[colour];
 
-                    if(index < colourCount) {
+                    if(index == 0 || colours[latinate[index + 1]] || (index > 0 && colours[latinate[index]])) {
                       return (
                         <div className="badeggcup-brand-colours-item" key={ index }>
                           <h3>{ colour }</h3>
@@ -170,6 +180,135 @@ const OptionsPage = () => {
                           />
 
                         </div>
+                      )
+                    }
+                  })
+                }
+              </PanelRow>
+            </PanelBody>
+
+            <PanelBody title={ __('Company Info', 'badeggcup') } className="badeggcup-company-info">
+              <PanelRow>
+                <Card className="badeggcup-company-info-details">
+                  <CardBody>
+                    <h3>Details</h3>
+                    <TextControl
+                      label="Company Name"
+                      value={ company.name }
+                      onChange={ value => setCompany( prev => ({
+                        ...prev,
+                        name: value,
+                      }))}
+                      __next40pxDefaultSize
+                      __nextHasNoMarginBottom={ true }
+                    />
+                    <TextControl
+                      label="Legal Name"
+                      value={ company.nameLegal }
+                      onChange={ value => setCompany( prev => ({
+                        ...prev,
+                        nameLegal: value,
+                      }))}
+                      __next40pxDefaultSize
+                      __nextHasNoMarginBottom={ true }
+                    />
+                    <TextControl
+                      label="Company Number"
+                      value={ company.number }
+                      onChange={ value => setCompany( prev => ({
+                        ...prev,
+                        number: value,
+                      }))}
+                      __next40pxDefaultSize
+                      __nextHasNoMarginBottom={ true }
+                    />
+                  </CardBody>
+                </Card>
+                <Card className="badeggcup-company-info-contact">
+                  <CardBody>
+                    <h3>Contact</h3>
+                    <TextControl
+                      label="Telephone Number"
+                      value={ company.tel }
+                      onChange={ value => setCompany( prev => ({
+                        ...prev,
+                        tel: value,
+                      }))}
+                      __next40pxDefaultSize
+                      __nextHasNoMarginBottom={ true }
+                    />
+                    <TextControl
+                      label="Email Address"
+                      value={ company.email }
+                      onChange={ value => setCompany( prev => ({
+                        ...prev,
+                        email: value,
+                      }))}
+                      __next40pxDefaultSize
+                      __nextHasNoMarginBottom={ true }
+                    />
+                  </CardBody>
+                </Card>
+              </PanelRow>
+              <PanelRow>
+                {
+                  ['address', 'addressMailing'].map( (fieldGroup, index) => {
+                    if(fieldGroup == 'address' || (supports.mailingAddress && fieldGroup == 'addressMailing')) {
+                      return (
+                        <Card key={ index } className="badeggcup-company-info-address-group">
+                          <CardBody>
+                            <h3>{ fieldGroup }</h3>
+                            <Flex gap="8" wrap="true" align="stretch">
+                              <FlexItem>
+                                {
+                                  [ ...Array(4).keys()].map( index => {
+                                    if(index == 0 || company[fieldGroup]['line' + (index + 1)] || (index > 0 && company[fieldGroup]['line' + index])) {
+                                      return (
+                                        <TextControl
+                                          key={ index }
+                                          label={ `Line ${ index + 1 }` }
+                                          value={ company[fieldGroup]['line' + (index + 1)] }
+                                          onChange={ value => setCompany( prev => ({
+                                            ...prev,
+                                            [fieldGroup]: {
+                                              ...prev[fieldGroup],
+                                              ['line' + (index + 1)]: value,
+                                            }
+                                          }))}
+                                          __next40pxDefaultSize
+                                          __nextHasNoMarginBottom={ true }
+                                        />
+                                      )
+                                    }
+                                  })
+                                }
+                              </FlexItem>
+                              <Divider orientation="vertical" />
+                              <FlexItem>
+                                {
+                                  [ 'city', 'county', 'postCode', 'country' ].map( (field, index) => {
+                                    return (
+                                      <TextControl
+                                        key={ index }
+                                        label={ field }
+                                        value={ company[fieldGroup][field] }
+                                        onChange={ value => setCompany( prev => ({
+                                          ...prev,
+                                          [fieldGroup]: {
+                                            ...prev[fieldGroup],
+                                            [field]: value,
+                                          }
+                                        }))}
+                                        __next40pxDefaultSize
+                                        __nextHasNoMarginBottom={ true }
+                                      />
+                                    )
+                                  })
+                                }
+                              </FlexItem>
+                            </Flex>
+                          </CardBody>
+                        </Card>
                       )
                     }
                   })
@@ -228,6 +367,12 @@ const OptionsPage = () => {
                 label={ __( 'Comments', 'badeggcup' ) }
                 checked={ supports.comments }
                 onChange={ ( value => setSupports({ ...supports, comments: value }) ) }
+                __nextHasNoMarginBottom
+              />
+              <CheckboxControl
+                label={ __( 'Mailing Address', 'badeggcup' ) }
+                checked={ supports.mailingAddress }
+                onChange={ ( value => setSupports({ ...supports, mailingAddress: value }) ) }
                 __nextHasNoMarginBottom
               />
             </PanelBody>

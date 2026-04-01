@@ -43,3 +43,7 @@ foreach (glob(__DIR__ . '/*/*.php') as $badeggcup_file) {
         new $badeggcup_classname();
     }
 }
+
+add_action('wp_footer', function(){
+    echo '<pre>',print_r(get_option('badeggcup')),'</pre>';
+});

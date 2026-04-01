@@ -72,6 +72,17 @@ class Pages
 
     public function options_schema()
     {
+        $addressDefaults = [
+            'line1' => '',
+            'line2' => '',
+            'line3' => '',
+            'line4' => '',
+            'city' => '',
+            'county' => '',
+            'postCode' => '',
+            'country' => '',
+        ];
+
         $default = [
             'colours' => [
                 'primary' => '#395786',
@@ -87,15 +98,39 @@ class Pages
                 'undenary' => '',
                 'duodenary' => '',
             ],
-            'colourCount' => 3,
+            'company' => [
+                'name' => '',
+                'nameLegal' => '',
+                'number' => '',
+                'tel' => '',
+                'email' => '',
+                'address' => $addressDefaults,
+                'addressMailing' => $addressDefaults,
+            ],
             'supports' => [
                 'defaultPost' => false,
                 'postRewrite' => false,
                 'postCategory' => false,
                 'postTag' => false,
                 'comments' => false,
+                'mailingAddress' => false,
             ],
         ];
+
+        $addressSchema = [
+            'type' => 'object',
+            'properties' => [
+                'line1' => [ 'type' => 'string' ],
+                'line2' => [ 'type' => 'string' ],
+                'line3' => [ 'type' => 'string' ],
+                'line4' => [ 'type' => 'string' ],
+                'city' => [ 'type' => 'string' ],
+                'county' => [ 'type' => 'string' ],
+                'postCode' => [ 'type' => 'string' ],
+                'country' => [ 'type' => 'string' ],
+            ],
+        ];
+
         $schema  = [
             'type'       => 'object',
             'properties' => [
@@ -117,15 +152,20 @@ class Pages
                         'duodenary' => [ 'type' => 'string' ],
                     ],
                 ],
-                'colourCount' => [ 'type' => 'number' ],
 
                 // Company Info
-                // 'companyLegalName' => [ 'type' => 'string' ],
-                // 'companyNumber' => [ 'type' => 'string' ],
-                // 'companyTel' => [ 'type' => 'string' ],
-                // 'companyEmail' => [ 'type' => 'string' ],
-                // 'companyAddress' => [ 'type' => 'string' ],
-                // 'companyMailing' => [ 'type' => 'string' ],
+                'company' => [
+                    'type' => 'object',
+                    'properties' => [
+                        'name' => [ 'type' => 'string' ],
+                        'nameLegal' => [ 'type' => 'string' ],
+                        'number' => [ 'type' => 'string' ],
+                        'tel' => [ 'type' => 'string' ],
+                        'email' => [ 'type' => 'string' ],
+                        'address' => $addressSchema,
+                        'addressMailing' => $addressSchema,
+                    ],
+                ],
 
                 // Theme Supports
                 'supports' => [
@@ -136,6 +176,7 @@ class Pages
                         'postCategory' => [ 'type' => 'boolean' ],
                         'postTag' => [ 'type' => 'boolean' ],
                         'comments' => [ 'type' => 'boolean' ],
+                        'mailingAddress' => [ 'type' => 'boolean' ],
                     ]
                 ]
             ],

@@ -215,6 +215,16 @@ const latinate = {
   11: 'undenary',
   12: 'duodenary'
 };
+const addressDefaults = {
+  line1: '',
+  line2: '',
+  line3: '',
+  line4: '',
+  city: '',
+  county: '',
+  postCode: '',
+  country: ''
+};
 const Notices = () => {
   const {
     removeNotice
@@ -230,7 +240,6 @@ const Notices = () => {
 };
 const OptionsPage = () => {
   const [loadState, setLoadState] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_6__.useState)(false);
-  const [colourCount, setColourCount] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_6__.useState)(3);
   const [colours, setColours] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_6__.useState)({
     primary: '#395786',
     secondary: '#a094b1',
@@ -245,12 +254,22 @@ const OptionsPage = () => {
     undenary: '',
     duodenary: ''
   });
+  const [company, setCompany] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_6__.useState)({
+    name: '',
+    nameLegal: '',
+    number: '',
+    tel: '',
+    email: '',
+    address: addressDefaults,
+    addressMailing: addressDefaults
+  });
   const [supports, setSupports] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_6__.useState)({
     defaultPost: false,
     postRewrite: false,
     postCategory: false,
     postTag: false,
-    comments: false
+    comments: false,
+    mailingAddress: false
   });
   const {
     createSuccessNotice
@@ -260,9 +279,11 @@ const OptionsPage = () => {
       path: '/wp/v2/settings'
     }).then(settings => {
       setLoadState(true);
-      setColourCount(settings.badeggcup.colourCount || 2);
       if (settings?.badeggcup?.colours) {
         setColours(settings.badeggcup.colours);
+      }
+      if (settings?.badeggcup?.company) {
+        setCompany(settings.badeggcup.company);
       }
       if (settings?.badeggcup?.supports) {
         setSupports(settings.badeggcup.supports);
@@ -276,7 +297,7 @@ const OptionsPage = () => {
       data: {
         badeggcup: {
           colours,
-          colourCount,
+          company,
           supports
         }
       }
@@ -290,29 +311,13 @@ const OptionsPage = () => {
       children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Website Options', 'badeggcup')
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.Panel, {
       children: !loadState ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.Spinner, {}) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.Fragment, {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.PanelBody, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.PanelBody, {
           title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Brand Colours', 'badeggcup'),
           className: "badeggcup-brand-colours",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.RangeControl, {
-            __next40pxDefaultSize: true,
-            __nextHasNoMarginBottom: true,
-            label: "Number of colours",
-            value: colourCount,
-            onChange: value => {
-              setColourCount(value);
-              for (let colour = value + 1; colour <= 12; colour++) {
-                setColours(prev => ({
-                  ...prev,
-                  [latinate[colour]]: ''
-                }));
-              }
-            },
-            min: 1,
-            max: 12
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.PanelRow, {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.PanelRow, {
             children: Object.keys(colours).map((colour, index) => {
               const hex = colours[colour];
-              if (index < colourCount) {
+              if (index == 0 || colours[latinate[index + 1]] || index > 0 && colours[latinate[index]]) {
                 return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
                   className: "badeggcup-brand-colours-item",
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("h3", {
@@ -328,6 +333,125 @@ const OptionsPage = () => {
                     },
                     headingLevel: 3
                   })]
+                }, index);
+              }
+            })
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.PanelBody, {
+          title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Company Info', 'badeggcup'),
+          className: "badeggcup-company-info",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.PanelRow, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.Card, {
+              className: "badeggcup-company-info-details",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.CardBody, {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("h3", {
+                  children: "Details"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.TextControl, {
+                  label: "Company Name",
+                  value: company.name,
+                  onChange: value => setCompany(prev => ({
+                    ...prev,
+                    name: value
+                  })),
+                  __next40pxDefaultSize: true,
+                  __nextHasNoMarginBottom: true
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.TextControl, {
+                  label: "Legal Name",
+                  value: company.nameLegal,
+                  onChange: value => setCompany(prev => ({
+                    ...prev,
+                    nameLegal: value
+                  })),
+                  __next40pxDefaultSize: true,
+                  __nextHasNoMarginBottom: true
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.TextControl, {
+                  label: "Company Number",
+                  value: company.number,
+                  onChange: value => setCompany(prev => ({
+                    ...prev,
+                    number: value
+                  })),
+                  __next40pxDefaultSize: true,
+                  __nextHasNoMarginBottom: true
+                })]
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.Card, {
+              className: "badeggcup-company-info-contact",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.CardBody, {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("h3", {
+                  children: "Contact"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.TextControl, {
+                  label: "Telephone Number",
+                  value: company.tel,
+                  onChange: value => setCompany(prev => ({
+                    ...prev,
+                    tel: value
+                  })),
+                  __next40pxDefaultSize: true,
+                  __nextHasNoMarginBottom: true
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.TextControl, {
+                  label: "Email Address",
+                  value: company.email,
+                  onChange: value => setCompany(prev => ({
+                    ...prev,
+                    email: value
+                  })),
+                  __next40pxDefaultSize: true,
+                  __nextHasNoMarginBottom: true
+                })]
+              })
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.PanelRow, {
+            children: ['address', 'addressMailing'].map((fieldGroup, index) => {
+              if (fieldGroup == 'address' || supports.mailingAddress && fieldGroup == 'addressMailing') {
+                return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.Card, {
+                  className: "badeggcup-company-info-address-group",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.CardBody, {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("h3", {
+                      children: fieldGroup
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.Flex, {
+                      gap: "8",
+                      wrap: "true",
+                      align: "stretch",
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.FlexItem, {
+                        children: [...Array(4).keys()].map(index => {
+                          if (index == 0 || company[fieldGroup]['line' + (index + 1)] || index > 0 && company[fieldGroup]['line' + index]) {
+                            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.TextControl, {
+                              label: `Line ${index + 1}`,
+                              value: company[fieldGroup]['line' + (index + 1)],
+                              onChange: value => setCompany(prev => ({
+                                ...prev,
+                                [fieldGroup]: {
+                                  ...prev[fieldGroup],
+                                  ['line' + (index + 1)]: value
+                                }
+                              })),
+                              __next40pxDefaultSize: true,
+                              __nextHasNoMarginBottom: true
+                            }, index);
+                          }
+                        })
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.__experimentalDivider, {
+                        orientation: "vertical"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.FlexItem, {
+                        children: ['city', 'county', 'postCode', 'country'].map((field, index) => {
+                          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.TextControl, {
+                            label: field,
+                            value: company[fieldGroup][field],
+                            onChange: value => setCompany(prev => ({
+                              ...prev,
+                              [fieldGroup]: {
+                                ...prev[fieldGroup],
+                                [field]: value
+                              }
+                            })),
+                            __next40pxDefaultSize: true,
+                            __nextHasNoMarginBottom: true
+                          }, index);
+                        })
+                      })]
+                    })]
+                  })
                 }, index);
               }
             })
@@ -386,6 +510,14 @@ const OptionsPage = () => {
             onChange: value => setSupports({
               ...supports,
               comments: value
+            }),
+            __nextHasNoMarginBottom: true
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.CheckboxControl, {
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Mailing Address', 'badeggcup'),
+            checked: supports.mailingAddress,
+            onChange: value => setSupports({
+              ...supports,
+              mailingAddress: value
             }),
             __nextHasNoMarginBottom: true
           })]

@@ -4,12 +4,21 @@
 .badeggcup-theme-supports .components-base-control {
   margin: 0.5em 0;
 }
+.badeggcup-brand-colours .components-panel__row, .badeggcup-company-info .components-panel__row {
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 1em;
+}
 .badeggcup-brand-colours-item {
   position: relative;
 }
 .badeggcup-brand-colours h3 {
   min-width: 188px;
   text-transform: capitalize;
+}
+.badeggcup-brand-colours .components-range-control {
+  max-width: 294px;
 }
 .badeggcup-brand-colours .components-circular-option-picker {
   position: absolute;
@@ -22,16 +31,33 @@
   height: auto;
   padding: 0;
 }
-.badeggcup-brand-colours .components-panel__row {
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  gap: 2em;
-}
 .badeggcup-brand-colours .components-color-palette__custom-color-name {
   display: none;
 }
 .badeggcup-brand-colours .components-v-stack {
   gap: 0;
+}
+.badeggcup-company-info hr {
+  border-color: rgba(0, 0, 0, 0.1);
+}
+.badeggcup-company-info .components-panel__row {
+  margin: 0 0 1em;
+  align-items: stretch;
+}
+.badeggcup-company-info .components-base-control {
+  margin: 1em 0 0;
+}
+.badeggcup-company-info .components-text-control__input {
+  width: 100%;
+}
+.badeggcup-company-info .components-flex-item {
+  flex: 1;
+}
+.badeggcup-company-info-details, .badeggcup-company-info-contact {
+  flex: 0 0 calc(33% - 0.5em);
+}
+.badeggcup-company-info-address-group {
+  flex: 0 0 calc(50% - 0.5em);
 }
 
 /*# sourceMappingURL=index.css.map*/
