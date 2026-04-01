@@ -4,4 +4,42 @@
       margin: 0.5em 0;
     }
   }
+
+  &-brand-colours {
+    &-item {
+      position: relative;
+    }
+
+    h3 {
+      min-width: 188px;
+      text-transform: capitalize;
+    }
+
+    .components-circular-option-picker {
+      position: absolute;
+      top: -0.75em;
+      right: 0;
+      min-width: unset;
+      margin: 0;
+
+      .components-button {
+        height: auto;
+        padding: 0;
+      }
+    }
+
+    .components-panel__row {
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      gap: 2em;
+    }
+
+    .components-color-palette__custom-color-name {
+      display: none;
+    }
+
+    .components-v-stack {
+      gap: 0;
+    }
+  }
 }

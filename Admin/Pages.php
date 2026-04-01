@@ -74,9 +74,20 @@ class Pages
     {
         $default = [
             'colours' => [
-                '#395786',
-                '#a094b1',
+                'primary' => '#395786',
+                'secondary' => '#a094b1',
+                'tertiary' => '',
+                'quaternary' => '',
+                'quinary' => '',
+                'senary' => '',
+                'septenary' => '',
+                'octonary' => '',
+                'nonary' => '',
+                'denary' => '',
+                'undenary' => '',
+                'duodenary' => '',
             ],
+            'colourCount' => 3,
             'supports' => [
                 'defaultPost' => false,
                 'postRewrite' => false,
@@ -89,7 +100,24 @@ class Pages
             'type'       => 'object',
             'properties' => [
                 // Colours
-                'colours' => [ 'type' => 'array' ],
+                'colours' => [
+                    'type' => 'object',
+                    'properties' => [
+                        'primary' => [ 'type' => 'string' ],
+                        'secondary' => [ 'type' => 'string' ],
+                        'tertiary' => [ 'type' => 'string' ],
+                        'quaternary' => [ 'type' => 'string' ],
+                        'quinary' => [ 'type' => 'string' ],
+                        'senary' => [ 'type' => 'string' ],
+                        'septenary' => [ 'type' => 'string' ],
+                        'octonary' => [ 'type' => 'string' ],
+                        'nonary' => [ 'type' => 'string' ],
+                        'denary' => [ 'type' => 'string' ],
+                        'undenary' => [ 'type' => 'string' ],
+                        'duodenary' => [ 'type' => 'string' ],
+                    ],
+                ],
+                'colourCount' => [ 'type' => 'number' ],
 
                 // Company Info
                 // 'companyLegalName' => [ 'type' => 'string' ],

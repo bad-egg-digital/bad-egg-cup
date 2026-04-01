@@ -17,6 +17,7 @@ import {
   PanelBody,
   PanelRow,
   ColorPalette,
+  RangeControl,
   CheckboxControl,
   Spinner,
   Button,
@@ -54,11 +55,22 @@ const Notices = () => {
 
 const OptionsPage = () => {
   const [ loadState, setLoadState ] = useState(false);
+  const [ colourCount, setColourCount ] = useState(3);
 
-  const [ colours, setColours ] = useState([
-    '#395786',
-    '#a094b1',
-  ]);
+  const [ colours, setColours ] = useState({
+    primary: '#395786',
+    secondary: '#a094b1',
+    tertiary: '',
+    quaternary: '',
+    quinary: '',
+    senary: '',
+    septenary: '',
+    octonary: '',
+    nonary: '',
+    denary: '',
+    undenary: '',
+    duodenary: '',
+  });
 
   const [ supports, setSupports ] = useState({
     defaultPost: false,
@@ -73,6 +85,8 @@ const OptionsPage = () => {
   useEffect( () => {
     apiFetch( { path: '/wp/v2/settings' } ).then( ( settings ) => {
       setLoadState(true);
+
+      setColourCount( settings.badeggcup.colourCount || 2);
 
       if(settings?.badeggcup?.colours) {
         setColours( settings.badeggcup.colours );
@@ -92,6 +106,7 @@ const OptionsPage = () => {
       data: {
         badeggcup: {
           colours,
+          colourCount,
           supports,
         }
       },
@@ -114,29 +129,53 @@ const OptionsPage = () => {
         { (!loadState) ? <Spinner /> : (
           <>
 
-            {/* <PanelBody title={ __('Brand Colours', 'badeggcup') } className="badeggcup-brand-colours">
-              {
-                colours.map( (colour) => {
-                  let index = colours.indexOf(colour);
+            <PanelBody title={ __('Brand Colours', 'badeggcup') } className="badeggcup-brand-colours">
+              <RangeControl
+                __next40pxDefaultSize
+                __nextHasNoMarginBottom
+                label="Number of colours"
+                value={ colourCount }
+                onChange={ ( value ) => {
+                  setColourCount( value );
 
-                  console.log( index + ' is ' + colour );
+                  for (let colour = value + 1; colour <= 12; colour++) {
+                    setColours(prev => ({
+                      ...prev,
+                      [latinate[colour]]: '',
+                    }));
+                  }
+                }}
+                min={ 1 }
+                max={ 12 }
+              />
+              <PanelRow>
+                {
+                  Object.keys(colours).map((colour, index) => {
+                    const hex = colours[colour];
 
-                  return (
-                    <div key={ index }>
-                      <ColorPalette
-                        label={ latinate[index + 1] }
-                        value={ colour }
-                        onChange={ value => {
-                          console.log(value);
-                        } }
-                        defaultValue="#000"
-                      />
+                    if(index < colourCount) {
+                      return (
+                        <div className="badeggcup-brand-colours-item" key={ index }>
+                          <h3>{ colour }</h3>
+                          <ColorPalette
+                            value={ hex }
+                            clearable={ (index > 0) ? true : false }
+                            onChange={ value => {
+                              setColours( prev => ({
+                                ...prev,
+                                [colour]: value,
+                              }));
+                            }}
+                            headingLevel={ 3 }
+                          />
 
-                    </div>
-                  )
-                })
-              }
-            </PanelBody> */}
+                        </div>
+                      )
+                    }
+                  })
+                }
+              </PanelRow>
+            </PanelBody>
 
             <PanelBody title={ __('Theme Support', 'badeggcup') } className="badeggcup-theme-supports">
 

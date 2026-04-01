@@ -230,7 +230,21 @@ const Notices = () => {
 };
 const OptionsPage = () => {
   const [loadState, setLoadState] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_6__.useState)(false);
-  const [colours, setColours] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_6__.useState)(['#395786', '#a094b1']);
+  const [colourCount, setColourCount] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_6__.useState)(3);
+  const [colours, setColours] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_6__.useState)({
+    primary: '#395786',
+    secondary: '#a094b1',
+    tertiary: '',
+    quaternary: '',
+    quinary: '',
+    senary: '',
+    septenary: '',
+    octonary: '',
+    nonary: '',
+    denary: '',
+    undenary: '',
+    duodenary: ''
+  });
   const [supports, setSupports] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_6__.useState)({
     defaultPost: false,
     postRewrite: false,
@@ -246,6 +260,7 @@ const OptionsPage = () => {
       path: '/wp/v2/settings'
     }).then(settings => {
       setLoadState(true);
+      setColourCount(settings.badeggcup.colourCount || 2);
       if (settings?.badeggcup?.colours) {
         setColours(settings.badeggcup.colours);
       }
@@ -261,6 +276,7 @@ const OptionsPage = () => {
       data: {
         badeggcup: {
           colours,
+          colourCount,
           supports
         }
       }
@@ -273,8 +289,50 @@ const OptionsPage = () => {
       level: 1,
       children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Website Options', 'badeggcup')
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.Panel, {
-      children: !loadState ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.Spinner, {}) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.Fragment, {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.PanelBody, {
+      children: !loadState ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.Spinner, {}) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.Fragment, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.PanelBody, {
+          title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Brand Colours', 'badeggcup'),
+          className: "badeggcup-brand-colours",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.RangeControl, {
+            __next40pxDefaultSize: true,
+            __nextHasNoMarginBottom: true,
+            label: "Number of colours",
+            value: colourCount,
+            onChange: value => {
+              setColourCount(value);
+              for (let colour = value + 1; colour <= 12; colour++) {
+                setColours(prev => ({
+                  ...prev,
+                  [latinate[colour]]: ''
+                }));
+              }
+            },
+            min: 1,
+            max: 12
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.PanelRow, {
+            children: Object.keys(colours).map((colour, index) => {
+              const hex = colours[colour];
+              if (index < colourCount) {
+                return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+                  className: "badeggcup-brand-colours-item",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("h3", {
+                    children: colour
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.ColorPalette, {
+                    value: hex,
+                    clearable: index > 0 ? true : false,
+                    onChange: value => {
+                      setColours(prev => ({
+                        ...prev,
+                        [colour]: value
+                      }));
+                    },
+                    headingLevel: 3
+                  })]
+                }, index);
+              }
+            })
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.PanelBody, {
           title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Theme Support', 'badeggcup'),
           className: "badeggcup-theme-supports",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.CheckboxControl, {
@@ -331,7 +389,7 @@ const OptionsPage = () => {
             }),
             __nextHasNoMarginBottom: true
           })]
-        })
+        })]
       })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.Button, {
       variant: "primary",

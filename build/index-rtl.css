@@ -4,3 +4,32 @@
 .badeggcup-theme-supports .components-base-control {
   margin: 0.5em 0;
 }
+.badeggcup-brand-colours-item {
+  position: relative;
+}
+.badeggcup-brand-colours h3 {
+  min-width: 188px;
+  text-transform: capitalize;
+}
+.badeggcup-brand-colours .components-circular-option-picker {
+  position: absolute;
+  top: -0.75em;
+  left: 0;
+  min-width: unset;
+  margin: 0;
+}
+.badeggcup-brand-colours .components-circular-option-picker .components-button {
+  height: auto;
+  padding: 0;
+}
+.badeggcup-brand-colours .components-panel__row {
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 2em;
+}
+.badeggcup-brand-colours .components-color-palette__custom-color-name {
+  display: none;
+}
+.badeggcup-brand-colours .components-v-stack {
+  gap: 0;
+}
