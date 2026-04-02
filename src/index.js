@@ -128,35 +128,37 @@ const OptionsPage = () => {
         { (!loadState) ? <Spinner /> : (
           <>
 
-            <PanelBody title={ __('Brand Colours', 'badeggcup') } className="badeggcup-brand-colours">
-              <PanelRow>
-                {
-                  Object.keys(colours).map((colour, index) => {
-                    const hex = colours[colour];
+            { (supports.colours) ? (
+              <PanelBody title={ __('Brand Colours', 'badeggcup') } className="badeggcup-brand-colours">
+                <PanelRow>
+                  {
+                    Object.keys(colours).map((colour, index) => {
+                      const hex = colours[colour];
 
-                    if(index == 0 || colours[latinate[index + 1]] || (index > 0 && colours[latinate[index]])) {
-                      return (
-                        <div className="badeggcup-brand-colours-item" key={ index }>
-                          <h3>{ colour }</h3>
-                          <ColorPalette
-                            value={ hex }
-                            clearable={ (index > 0) ? true : false }
-                            onChange={ value => {
-                              setColours( prev => ({
-                                ...prev,
-                                [colour]: value,
-                              }));
-                            }}
-                            headingLevel={ 3 }
-                          />
+                      if(index == 0 || colours[latinate[index + 1]] || (index > 0 && colours[latinate[index]])) {
+                        return (
+                          <div className="badeggcup-brand-colours-item" key={ index }>
+                            <h3>{ colour }</h3>
+                            <ColorPalette
+                              value={ hex }
+                              clearable={ (index > 0) ? true : false }
+                              onChange={ value => {
+                                setColours( prev => ({
+                                  ...prev,
+                                  [colour]: value,
+                                }));
+                              }}
+                              headingLevel={ 3 }
+                            />
 
-                        </div>
-                      )
-                    }
-                  })
-                }
-              </PanelRow>
-            </PanelBody>
+                          </div>
+                        )
+                      }
+                    })
+                  }
+                </PanelRow>
+              </PanelBody>
+            ) : null }
 
             { (supports.company) ? (
               <PanelBody title={ __('Company Info', 'badeggcup') } className="badeggcup-company-info">
@@ -296,8 +298,16 @@ const OptionsPage = () => {
             </PanelBody>
             ) : null }
 
-            <PanelBody title={ __('Theme Support', 'badeggcup') } initialOpen={ false } className="badeggcup-theme-supports">
+            <PanelBody title={ __('Theme Support', 'badeggcup') } className="badeggcup-theme-supports">
               <Flex align="flex-start" justify="flex-start" gap="8">
+                <FlexItem>
+                  <CheckboxControl
+                    label={ __( 'Brand Colours', 'badeggcup' ) }
+                    checked={ supports.colours }
+                    onChange={ ( value => setSupports({ ...supports, colours: value }) ) }
+                    __nextHasNoMarginBottom
+                  />
+                </FlexItem>
                 <FlexItem>
                   <CheckboxControl
                     label={ __( 'Default Post Type', 'badeggcup' ) }

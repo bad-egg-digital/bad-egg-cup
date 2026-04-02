@@ -27,13 +27,22 @@ if (!defined('ABSPATH')) {
 define("BADEGGCUP_FILE", __FILE__);
 define("BADEGGCUP_DIR", __DIR__);
 
-foreach (glob(__DIR__ . '/*/*.php') as $badeggcup_file) {
+$badeggcupOptions = get_option('badeggcup');
+$badeggcupSupports = ($badeggcupOptions) ? @$badeggcupOptions['supports'] : null;
+
+if($badeggcupSupports) {
+    foreach($badeggcupSupports as $key => $value) {
+        if($value) add_theme_support('badeggcup-' . $key);
+    }
+}
+
+foreach (glob(__DIR__ . '/app/*/*.php') as $badeggcup_file) {
     $badeggcup_pathinfo = pathinfo($badeggcup_file);
     $badeggcup_filename = $badeggcup_pathinfo['filename'];
 
     if($badeggcup_filename == 'index') continue;
 
-    $badeggcup_dirname = str_replace(__DIR__ . '/', '', $badeggcup_pathinfo['dirname']);
+    $badeggcup_dirname = str_replace(__DIR__ . '/app/', '', $badeggcup_pathinfo['dirname']);
 
     $badeggcup_classname = __NAMESPACE__ . '\\' . $badeggcup_dirname . '\\' . $badeggcup_filename;
 
@@ -43,3 +52,7 @@ foreach (glob(__DIR__ . '/*/*.php') as $badeggcup_file) {
         new $badeggcup_classname();
     }
 }
+
+add_action('wp_footer', function(){
+
+});

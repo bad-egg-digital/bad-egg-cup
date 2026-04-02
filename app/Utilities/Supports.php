@@ -6,12 +6,15 @@ if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly.
 }
 
-class ClassDemo
+class Supports
 {
     public function __construct()
     {
-
+        // add_action('muplugins_loaded', [ $this, 'set']);
     }
 
+    public function set()
+    {
 
+    }
 }

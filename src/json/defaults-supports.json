@@ -4,6 +4,7 @@
   "postCategory": false,
   "postTag": false,
   "comments": false,
+  "colours": false,
   "company": false,
   "companyAddress": false,
   "companyAddressMailing": false

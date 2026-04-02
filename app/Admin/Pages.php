@@ -158,6 +158,7 @@ class Pages
                         'postCategory' => [ 'type' => 'boolean' ],
                         'postTag' => [ 'type' => 'boolean' ],
                         'comments' => [ 'type' => 'boolean' ],
+                        'colours' => [ 'type' => 'boolean' ],
                         'company' => [ 'type' => 'boolean' ],
                         'companyAddress' => [ 'type' => 'boolean' ],
                         'companyAddressMailing' => [ 'type' => 'boolean' ],
