@@ -10,8 +10,26 @@ class Setup
 {
     public function __construct()
     {
+        add_action('setup_theme', [ $this, 'theme' ]);
         add_action('after_setup_theme', [ $this, 'assignDefaults']);
-        add_action('update_option_badeggcup', [$this, 'updateSettings']);
+    }
+
+    public function theme()
+    {
+        $template = get_option('template');
+        $stylesheet = get_option('stylesheet');
+
+        if(!$template) {
+            add_option('template', 'badegg');
+        } elseif($template != 'badegg') {
+            update_option('template', 'badegg');
+        }
+
+        if(!$stylesheet) {
+            add_option('stylesheet', 'badegg');
+        } elseif($stylesheet != 'badegg') {
+            update_option('stylesheet', 'badegg');
+        }
     }
 
     public function assignDefaults()
@@ -96,11 +114,5 @@ class Setup
             global $wp_rewrite;
             $wp_rewrite->flush_rules();
         }
-    }
-
-    public function updateSettings($prev, $new, $option)
-    {
-        global $wp_rewrite;
-        $wp_rewrite->flush_rules();
     }
 }
