@@ -51,6 +51,7 @@ class Setup
             $defaultPost->menu_order = -100;
             $defaultPost->post_content = '';
 
+            wp_delete_comment(1, true);
             wp_update_post($defaultPost);
             update_post_meta($defaultPostID, '_badeggcup_defaults_set', true);
             update_option('page_on_front', $defaultPostID);
