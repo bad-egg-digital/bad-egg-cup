@@ -154,7 +154,6 @@ class Pages
                     'type' => 'object',
                     'properties' => [
                         'defaultPost' => [ 'type' => 'boolean' ],
-                        'postRewrite' => [ 'type' => 'boolean' ],
                         'postCategory' => [ 'type' => 'boolean' ],
                         'postTag' => [ 'type' => 'boolean' ],
                         'comments' => [ 'type' => 'boolean' ],

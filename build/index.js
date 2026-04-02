@@ -130,7 +130,7 @@ module.exports = /*#__PURE__*/JSON.parse('{"name":"","nameLegal":"","number":"",
   \*****************************************/
 (module) {
 
-module.exports = /*#__PURE__*/JSON.parse('{"defaultPost":false,"postRewrite":false,"postCategory":false,"postTag":false,"comments":false,"colours":false,"company":false,"companyAddress":false,"companyAddressMailing":false}');
+module.exports = /*#__PURE__*/JSON.parse('{"defaultPost":false,"postCategory":false,"postTag":false,"comments":false,"colours":false,"company":false,"companyAddress":false,"companyAddressMailing":false}');
 
 /***/ },
 
@@ -515,7 +515,6 @@ const OptionsPage = () => {
                     setSupports({
                       ...supports,
                       defaultPost: false,
-                      postRewrite: false,
                       postCategory: false,
                       postTag: false
                     });
@@ -524,14 +523,6 @@ const OptionsPage = () => {
                 __nextHasNoMarginBottom: true
               }), supports.defaultPost ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.Fragment, {
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_12__.CheckboxControl, {
-                  label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Post Rewrites', 'badeggcup'),
-                  checked: supports.postRewrite,
-                  onChange: value => setSupports({
-                    ...supports,
-                    postRewrite: value
-                  }),
-                  __nextHasNoMarginBottom: true
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_12__.CheckboxControl, {
                   label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Post Tags', 'badeggcup'),
                   checked: supports.postTag,
                   onChange: value => setSupports({

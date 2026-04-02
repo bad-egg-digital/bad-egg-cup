@@ -1,6 +1,5 @@
 {
   "defaultPost": false,
-  "postRewrite": false,
   "postCategory": false,
   "postTag": false,
   "comments": false,

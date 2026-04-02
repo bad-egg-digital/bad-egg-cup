@@ -319,7 +319,6 @@ const OptionsPage = () => {
                         setSupports({
                           ...supports,
                           defaultPost: false,
-                          postRewrite: false,
                           postCategory: false,
                           postTag: false,
                         });
@@ -332,12 +331,6 @@ const OptionsPage = () => {
                   {
                     (supports.defaultPost) ? (
                       <>
-                        <CheckboxControl
-                          label={ __( 'Post Rewrites', 'badeggcup' ) }
-                          checked={ supports.postRewrite }
-                          onChange={ ( value => setSupports({ ...supports, postRewrite: value }) ) }
-                          __nextHasNoMarginBottom
-                        />
                         <CheckboxControl
                           label={ __( 'Post Tags', 'badeggcup' ) }
                           checked={ supports.postTag }
