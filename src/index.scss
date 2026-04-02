@@ -3,6 +3,12 @@
     .components-base-control {
       margin: 0.5em 0;
     }
+
+    @media (max-width: 600px) {
+      .components-flex {
+        display: block;
+      }
+    }
   }
 
   &-brand-colours,
@@ -76,10 +82,26 @@
     &-details,
     &-contact {
       flex: 0 0 calc(33% - 0.5em);
+
+      @media (max-width: 600px) {
+        flex: 0 0 100%;
+      }
     }
 
     &-address-group {
       flex: 0 0 calc(50% - 0.5em);
+
+      @media (max-width: 600px) {
+        flex: 0 0 100%;
+
+        .components-flex {
+          display: block;
+
+          .components-divider {
+            display: none;
+          }
+        }
+      }
     }
   }
 }

@@ -70,51 +70,33 @@ class Pages
 
     }
 
+    public function loadJSON($json = '')
+    {
+        $file = BADEGGCUP_DIR . '/src/json/' . $json . '.json';
+
+        if(file_exists($file)) {
+            return json_decode(file_get_contents($file), true);
+
+        } else {
+            return [];
+
+        }
+    }
+
     public function options_schema()
     {
-        $addressDefaults = [
-            'line1' => '',
-            'line2' => '',
-            'line3' => '',
-            'line4' => '',
-            'city' => '',
-            'county' => '',
-            'postCode' => '',
-            'country' => '',
-        ];
+        $defaultsSupports = $this->loadJSON('defaults-supports');
+        $defaultsColours = $this->loadJSON('defaults-colours');
+        $defaultsAddress = $this->loadJSON('defaults-address');
+        $defaultsCompanyInfo = $this->loadJSON('defaults-company-info');
 
-        $default = [
-            'colours' => [
-                'primary' => '#395786',
-                'secondary' => '#a094b1',
-                'tertiary' => '',
-                'quaternary' => '',
-                'quinary' => '',
-                'senary' => '',
-                'septenary' => '',
-                'octonary' => '',
-                'nonary' => '',
-                'denary' => '',
-                'undenary' => '',
-                'duodenary' => '',
-            ],
-            'company' => [
-                'name' => '',
-                'nameLegal' => '',
-                'number' => '',
-                'tel' => '',
-                'email' => '',
-                'address' => $addressDefaults,
-                'addressMailing' => $addressDefaults,
-            ],
-            'supports' => [
-                'defaultPost' => false,
-                'postRewrite' => false,
-                'postCategory' => false,
-                'postTag' => false,
-                'comments' => false,
-                'mailingAddress' => false,
-            ],
+        $defaultsCompanyInfo['address'] = $defaultsAddress;
+        $defaultsCompanyInfo['addressMailing'] = $defaultsAddress;
+
+        $defaults = [
+            'colours' => $defaultsColours,
+            'company' => $defaultsCompanyInfo,
+            'supports' => $defaultsSupports,
         ];
 
         $addressSchema = [
@@ -176,9 +158,11 @@ class Pages
                         'postCategory' => [ 'type' => 'boolean' ],
                         'postTag' => [ 'type' => 'boolean' ],
                         'comments' => [ 'type' => 'boolean' ],
-                        'mailingAddress' => [ 'type' => 'boolean' ],
-                    ]
-                ]
+                        'company' => [ 'type' => 'boolean' ],
+                        'companyAddress' => [ 'type' => 'boolean' ],
+                        'companyAddressMailing' => [ 'type' => 'boolean' ],
+                    ],
+                ],
             ],
         ];
 
@@ -187,7 +171,7 @@ class Pages
             'badeggcup',
             [
                 'type'         => 'object',
-                'default'      => $default,
+                'default'      => $defaults,
                 'show_in_rest' => [
                     'schema' => $schema,
                 ],

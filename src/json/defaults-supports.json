@@ -1,0 +1,10 @@
+{
+  "defaultPost": false,
+  "postRewrite": false,
+  "postCategory": false,
+  "postTag": false,
+  "comments": false,
+  "company": false,
+  "companyAddress": false,
+  "companyAddressMailing": false
+}

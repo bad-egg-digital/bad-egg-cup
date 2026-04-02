@@ -4,6 +4,11 @@
 .badeggcup-theme-supports .components-base-control {
   margin: 0.5em 0;
 }
+@media (max-width: 600px) {
+  .badeggcup-theme-supports .components-flex {
+    display: block;
+  }
+}
 .badeggcup-brand-colours .components-panel__row, .badeggcup-company-info .components-panel__row {
   justify-content: flex-start;
   align-items: flex-start;
@@ -56,6 +61,22 @@
 .badeggcup-company-info-details, .badeggcup-company-info-contact {
   flex: 0 0 calc(33% - 0.5em);
 }
+@media (max-width: 600px) {
+  .badeggcup-company-info-details, .badeggcup-company-info-contact {
+    flex: 0 0 100%;
+  }
+}
 .badeggcup-company-info-address-group {
   flex: 0 0 calc(50% - 0.5em);
+}
+@media (max-width: 600px) {
+  .badeggcup-company-info-address-group {
+    flex: 0 0 100%;
+  }
+  .badeggcup-company-info-address-group .components-flex {
+    display: block;
+  }
+  .badeggcup-company-info-address-group .components-flex .components-divider {
+    display: none;
+  }
 }
