@@ -1,6 +1,7 @@
 <?php
 
 namespace BadEggCup\Admin;
+use BadEggCup\Utilities;
 
 class Pages
 {
@@ -70,25 +71,14 @@ class Pages
 
     }
 
-    public function loadJSON($json = '')
-    {
-        $file = BADEGGCUP_DIR . '/src/json/' . $json . '.json';
-
-        if(file_exists($file)) {
-            return json_decode(file_get_contents($file), true);
-
-        } else {
-            return [];
-
-        }
-    }
-
     public function options_schema()
     {
-        $defaultsSupports = $this->loadJSON('defaults-supports');
-        $defaultsColours = $this->loadJSON('defaults-colours');
-        $defaultsAddress = $this->loadJSON('defaults-address');
-        $defaultsCompanyInfo = $this->loadJSON('defaults-company-info');
+        $Settings = new Utilities\Settings;
+
+        $defaultsSupports = $Settings->loadJSON('defaults-supports');
+        $defaultsColours = $Settings->loadJSON('defaults-colours');
+        $defaultsAddress = $Settings->loadJSON('defaults-address');
+        $defaultsCompanyInfo = $Settings->loadJSON('defaults-company-info');
 
         $defaultsCompanyInfo['address'] = $defaultsAddress;
         $defaultsCompanyInfo['addressMailing'] = $defaultsAddress;
