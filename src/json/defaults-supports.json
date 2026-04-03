@@ -6,5 +6,9 @@
   "colours": false,
   "company": false,
   "companyAddress": false,
-  "companyAddressMailing": false
+  "companyAddressMailing": false,
+  "integrations": false,
+  "integrationsFathom": false,
+  "integrationsPlausible": false,
+  "integrationsGoogle": false
 }

@@ -79,6 +79,7 @@ class Pages
         $defaultsColours = $Settings->loadJSON('defaults-colours');
         $defaultsAddress = $Settings->loadJSON('defaults-address');
         $defaultsCompanyInfo = $Settings->loadJSON('defaults-company-info');
+        $defaultsIntegrations = $Settings->loadJSON('defaults-integrations');
 
         $defaultsCompanyInfo['address'] = $defaultsAddress;
         $defaultsCompanyInfo['addressMailing'] = $defaultsAddress;
@@ -86,6 +87,7 @@ class Pages
         $defaults = [
             'colours' => $defaultsColours,
             'company' => $defaultsCompanyInfo,
+            'integrations' => $defaultsIntegrations,
             'supports' => $defaultsSupports,
         ];
 
@@ -139,6 +141,19 @@ class Pages
                     ],
                 ],
 
+                // Integrations
+                'integrations' => [
+                    'type' => 'object',
+                    'properties' => [
+                        'fathomID' => [ 'type' => 'string' ],
+                        'googleKey' => [ 'type' => 'string' ],
+                        'googleTagManagerID' => [ 'type' => 'string' ],
+                        'googleAnalyticsID' => [ 'type' => 'string' ],
+                        'plausibleID' => [ 'type' => 'string' ],
+                        'plausibleHost' => [ 'type' => 'string' ],
+                    ],
+                ],
+
                 // Theme Supports
                 'supports' => [
                     'type' => 'object',
@@ -151,6 +166,10 @@ class Pages
                         'company' => [ 'type' => 'boolean' ],
                         'companyAddress' => [ 'type' => 'boolean' ],
                         'companyAddressMailing' => [ 'type' => 'boolean' ],
+                        'integrations' => [ 'type' => 'boolean' ],
+                        'integrationsFathom' => [ 'type' => 'boolean' ],
+                        'integrationsPlausible' => [ 'type' => 'boolean' ],
+                        'integrationsGoogle' => [ 'type' => 'boolean' ],
                     ],
                 ],
             ],
