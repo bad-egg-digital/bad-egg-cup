@@ -1,4 +1,10 @@
 .badeggcup {
+  &-panel {
+    .components-base-control {
+      margin: 1em 0 0;
+    }
+  }
+
   &-theme-supports {
     .components-base-control {
       margin: 0.5em 0;
@@ -13,12 +19,12 @@
 
   &-brand-colours,
   &-company-info {
-    .components-panel__row {
-      justify-content: flex-start;
-      align-items: flex-start;
-      flex-wrap: wrap;
-      gap: 1em;
-    }
+    // .components-panel__row {
+    //   justify-content: flex-start;
+    //   align-items: flex-start;
+    //   flex-wrap: wrap;
+    //   gap: 1em;
+    // }
   }
 
   &-brand-colours {
@@ -62,15 +68,6 @@
       border-color: rgba(black, 0.1);
     }
 
-    .components-panel__row {
-      margin: 0 0 1em;
-      align-items: stretch;
-    }
-
-    .components-base-control {
-      margin: 1em 0 0;
-    }
-
     .components-text-control__input {
       width: 100%;
     }
@@ -81,26 +78,30 @@
 
     &-details,
     &-contact {
-      flex: 0 0 calc(33% - 0.5em);
-
-      @media (max-width: 600px) {
-        flex: 0 0 100%;
-      }
+      flex: 1 1 calc(33% - 8px);
     }
 
     &-address-group {
-      flex: 0 0 calc(50% - 0.5em);
+      container-name: BadEggCupAddressGroup;
+      container-type: inline-size;
+      flex: 1 1 calc(50% - 8px);
 
-      @media (max-width: 600px) {
-        flex: 0 0 100%;
-
+      @container BadEggCupAddressGroup (max-width: 600px) {
         .components-flex {
           display: block;
-
-          .components-divider {
-            display: none;
-          }
         }
+
+        hr {
+          display: none;
+        }
+      }
+    }
+
+    &-details,
+    &-contact,
+    &-address-group {
+      @media (max-width: 400px) {
+        flex: 1 1 100%;
       }
     }
   }

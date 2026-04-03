@@ -1,6 +1,9 @@
 /*!***************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/index.scss ***!
   \***************************************************************************************************************************************************************************************************************************************/
+.badeggcup-panel .components-base-control {
+  margin: 1em 0 0;
+}
 .badeggcup-theme-supports .components-base-control {
   margin: 0.5em 0;
 }
@@ -8,12 +11,6 @@
   .badeggcup-theme-supports .components-flex {
     display: block;
   }
-}
-.badeggcup-brand-colours .components-panel__row, .badeggcup-company-info .components-panel__row {
-  justify-content: flex-start;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  gap: 1em;
 }
 .badeggcup-brand-colours-item {
   position: relative;
@@ -45,13 +42,6 @@
 .badeggcup-company-info hr {
   border-color: rgba(0, 0, 0, 0.1);
 }
-.badeggcup-company-info .components-panel__row {
-  margin: 0 0 1em;
-  align-items: stretch;
-}
-.badeggcup-company-info .components-base-control {
-  margin: 1em 0 0;
-}
 .badeggcup-company-info .components-text-control__input {
   width: 100%;
 }
@@ -59,24 +49,23 @@
   flex: 1;
 }
 .badeggcup-company-info-details, .badeggcup-company-info-contact {
-  flex: 0 0 calc(33% - 0.5em);
-}
-@media (max-width: 600px) {
-  .badeggcup-company-info-details, .badeggcup-company-info-contact {
-    flex: 0 0 100%;
-  }
+  flex: 1 1 calc(33% - 8px);
 }
 .badeggcup-company-info-address-group {
-  flex: 0 0 calc(50% - 0.5em);
+  container-name: BadEggCupAddressGroup;
+  container-type: inline-size;
+  flex: 1 1 calc(50% - 8px);
 }
-@media (max-width: 600px) {
-  .badeggcup-company-info-address-group {
-    flex: 0 0 100%;
-  }
+@container BadEggCupAddressGroup (max-width: 600px) {
   .badeggcup-company-info-address-group .components-flex {
     display: block;
   }
-  .badeggcup-company-info-address-group .components-flex .components-divider {
+  .badeggcup-company-info-address-group hr {
     display: none;
+  }
+}
+@media (max-width: 400px) {
+  .badeggcup-company-info-details, .badeggcup-company-info-contact, .badeggcup-company-info-address-group {
+    flex: 1 1 100%;
   }
 }

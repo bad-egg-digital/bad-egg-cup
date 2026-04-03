@@ -9,6 +9,5 @@
   "companyAddressMailing": false,
   "integrations": false,
   "integrationsFathom": false,
-  "integrationsPlausible": false,
-  "integrationsGoogle": false
+  "integrationsPlausible": false
 }

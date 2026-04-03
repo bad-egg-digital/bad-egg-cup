@@ -146,9 +146,6 @@ class Pages
                     'type' => 'object',
                     'properties' => [
                         'fathomID' => [ 'type' => 'string' ],
-                        'googleKey' => [ 'type' => 'string' ],
-                        'googleTagManagerID' => [ 'type' => 'string' ],
-                        'googleAnalyticsID' => [ 'type' => 'string' ],
                         'plausibleID' => [ 'type' => 'string' ],
                         'plausibleHost' => [ 'type' => 'string' ],
                     ],
@@ -169,7 +166,6 @@ class Pages
                         'integrations' => [ 'type' => 'boolean' ],
                         'integrationsFathom' => [ 'type' => 'boolean' ],
                         'integrationsPlausible' => [ 'type' => 'boolean' ],
-                        'integrationsGoogle' => [ 'type' => 'boolean' ],
                     ],
                 ],
             ],
