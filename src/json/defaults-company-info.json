@@ -5,5 +5,8 @@
   "tel": "",
   "email": "",
   "address": {},
-  "addressMailing": {}
+  "addressMailing": {},
+  "socials": [
+    { "icon": "", "link": "" }
+  ]
 }

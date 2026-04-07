@@ -13,6 +13,13 @@ import defaultsCompanyInfo from './json/defaults-company-info.json';
 import defaultsIntegrations from './json/defaults-integrations.json';
 import defaultsSupports from './json/defaults-supports.json';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fab } from '@fortawesome/free-brands-svg-icons';
+import { fontAwesomeIconClassNames, fontAwesomeSelectOptions } from './lib/fontAwesomeData';
+
+library.add(fab);
+
 import {
   createRoot,
   useState,
@@ -25,12 +32,17 @@ import {
   Flex,
   FlexItem,
   Card,
+  CardHeader,
   CardBody,
+  CardDivider,
+  CardFooter,
   ColorPalette,
   TextControl,
   CheckboxControl,
   Spinner,
   Button,
+  CustomSelectControl,
+  FormTokenField,
   __experimentalSpacer as Spacer,
   __experimentalDivider as Divider,
   __experimentalHeading as Heading,
@@ -52,6 +64,10 @@ const Notices = () => {
 
   return <NoticeList notices={ notices } onRemove={ removeNotice } />;
 };
+
+const exampleSocials = [
+  { icon: 'test', link: 'https://www.google.com' }
+];
 
 const OptionsPage = () => {
   const [ loadState, setLoadState ] = useState(false);
@@ -116,6 +132,8 @@ const OptionsPage = () => {
       );
     });
   };
+
+  const brandIconOptions = fontAwesomeSelectOptions(fab, 'brands');
 
   return (
     <>
@@ -305,6 +323,138 @@ const OptionsPage = () => {
             </PanelBody>
             ) : null }
 
+            { supports.companySocials ? (
+              <PanelBody title={ __('Company Social Channels', 'badeggcup') } className="badeggcup-company-socials">
+                <Flex align="stretch" justify="flex-start" gap="4">
+                  { company.socials.map( (social, index) => {
+
+                    return (
+                      <Card key={ index }>
+                        <CardHeader>
+                          <FontAwesomeIcon icon={ `fa-brands fa-${ social.icon }` } size="lg" />
+                        </CardHeader>
+                        <CardBody>
+
+                          <FormTokenField
+                            __next40pxDefaultSize
+                            __nextHasNoMarginBottom
+                            label={ __('Search for an icon', 'badeggcup') }
+                            onChange={ (value) => {
+                              const icon = value[0];
+
+                              setCompany(prev => {
+                                const newSocials = [...prev.socials];
+                                newSocials[index] = {
+                                  ...newSocials[index],
+                                  icon: icon,
+                                };
+
+                                return {
+                                  ...prev,
+                                  socials: newSocials,
+                                };
+                              });
+
+                            }}
+                            suggestions={ fontAwesomeIconClassNames(fab) }
+                            maxLength="1"
+                            __experimentalShowHowTo={ false }
+                          />
+
+                          <CustomSelectControl
+                              __next40pxDefaultSize
+                              label={ __('Icon', 'badeggcup') }
+                              options={ brandIconOptions }
+                              value={ brandIconOptions.find( ( option ) => option.key === social.icon ) }
+                              onChange={(value) => {
+
+                                setCompany(prev => {
+                                  const newSocials = [...prev.socials];
+                                  newSocials[index] = {
+                                    ...newSocials[index],
+                                    icon: value.selectedItem.key,
+                                  };
+
+                                  return {
+                                    ...prev,
+                                    socials: newSocials,
+                                  };
+                                });
+                              }}
+                          />
+
+                          <TextControl
+                            label={ __('Link', 'badeggcup') }
+                            value={ social.link }
+                            onChange={ (value) => {
+                              setCompany(prev => {
+                                const newSocials = [...prev.socials];
+                                newSocials[index] = {
+                                  ...newSocials[index],
+                                  link: value,
+                                };
+
+                                return {
+                                  ...prev,
+                                  socials: newSocials,
+                                };
+                              });
+                            }}
+                            __next40pxDefaultSize
+                            __nextHasNoMarginBottom={ true }
+                          />
+                        </CardBody>
+                        <CardFooter>
+                          <Button
+                            variant="link"
+                            isDestructive={ true }
+                            size="small"
+                            onClick={ () => setCompany( prev => {
+
+                              console.log(index);
+
+                              const newSocials = prev.socials.filter((_, i) => i !== index)
+
+                              return (
+                                {
+                                  ...prev,
+                                  socials: newSocials,
+                                }
+                              )
+
+                            })}
+                            __next40pxDefaultSize
+                          >
+                            { __( 'Remove', 'badeggcup' ) }
+                          </Button>
+                        </CardFooter>
+                      </Card>
+                    )
+                  }) }
+                </Flex>
+
+                <Spacer margin="4" />
+
+                <Button
+                  variant="secondary"
+                  onClick={ () => setCompany( prev => ({
+                    ...prev,
+                    socials: [
+                      ...prev.socials,
+                      { icon: "", link: "" }
+                    ],
+                  }))}
+                  __next40pxDefaultSize
+                >
+                  { __( 'Add channel', 'badeggcup' ) }
+                </Button>
+
+                <SaveButton />
+
+              </PanelBody>
+
+            ) : null }
+
             { supports.integrations ? (
               <PanelBody title={ __('Third-party Integrations', 'badeggcup') } className="badeggcup-integrations">
                 <Flex align="stretch" justify="flex-start" gap="4">
@@ -377,6 +527,7 @@ const OptionsPage = () => {
                         setSupports({
                           ...supports,
                           company: false,
+                          companySocials: false,
                           companyAddress: false,
                           companyAddressMailing: false,
                         });
@@ -388,23 +539,31 @@ const OptionsPage = () => {
 
                   {
                     (supports.company) ? (
-                      <CheckboxControl
-                        label={ __( 'Address', 'badeggcup' ) }
-                        checked={ supports.companyAddress }
-                        onChange={ ( value => {
-                          setSupports({ ...supports, companyAddress: value });
+                      <>
+                        <CheckboxControl
+                          label={ __( 'Social Channels', 'badeggcup' ) }
+                          checked={ supports.companySocials }
+                          onChange={ ( value => setSupports({ ...supports, companySocials: value }) )}
+                          __nextHasNoMarginBottom
+                        />
+                        <CheckboxControl
+                          label={ __( 'Address', 'badeggcup' ) }
+                          checked={ supports.companyAddress }
+                          onChange={ ( value => {
+                            setSupports({ ...supports, companyAddress: value });
 
-                          if(!value) {
-                            setSupports({
-                              ...supports,
-                              companyAddress: false,
-                              companyAddressMailing: false,
-                            });
-                          }
+                            if(!value) {
+                              setSupports({
+                                ...supports,
+                                companyAddress: false,
+                                companyAddressMailing: false,
+                              });
+                            }
 
-                        } ) }
-                        __nextHasNoMarginBottom
-                      />
+                          } ) }
+                          __nextHasNoMarginBottom
+                        />
+                      </>
                     ) : null
                   }
 

@@ -138,6 +138,7 @@ class Pages
                         'email' => [ 'type' => 'string' ],
                         'address' => $addressSchema,
                         'addressMailing' => $addressSchema,
+                        'socials' => [ 'type' => 'array' ],
                     ],
                 ],
 
@@ -163,6 +164,7 @@ class Pages
                         'company' => [ 'type' => 'boolean' ],
                         'companyAddress' => [ 'type' => 'boolean' ],
                         'companyAddressMailing' => [ 'type' => 'boolean' ],
+                        'companySocials' => [ 'type' => 'boolean' ],
                         'integrations' => [ 'type' => 'boolean' ],
                         'integrationsFathom' => [ 'type' => 'boolean' ],
                         'integrationsPlausible' => [ 'type' => 'boolean' ],

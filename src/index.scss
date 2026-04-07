@@ -1,5 +1,6 @@
 .badeggcup {
   &-panel {
+    .components-custom-select-control,
     .components-base-control {
       margin: 1em 0 0;
     }
@@ -15,16 +16,6 @@
         display: block;
       }
     }
-  }
-
-  &-brand-colours,
-  &-company-info {
-    // .components-panel__row {
-    //   justify-content: flex-start;
-    //   align-items: flex-start;
-    //   flex-wrap: wrap;
-    //   gap: 1em;
-    // }
   }
 
   &-brand-colours {
