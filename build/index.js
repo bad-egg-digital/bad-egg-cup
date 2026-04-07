@@ -38,8 +38,8 @@ function SectionColours({
     _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_1___default()({
       path: '/wp/v2/settings'
     }).then(settings => {
+      setLoadedColours(true);
       if (settings?.badeggcup?.colours) {
-        setLoadedColours(true);
         setColours(settings.badeggcup.colours);
       }
     });
@@ -114,8 +114,8 @@ function SectionIntegrations({
     _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_1___default()({
       path: '/wp/v2/settings'
     }).then(settings => {
+      setLoadedIntegrations(true);
       if (settings?.badeggcup?.integrations) {
-        setLoadedIntegrations(true);
         setIntegrations(settings.badeggcup.integrations);
       }
     });

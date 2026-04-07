@@ -21,8 +21,9 @@ export default function SectionColours({ colours, setColours })
 
   useEffect( () => {
     apiFetch( { path: '/wp/v2/settings' } ).then( ( settings ) => {
+      setLoadedColours(true);
+
       if(settings?.badeggcup?.colours) {
-        setLoadedColours(true);
         setColours( settings.badeggcup.colours );
       }
     } );

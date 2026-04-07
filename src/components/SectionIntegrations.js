@@ -24,8 +24,9 @@ export default function SectionIntegrations({ supports, integrations, setIntegra
 
   useEffect( () => {
     apiFetch( { path: '/wp/v2/settings' } ).then( ( settings ) => {
+      setLoadedIntegrations(true);
+
       if(settings?.badeggcup?.integrations) {
-        setLoadedIntegrations(true);
         setIntegrations( settings.badeggcup.integrations );
       }
     } );
