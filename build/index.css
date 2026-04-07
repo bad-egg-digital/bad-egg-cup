@@ -70,5 +70,56 @@
     flex: 1 1 100%;
   }
 }
+.badeggcup-social-row {
+  container-name: BadEggCupSocialRow;
+  container-type: inline-size;
+}
+.badeggcup-social-row hr {
+  flex: 0 0 1px;
+}
+.badeggcup-social-row-icon {
+  flex: 0 0 7em;
+}
+.badeggcup-social-row-body {
+  flex: 1 1 10em;
+}
+.badeggcup-social-row-body .badeggcup-social-input-link {
+  margin: 0;
+  flex: 1 1 10em;
+}
+.badeggcup-social-row-body .badeggcup-social-input-icon {
+  flex: 0 0 10em;
+  max-width: 10em;
+}
+.badeggcup-social-row-body .badeggcup-social-input-icon .components-flex {
+  flex-wrap: nowrap;
+}
+.badeggcup-social-row-body .badeggcup-social-input-icon .components-flex-item {
+  min-width: 8em;
+}
+.badeggcup-social-row-action {
+  flex: 0 0 8em;
+}
+@container BadEggCupSocialRow (min-width: 800px) {
+  .badeggcup-social-row .badeggcup-social-row-action,
+  .badeggcup-social-row .badeggcup-social-row-icon {
+    border: none;
+  }
+}
+@container BadEggCupSocialRow (max-width: 799px) {
+  .badeggcup-social-row hr {
+    display: none;
+  }
+  .badeggcup-social-row .badeggcup-social-row-inner {
+    display: block;
+  }
+  .badeggcup-social-row .badeggcup-social-row-body > .components-flex {
+    display: block;
+  }
+  .badeggcup-social-row .badeggcup-social-row-body .badeggcup-social-input-icon {
+    max-width: none;
+    margin: 0 0 1em;
+  }
+}
 
 /*# sourceMappingURL=index.css.map*/

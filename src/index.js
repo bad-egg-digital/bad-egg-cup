@@ -12,12 +12,8 @@ import defaultsCompanyInfo from './json/defaults-company-info.json';
 import defaultsIntegrations from './json/defaults-integrations.json';
 import defaultsSupports from './json/defaults-supports.json';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { fab } from '@fortawesome/free-brands-svg-icons';
-import { fontAwesomeIconClassNames } from './lib/fontAwesomeData';
-
 import SectionColours from './components/SectionColours';
+import SectionSocials from './components/SectionSocials';
 import SectionIntegrations from './components/SectionIntegrations';
 
 import {
@@ -41,7 +37,6 @@ import {
   CheckboxControl,
   Spinner,
   Button,
-  FormTokenField,
   __experimentalSpacer as Spacer,
   __experimentalDivider as Divider,
   __experimentalHeading as Heading,
@@ -50,8 +45,6 @@ import {
 
 defaultsCompanyInfo.address = defaultsAddress;
 defaultsCompanyInfo.addressMailing = defaultsAddress;
-
-library.add(fab);
 
 const Notices = () => {
   const { removeNotice } = useDispatch( noticesStore );
@@ -87,6 +80,8 @@ const OptionsPage = () => {
       if(settings?.badeggcup?.supports) {
         setSupports( settings.badeggcup.supports );
       }
+
+      console.log(company);
 
     } );
   }, [] );
@@ -447,136 +442,7 @@ const OptionsPage = () => {
         ) : null }
 
         { supports.companySocials ? (
-          <PanelBody title={ __('Company Social Channels', 'badeggcup') } className="badeggcup-company-socials">
-            <Flex align="stretch" justify="flex-start" gap="4">
-              { company.socials.map( (social, index) => {
-                return (
-                  <Card key={ index }>
-                    <CardHeader>
-                      <a href={ social.link } target="_blank">
-                        <FontAwesomeIcon icon={ `fa-brands fa-${ social.icon }` } size="2x" />
-                      </a>
-                    </CardHeader>
-                    <CardBody>
-
-                      <FormTokenField
-                        __next40pxDefaultSize
-                        __nextHasNoMarginBottom
-                        label={ __('Search for an icon', 'badeggcup') }
-                        onChange={ (value) => {
-                          const icon = value[0];
-
-                          setCompany(prev => {
-                            const newSocials = [...prev.socials];
-                            newSocials[index] = {
-                              ...newSocials[index],
-                              icon: icon,
-                            };
-
-                            return {
-                              ...prev,
-                              socials: newSocials,
-                            };
-                          });
-
-                        }}
-                        suggestions={ fontAwesomeIconClassNames(fab) }
-                        maxLength="1"
-                        value={ (social.icon) ? [ social.icon ] : [] }
-                        __experimentalShowHowTo={ false }
-                      />
-
-                      {/* <CustomSelectControl
-                          __next40pxDefaultSize
-                          label={ __('Icon', 'badeggcup') }
-                          options={ brandIconOptions }
-                          value={ brandIconOptions.find( ( option ) => option.key === social.icon ) }
-                          onChange={(value) => {
-
-                            setCompany(prev => {
-                              const newSocials = [...prev.socials];
-                              newSocials[index] = {
-                                ...newSocials[index],
-                                icon: value.selectedItem.key,
-                              };
-
-                              return {
-                                ...prev,
-                                socials: newSocials,
-                              };
-                            });
-                          }}
-                      /> */}
-
-                      <TextControl
-                        label={ __('Link', 'badeggcup') }
-                        value={ social.link }
-                        type="url"
-                        onChange={ (value) => {
-                          setCompany(prev => {
-                            const newSocials = [...prev.socials];
-                            newSocials[index] = {
-                              ...newSocials[index],
-                              link: value,
-                            };
-
-                            return {
-                              ...prev,
-                              socials: newSocials,
-                            };
-                          });
-                        }}
-                        __next40pxDefaultSize
-                        __nextHasNoMarginBottom={ true }
-                      />
-                    </CardBody>
-                    <CardFooter>
-                      <Button
-                        variant="link"
-                        isDestructive={ true }
-                        size="small"
-                        onClick={ () => setCompany( prev => {
-
-                          console.log(index);
-
-                          const newSocials = prev.socials.filter((_, i) => i !== index)
-
-                          return (
-                            {
-                              ...prev,
-                              socials: newSocials,
-                            }
-                          )
-
-                        })}
-                        __next40pxDefaultSize
-                      >
-                        { __( 'Remove', 'badeggcup' ) }
-                      </Button>
-                    </CardFooter>
-                  </Card>
-                )
-              }) }
-            </Flex>
-
-            <Spacer margin="4" />
-
-            <Button
-              variant="secondary"
-              onClick={ () => setCompany( prev => ({
-                ...prev,
-                socials: [
-                  ...prev.socials,
-                  { icon: "", link: "" }
-                ],
-              }))}
-              __next40pxDefaultSize
-            >
-              { __( 'Add channel', 'badeggcup' ) }
-            </Button>
-
-          </PanelBody>
-
+          <SectionSocials company={ company } setCompany={ setCompany } />
         ) : null }
 
         <SectionIntegrations supports={ supports } integrations={ integrations } setIntegrations={ setIntegrations } />

@@ -96,4 +96,72 @@
       }
     }
   }
+
+  &-social-row {
+    container-name: BadEggCupSocialRow;
+    container-type: inline-size;
+
+    hr {
+      flex: 0 0 1px;
+    }
+
+    &-icon {
+      flex: 0 0 7em;
+    }
+
+    &-body {
+      flex: 1 1 10em;
+
+      .badeggcup-social-input-link {
+        margin: 0;
+        flex: 1 1 10em;
+      }
+
+      .badeggcup-social-input-icon {
+        flex: 0 0 10em;
+        max-width: 10em;
+
+        .components-flex {
+          flex-wrap: nowrap;
+        }
+
+        .components-flex-item {
+          min-width: 8em;
+        }
+      }
+    }
+
+    &-action {
+      flex: 0 0 8em;
+    }
+
+    @container BadEggCupSocialRow (min-width: 800px) {
+      .badeggcup-social-row-action,
+      .badeggcup-social-row-icon {
+        border: none;
+      }
+    }
+
+    @container BadEggCupSocialRow (max-width: 799px) {
+      hr {
+        display: none;
+      }
+
+      .badeggcup-social-row-inner {
+        display: block;
+      }
+
+      .badeggcup-social-row-body {
+        > .components-flex {
+          display: block;
+        }
+
+        .badeggcup-social-input-icon {
+          max-width: none;
+          margin: 0 0 1em;
+        }
+      }
+    }
+
+  }
 }
