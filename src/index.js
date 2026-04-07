@@ -16,7 +16,7 @@ import defaultsSupports from './json/defaults-supports.json';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
-import { fontAwesomeIconClassNames, fontAwesomeSelectOptions } from './lib/fontAwesomeData';
+import { fontAwesomeIconClassNames, brandIconOptions } from './lib/fontAwesomeData';
 
 library.add(fab);
 
@@ -132,8 +132,6 @@ const OptionsPage = () => {
       );
     });
   };
-
-  const brandIconOptions = fontAwesomeSelectOptions(fab, 'brands');
 
   return (
     <>

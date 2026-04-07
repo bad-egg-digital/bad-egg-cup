@@ -1,3 +1,5 @@
+import { fab } from '@fortawesome/free-brands-svg-icons';
+
 export function fontAwesomeIconClassNames(icons = {})
 {
   if(!icons) return [];
@@ -32,3 +34,5 @@ export function fontAwesomeSelectOptions(icons = {}, set = 'solid')
 
   return options;
 };
+
+export const brandIconOptions = fontAwesomeSelectOptions(fab, 'brands');

@@ -10,9 +10,12 @@
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   brandIconOptions: () => (/* binding */ brandIconOptions),
 /* harmony export */   fontAwesomeIconClassNames: () => (/* binding */ fontAwesomeIconClassNames),
 /* harmony export */   fontAwesomeSelectOptions: () => (/* binding */ fontAwesomeSelectOptions)
 /* harmony export */ });
+/* harmony import */ var _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @fortawesome/free-brands-svg-icons */ "./node_modules/@fortawesome/free-brands-svg-icons/index.mjs");
+
 function fontAwesomeIconClassNames(icons = {}) {
   if (!icons) return [];
   let names = [];
@@ -37,6 +40,7 @@ function fontAwesomeSelectOptions(icons = {}, set = 'solid') {
   return options;
 }
 ;
+const brandIconOptions = fontAwesomeSelectOptions(_fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_0__.fab, 'brands');
 
 /***/ },
 
@@ -8583,7 +8587,6 @@ const OptionsPage = () => {
       createSuccessNotice((0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Settings saved.', 'badeggcup'));
     });
   };
-  const brandIconOptions = (0,_lib_fontAwesomeData__WEBPACK_IMPORTED_MODULE_15__.fontAwesomeSelectOptions)(_fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_14__.fab, 'brands');
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_17__.Flex, {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_17__.__experimentalHeading, {
@@ -8800,8 +8803,8 @@ const OptionsPage = () => {
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_17__.CustomSelectControl, {
                     __next40pxDefaultSize: true,
                     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Icon', 'badeggcup'),
-                    options: brandIconOptions,
-                    value: brandIconOptions.find(option => option.key === social.icon),
+                    options: _lib_fontAwesomeData__WEBPACK_IMPORTED_MODULE_15__.brandIconOptions,
+                    value: _lib_fontAwesomeData__WEBPACK_IMPORTED_MODULE_15__.brandIconOptions.find(option => option.key === social.icon),
                     onChange: value => {
                       setCompany(prev => {
                         const newSocials = [...prev.socials];
