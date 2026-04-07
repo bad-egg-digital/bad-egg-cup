@@ -32,7 +32,6 @@ export default function SectionIntegrations({ supports, integrations, setIntegra
     } );
   }, [] );
 
-
   if(supports.integrations) {
     return (
       <PanelBody title={ __('Third-party Integrations', 'badeggcup') } className="badeggcup-integrations">

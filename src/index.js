@@ -15,12 +15,10 @@ import defaultsSupports from './json/defaults-supports.json';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
-import { fontAwesomeIconClassNames, brandIconOptions } from './lib/fontAwesomeData';
+import { fontAwesomeIconClassNames } from './lib/fontAwesomeData';
 
 import SectionColours from './components/SectionColours';
 import SectionIntegrations from './components/SectionIntegrations';
-
-library.add(fab);
 
 import {
   createRoot,
@@ -43,7 +41,6 @@ import {
   CheckboxControl,
   Spinner,
   Button,
-  CustomSelectControl,
   FormTokenField,
   __experimentalSpacer as Spacer,
   __experimentalDivider as Divider,
@@ -53,6 +50,8 @@ import {
 
 defaultsCompanyInfo.address = defaultsAddress;
 defaultsCompanyInfo.addressMailing = defaultsAddress;
+
+library.add(fab);
 
 const Notices = () => {
   const { removeNotice } = useDispatch( noticesStore );
@@ -150,6 +149,13 @@ const OptionsPage = () => {
                   />
 
                   <CheckboxControl
+                    label={ __( 'Social Channels', 'badeggcup' ) }
+                    checked={ supports.companySocials }
+                    onChange={ ( value => setSupports({ ...supports, companySocials: value }) )}
+                    __nextHasNoMarginBottom
+                  />
+
+                  <CheckboxControl
                     label={ __( 'Company Info', 'badeggcup' ) }
                     checked={ supports.company }
                     onChange={ ( value => {
@@ -159,7 +165,6 @@ const OptionsPage = () => {
                         setSupports({
                           ...supports,
                           company: false,
-                          companySocials: false,
                           companyAddress: false,
                           companyAddressMailing: false,
                         });
@@ -172,12 +177,6 @@ const OptionsPage = () => {
                   {
                     (supports.company) ? (
                       <>
-                        <CheckboxControl
-                          label={ __( 'Social Channels', 'badeggcup' ) }
-                          checked={ supports.companySocials }
-                          onChange={ ( value => setSupports({ ...supports, companySocials: value }) )}
-                          __nextHasNoMarginBottom
-                        />
                         <CheckboxControl
                           label={ __( 'Address', 'badeggcup' ) }
                           checked={ supports.companyAddress }
@@ -451,11 +450,12 @@ const OptionsPage = () => {
           <PanelBody title={ __('Company Social Channels', 'badeggcup') } className="badeggcup-company-socials">
             <Flex align="stretch" justify="flex-start" gap="4">
               { company.socials.map( (social, index) => {
-
                 return (
                   <Card key={ index }>
                     <CardHeader>
-                      <FontAwesomeIcon icon={ `fa-brands fa-${ social.icon }` } size="lg" />
+                      <a href={ social.link } target="_blank">
+                        <FontAwesomeIcon icon={ `fa-brands fa-${ social.icon }` } size="2x" />
+                      </a>
                     </CardHeader>
                     <CardBody>
 
@@ -482,10 +482,11 @@ const OptionsPage = () => {
                         }}
                         suggestions={ fontAwesomeIconClassNames(fab) }
                         maxLength="1"
+                        value={ (social.icon) ? [ social.icon ] : [] }
                         __experimentalShowHowTo={ false }
                       />
 
-                      <CustomSelectControl
+                      {/* <CustomSelectControl
                           __next40pxDefaultSize
                           label={ __('Icon', 'badeggcup') }
                           options={ brandIconOptions }
@@ -505,11 +506,12 @@ const OptionsPage = () => {
                               };
                             });
                           }}
-                      />
+                      /> */}
 
                       <TextControl
                         label={ __('Link', 'badeggcup') }
                         value={ social.link }
+                        type="url"
                         onChange={ (value) => {
                           setCompany(prev => {
                             const newSocials = [...prev.socials];
