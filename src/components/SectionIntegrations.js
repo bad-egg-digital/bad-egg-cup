@@ -12,8 +12,6 @@ import {
   Card,
   CardHeader,
   CardBody,
-  CardDivider,
-  CardFooter,
   TextControl,
   Spinner,
 } from '@wordpress/components';
@@ -39,8 +37,10 @@ export default function SectionIntegrations({ supports, integrations, setIntegra
           <Flex align="stretch" justify="flex-start" gap="4">
             { supports.integrationsPlausible ? (
               <Card className="badeggcup-integrations-plausible">
-                <CardBody>
+                <CardHeader>
                   <h3>{ __('Plausible Analytics', 'badeggcup') }</h3>
+                </CardHeader>
+                <CardBody>
                   <TextControl
                     label={ __('Tracking ID', 'badeggcup') }
                     value={ integrations.plausibleID }
@@ -67,8 +67,10 @@ export default function SectionIntegrations({ supports, integrations, setIntegra
 
             { supports.integrationsFathom ? (
               <Card className="badeggcup-integrations-fathom">
-                <CardBody>
+                <CardHeader>
                   <h3>{ __('Fathom Analytics', 'badeggcup') }</h3>
+                </CardHeader>
+                <CardBody>
                   <TextControl
                     label={ __('Tracking ID', 'badeggcup') }
                     value={ integrations.fathomID }

@@ -13,6 +13,7 @@ import defaultsIntegrations from './json/defaults-integrations.json';
 import defaultsSupports from './json/defaults-supports.json';
 
 import SectionColours from './components/SectionColours';
+import SectionCompany from './components/SectionCompany';
 import SectionSocials from './components/SectionSocials';
 import SectionIntegrations from './components/SectionIntegrations';
 
@@ -72,10 +73,6 @@ const OptionsPage = () => {
   useEffect( () => {
     apiFetch( { path: '/wp/v2/settings' } ).then( ( settings ) => {
       setLoadState(true);
-
-      if(settings?.badeggcup?.company) {
-        setCompany( settings.badeggcup.company );
-      }
 
       if(settings?.badeggcup?.supports) {
         setSupports( settings.badeggcup.supports );
@@ -299,144 +296,7 @@ const OptionsPage = () => {
           <SectionColours colours={ colours } setColours={ setColours } />
         ) : null }
 
-        { (supports.company) ? (
-          <PanelBody title={ __('Company Info', 'badeggcup') } className="badeggcup-company-info">
-            <Flex align="stretch" justify="flex-start" wrap={ true } gap="4">
-              <Card className="badeggcup-company-info-details">
-                <CardBody>
-                  <h3>{ __('Details', 'badeggcup') }</h3>
-                  <TextControl
-                    label="Company Name"
-                    value={ company.name }
-                    onChange={ value => setCompany( prev => ({
-                      ...prev,
-                      name: value,
-                    }))}
-                    __next40pxDefaultSize
-                    __nextHasNoMarginBottom={ true }
-                  />
-                  <TextControl
-                    label="Legal Name"
-                    value={ company.nameLegal }
-                    onChange={ value => setCompany( prev => ({
-                      ...prev,
-                      nameLegal: value,
-                    }))}
-                    __next40pxDefaultSize
-                    __nextHasNoMarginBottom={ true }
-                  />
-                  <TextControl
-                    label="Company Number"
-                    value={ company.number }
-                    onChange={ value => setCompany( prev => ({
-                      ...prev,
-                      number: value,
-                    }))}
-                    __next40pxDefaultSize
-                    __nextHasNoMarginBottom={ true }
-                  />
-                </CardBody>
-              </Card>
-              <Card className="badeggcup-company-info-contact">
-                <CardBody>
-                  <h3>{ __('Contact', 'badeggcup') }</h3>
-                  <TextControl
-                    label="Telephone Number"
-                    value={ company.tel }
-                    onChange={ value => setCompany( prev => ({
-                      ...prev,
-                      tel: value,
-                    }))}
-                    __next40pxDefaultSize
-                    __nextHasNoMarginBottom={ true }
-                  />
-                  <TextControl
-                    label="Email Address"
-                    value={ company.email }
-                    onChange={ value => setCompany( prev => ({
-                      ...prev,
-                      email: value,
-                    }))}
-                    __next40pxDefaultSize
-                    __nextHasNoMarginBottom={ true }
-                  />
-                </CardBody>
-              </Card>
-            </Flex>
-            <Spacer margin="4" />
-            <Flex align="stretch" justify="flex-start" wrap={ true } gap="4">
-              {
-                [
-                  { label: __('Address', 'badeggcup'), slug: 'address'},
-                  { label: __('Mailing Address', 'badeggcup'), slug: 'addressMailing'}
-                ].map( (fieldGroup, index) => {
-                  let label = fieldGroup.label;
-                  let slug = fieldGroup.slug;
-                  let addressSupport = 'company' + [...slug][0].toUpperCase() + [...slug].slice(1).join('');
-
-                  if(supports[addressSupport]) {
-                    return (
-                      <Card key={ index } className="badeggcup-company-info-address-group">
-                        <CardBody>
-                          <h3>{ label }</h3>
-                          <Flex gap="8" wrap="true" align="stretch">
-                            <FlexItem>
-                              {
-                                [ ...Array(4).keys()].map( index => {
-                                  if(index == 0 || company[slug]['line' + (index + 1)] || (index > 0 && company[slug]['line' + index])) {
-                                    return (
-                                      <TextControl
-                                        key={ index }
-                                        label={ `Line ${ index + 1 }` }
-                                        value={ company[slug]['line' + (index + 1)] }
-                                        onChange={ value => setCompany( prev => ({
-                                          ...prev,
-                                          [slug]: {
-                                            ...prev[slug],
-                                            ['line' + (index + 1)]: value,
-                                          }
-                                        }))}
-                                        __next40pxDefaultSize
-                                        __nextHasNoMarginBottom={ true }
-                                      />
-                                    )
-                                  }
-                                })
-                              }
-                            </FlexItem>
-                            <Divider orientation="vertical" />
-                            <FlexItem>
-                              {
-                                [ 'city', 'county', 'postCode', 'country' ].map( (field, index) => {
-                                  return (
-                                    <TextControl
-                                      key={ index }
-                                      label={ field }
-                                      value={ company[slug][field] }
-                                      onChange={ value => setCompany( prev => ({
-                                        ...prev,
-                                        [slug]: {
-                                          ...prev[slug],
-                                          [field]: value,
-                                        }
-                                      }))}
-                                      __next40pxDefaultSize
-                                      __nextHasNoMarginBottom={ true }
-                                    />
-                                  )
-                                })
-                              }
-                            </FlexItem>
-                          </Flex>
-                        </CardBody>
-                      </Card>
-                    )
-                  }
-                })
-              }
-            </Flex>
-          </PanelBody>
-        ) : null }
+        <SectionCompany supports={ supports } company={ company } setCompany={ setCompany } />
 
         { supports.companySocials ? (
           <SectionSocials company={ company } setCompany={ setCompany } />
