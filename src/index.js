@@ -81,8 +81,6 @@ const OptionsPage = () => {
         setSupports( settings.badeggcup.supports );
       }
 
-      console.log(company);
-
     } );
   }, [] );
 
@@ -296,7 +294,6 @@ const OptionsPage = () => {
             ) }
           </Flex>
         </PanelBody>
-
 
         { (supports.colours) ? (
           <SectionColours colours={ colours } setColours={ setColours } />

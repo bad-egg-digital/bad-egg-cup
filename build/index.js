@@ -231,105 +231,105 @@ function SectionSocials({
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Company Social Channels', 'badeggcup'),
     className: "badeggcup-company-socials",
-    children: [!loadedSocials ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__.Spinner, {}) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.Fragment, {
+    children: [!loadedSocials ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__.Spinner, {}) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__.Flex, {
+      className: "badeggcup-social-rows",
+      gap: "4",
       children: company.socials.map((social, index) => {
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.Fragment, {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__.Card, {
-            className: "badeggcup-social-row",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__.Flex, {
-              align: "stretch",
-              className: "badeggcup-social-row-inner",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__.CardHeader, {
-                className: "badeggcup-social-row-icon",
-                children: (0,_lib_validateURL__WEBPACK_IMPORTED_MODULE_6__["default"])(social.link) ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("a", {
-                  href: social.link,
-                  target: "_blank",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
-                    icon: `fa-brands fa-${social.icon}`,
-                    size: "3x"
-                  })
-                }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__.Card, {
+          className: "badeggcup-social-row",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__.Flex, {
+            align: "stretch",
+            className: "badeggcup-social-row-inner",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__.CardHeader, {
+              className: "badeggcup-social-row-icon",
+              children: (0,_lib_validateURL__WEBPACK_IMPORTED_MODULE_6__["default"])(social.link) ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("a", {
+                href: social.link,
+                target: "_blank",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
                   icon: `fa-brands fa-${social.icon}`,
                   size: "3x"
                 })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__.CardDivider, {
-                orientation: "vertical"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__.CardBody, {
-                className: "badeggcup-social-row-body",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__.Flex, {
-                  align: "stretch",
-                  gap: "4",
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__.FormTokenField, {
-                    className: "badeggcup-social-input-icon",
-                    __next40pxDefaultSize: true,
-                    __nextHasNoMarginBottom: true,
-                    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Search for an icon', 'badeggcup'),
-                    onChange: value => {
-                      const icon = value[0];
-                      setCompany(prev => {
-                        const newSocials = [...prev.socials];
-                        newSocials[index] = {
-                          ...newSocials[index],
-                          icon: icon
-                        };
-                        return {
-                          ...prev,
-                          socials: newSocials
-                        };
-                      });
-                    },
-                    suggestions: (0,_lib_fontAwesomeData__WEBPACK_IMPORTED_MODULE_5__.fontAwesomeIconClassNames)(_fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_4__.fab),
-                    maxLength: "1",
-                    value: social.icon ? [social.icon] : [],
-                    __experimentalShowHowTo: false
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__.TextControl, {
-                    className: "badeggcup-social-input-link",
-                    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Link', 'badeggcup'),
-                    value: social.link,
-                    placeholder: "https://...",
-                    type: "url",
-                    onChange: value => {
-                      setCompany(prev => {
-                        const newSocials = [...prev.socials];
-                        newSocials[index] = {
-                          ...newSocials[index],
-                          link: value
-                        };
-                        return {
-                          ...prev,
-                          socials: newSocials
-                        };
-                      });
-                    },
-                    __next40pxDefaultSize: true,
-                    __nextHasNoMarginBottom: true
-                  })]
-                })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__.CardDivider, {
-                orientation: "vertical"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__.CardFooter, {
-                className: "badeggcup-social-row-action",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__.Button, {
-                  variant: "link",
-                  isDestructive: true,
-                  size: "small",
-                  onClick: () => setCompany(prev => {
-                    const newSocials = prev.socials.filter((_, i) => i !== index);
-                    return {
-                      ...prev,
-                      socials: newSocials
-                    };
-                  }),
+              }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
+                icon: `fa-brands fa-${social.icon}`,
+                size: "3x"
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__.CardDivider, {
+              orientation: "vertical"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__.CardBody, {
+              className: "badeggcup-social-row-body",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__.Flex, {
+                align: "stretch",
+                gap: "4",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__.FormTokenField, {
+                  className: "badeggcup-social-input-icon",
                   __next40pxDefaultSize: true,
-                  children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Remove', 'badeggcup')
-                })
-              })]
-            })
-          }, index), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__.__experimentalSpacer, {
-            margin: "4"
-          })]
-        });
+                  __nextHasNoMarginBottom: true,
+                  label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Search for an icon', 'badeggcup'),
+                  onChange: value => {
+                    const icon = value[0];
+                    setCompany(prev => {
+                      const newSocials = [...prev.socials];
+                      newSocials[index] = {
+                        ...newSocials[index],
+                        icon: icon
+                      };
+                      return {
+                        ...prev,
+                        socials: newSocials
+                      };
+                    });
+                  },
+                  suggestions: (0,_lib_fontAwesomeData__WEBPACK_IMPORTED_MODULE_5__.fontAwesomeIconClassNames)(_fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_4__.fab),
+                  maxLength: "1",
+                  value: social.icon ? [social.icon] : [],
+                  __experimentalShowHowTo: false
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__.TextControl, {
+                  className: "badeggcup-social-input-link",
+                  label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Link', 'badeggcup'),
+                  value: social.link,
+                  placeholder: "https://...",
+                  type: "url",
+                  onChange: value => {
+                    setCompany(prev => {
+                      const newSocials = [...prev.socials];
+                      newSocials[index] = {
+                        ...newSocials[index],
+                        link: value
+                      };
+                      return {
+                        ...prev,
+                        socials: newSocials
+                      };
+                    });
+                  },
+                  __next40pxDefaultSize: true,
+                  __nextHasNoMarginBottom: true
+                })]
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__.CardDivider, {
+              orientation: "vertical"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__.CardFooter, {
+              className: "badeggcup-social-row-action",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__.Button, {
+                variant: "link",
+                isDestructive: true,
+                size: "small",
+                onClick: () => setCompany(prev => {
+                  const newSocials = prev.socials.filter((_, i) => i !== index);
+                  return {
+                    ...prev,
+                    socials: newSocials
+                  };
+                }),
+                __next40pxDefaultSize: true,
+                children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Remove', 'badeggcup')
+              })
+            })]
+          })
+        }, index);
       })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__.__experimentalSpacer, {
+      margin: "4"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__.Flex, {
       justify: "flex-end",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__.Button, {
@@ -8912,7 +8912,6 @@ const OptionsPage = () => {
       if (settings?.badeggcup?.supports) {
         setSupports(settings.badeggcup.supports);
       }
-      console.log(company);
     });
   }, []);
   const SaveButton = () => {

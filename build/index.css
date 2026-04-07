@@ -70,9 +70,13 @@
     flex: 1 1 100%;
   }
 }
+.badeggcup-social-rows {
+  flex-wrap: wrap;
+}
 .badeggcup-social-row {
   container-name: BadEggCupSocialRow;
   container-type: inline-size;
+  flex: 1 1 100%;
 }
 .badeggcup-social-row hr {
   flex: 0 0 1px;

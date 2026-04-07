@@ -46,133 +46,132 @@ export default function SectionSocials({ company, setCompany })
   return (
     <PanelBody title={ __('Company Social Channels', 'badeggcup') } className="badeggcup-company-socials">
       { !loadedSocials ? <Spinner /> : (
-        <>
+        <Flex className="badeggcup-social-rows" gap="4">
           { company.socials.map( (social, index) => {
             return (
-              <>
-                <Card key={ index } className="badeggcup-social-row">
-                  <Flex align="stretch" className="badeggcup-social-row-inner">
-                    <CardHeader className="badeggcup-social-row-icon">
-                      { validateURL(social.link) ? (
-                        <a href={ social.link } target="_blank">
-                          <FontAwesomeIcon icon={ `fa-brands fa-${ social.icon }` } size="3x" />
-                        </a>
-                      ) : (
+              <Card key={ index } className="badeggcup-social-row">
+                <Flex align="stretch" className="badeggcup-social-row-inner">
+                  <CardHeader className="badeggcup-social-row-icon">
+                    { validateURL(social.link) ? (
+                      <a href={ social.link } target="_blank">
                         <FontAwesomeIcon icon={ `fa-brands fa-${ social.icon }` } size="3x" />
-                      ) }
-                    </CardHeader>
+                      </a>
+                    ) : (
+                      <FontAwesomeIcon icon={ `fa-brands fa-${ social.icon }` } size="3x" />
+                    ) }
+                  </CardHeader>
 
-                    <CardDivider orientation="vertical" />
+                  <CardDivider orientation="vertical" />
 
-                    <CardBody className="badeggcup-social-row-body">
-                      <Flex align="stretch" gap="4">
-                        <FormTokenField
-                          className="badeggcup-social-input-icon"
-                          __next40pxDefaultSize
-                          __nextHasNoMarginBottom
-                          label={ __('Search for an icon', 'badeggcup') }
-                          onChange={ (value) => {
-                            const icon = value[0];
+                  <CardBody className="badeggcup-social-row-body">
+                    <Flex align="stretch" gap="4">
+                      <FormTokenField
+                        className="badeggcup-social-input-icon"
+                        __next40pxDefaultSize
+                        __nextHasNoMarginBottom
+                        label={ __('Search for an icon', 'badeggcup') }
+                        onChange={ (value) => {
+                          const icon = value[0];
 
-                            setCompany(prev => {
-                              const newSocials = [...prev.socials];
-                              newSocials[index] = {
-                                ...newSocials[index],
-                                icon: icon,
-                              };
+                          setCompany(prev => {
+                            const newSocials = [...prev.socials];
+                            newSocials[index] = {
+                              ...newSocials[index],
+                              icon: icon,
+                            };
 
-                              return {
-                                ...prev,
-                                socials: newSocials,
-                              };
-                            });
-
-                          }}
-                          suggestions={ fontAwesomeIconClassNames(fab) }
-                          maxLength="1"
-                          value={ (social.icon) ? [ social.icon ] : [] }
-                          __experimentalShowHowTo={ false }
-                        />
-
-                        {/* <CustomSelectControl
-                            __next40pxDefaultSize
-                            label={ __('Icon', 'badeggcup') }
-                            options={ brandIconOptions }
-                            value={ brandIconOptions.find( ( option ) => option.key === social.icon ) }
-                            onChange={(value) => {
-
-                              setCompany(prev => {
-                                const newSocials = [...prev.socials];
-                                newSocials[index] = {
-                                  ...newSocials[index],
-                                  icon: value.selectedItem.key,
-                                };
-
-                                return {
-                                  ...prev,
-                                  socials: newSocials,
-                                };
-                              });
-                            }}
-                        /> */}
-
-                        <TextControl
-                          className="badeggcup-social-input-link"
-                          label={ __('Link', 'badeggcup') }
-                          value={ social.link }
-                          placeholder="https://..."
-                          type="url"
-                          onChange={ (value) => {
-                            setCompany(prev => {
-                              const newSocials = [...prev.socials];
-                              newSocials[index] = {
-                                ...newSocials[index],
-                                link: value,
-                              };
-
-                              return {
-                                ...prev,
-                                socials: newSocials,
-                              };
-                            });
-                          }}
-                          __next40pxDefaultSize
-                          __nextHasNoMarginBottom={ true }
-                        />
-                      </Flex>
-                    </CardBody>
-
-                    <CardDivider orientation="vertical" />
-
-                    <CardFooter className="badeggcup-social-row-action">
-                      <Button
-                        variant="link"
-                        isDestructive={ true }
-                        size="small"
-                        onClick={ () => setCompany( prev => {
-                          const newSocials = prev.socials.filter((_, i) => i !== index)
-
-                          return (
-                            {
+                            return {
                               ...prev,
                               socials: newSocials,
-                            }
-                          )
+                            };
+                          });
 
-                        })}
+                        }}
+                        suggestions={ fontAwesomeIconClassNames(fab) }
+                        maxLength="1"
+                        value={ (social.icon) ? [ social.icon ] : [] }
+                        __experimentalShowHowTo={ false }
+                      />
+
+                      {/* <CustomSelectControl
+                          __next40pxDefaultSize
+                          label={ __('Icon', 'badeggcup') }
+                          options={ brandIconOptions }
+                          value={ brandIconOptions.find( ( option ) => option.key === social.icon ) }
+                          onChange={(value) => {
+
+                            setCompany(prev => {
+                              const newSocials = [...prev.socials];
+                              newSocials[index] = {
+                                ...newSocials[index],
+                                icon: value.selectedItem.key,
+                              };
+
+                              return {
+                                ...prev,
+                                socials: newSocials,
+                              };
+                            });
+                          }}
+                      /> */}
+
+                      <TextControl
+                        className="badeggcup-social-input-link"
+                        label={ __('Link', 'badeggcup') }
+                        value={ social.link }
+                        placeholder="https://..."
+                        type="url"
+                        onChange={ (value) => {
+                          setCompany(prev => {
+                            const newSocials = [...prev.socials];
+                            newSocials[index] = {
+                              ...newSocials[index],
+                              link: value,
+                            };
+
+                            return {
+                              ...prev,
+                              socials: newSocials,
+                            };
+                          });
+                        }}
                         __next40pxDefaultSize
-                      >
-                        { __( 'Remove', 'badeggcup' ) }
-                      </Button>
-                    </CardFooter>
-                  </Flex>
-                </Card>
-                <Spacer margin="4" />
-              </>
+                        __nextHasNoMarginBottom={ true }
+                      />
+                    </Flex>
+                  </CardBody>
+
+                  <CardDivider orientation="vertical" />
+
+                  <CardFooter className="badeggcup-social-row-action">
+                    <Button
+                      variant="link"
+                      isDestructive={ true }
+                      size="small"
+                      onClick={ () => setCompany( prev => {
+                        const newSocials = prev.socials.filter((_, i) => i !== index)
+
+                        return (
+                          {
+                            ...prev,
+                            socials: newSocials,
+                          }
+                        )
+
+                      })}
+                      __next40pxDefaultSize
+                    >
+                      { __( 'Remove', 'badeggcup' ) }
+                    </Button>
+                  </CardFooter>
+                </Flex>
+              </Card>
             )
           }) }
-        </>
+        </Flex>
       )}
+
+      <Spacer margin="4" />
 
       <Flex justify="flex-end">
         <Button

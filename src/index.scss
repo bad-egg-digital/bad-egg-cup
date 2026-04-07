@@ -97,9 +97,14 @@
     }
   }
 
+  &-social-rows {
+    flex-wrap: wrap;
+  }
+
   &-social-row {
     container-name: BadEggCupSocialRow;
     container-type: inline-size;
+    flex: 1 1 100%;
 
     hr {
       flex: 0 0 1px;
