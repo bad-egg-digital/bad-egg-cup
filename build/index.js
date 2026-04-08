@@ -2,6 +2,183 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/components/CardSupports.js"
+/*!****************************************!*\
+  !*** ./src/components/CardSupports.js ***!
+  \****************************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ CardSupports)
+/* harmony export */ });
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+function CardSupports({
+  supports,
+  setSupports
+}) {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.CheckboxControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Brand Colours', 'badeggcup'),
+      checked: supports.colours,
+      onChange: value => setSupports({
+        ...supports,
+        colours: value
+      }),
+      __nextHasNoMarginBottom: true
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.CheckboxControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Social Channels', 'badeggcup'),
+      checked: supports.companySocials,
+      onChange: value => setSupports({
+        ...supports,
+        companySocials: value
+      }),
+      __nextHasNoMarginBottom: true
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.CheckboxControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Company Info', 'badeggcup'),
+      checked: supports.company,
+      onChange: value => {
+        setSupports({
+          ...supports,
+          company: value
+        });
+        if (!value) {
+          setSupports({
+            ...supports,
+            company: false,
+            companyAddress: false,
+            companyAddressMailing: false
+          });
+        }
+      },
+      __nextHasNoMarginBottom: true
+    }), supports.company ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.CheckboxControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Address', 'badeggcup'),
+        checked: supports.companyAddress,
+        onChange: value => {
+          setSupports({
+            ...supports,
+            companyAddress: value
+          });
+          if (!value) {
+            setSupports({
+              ...supports,
+              companyAddress: false,
+              companyAddressMailing: false
+            });
+          }
+        },
+        __nextHasNoMarginBottom: true
+      }), supports.companyAddress ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.CheckboxControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Mailing Address', 'badeggcup'),
+        checked: supports.companyAddressMailing,
+        onChange: value => setSupports({
+          ...supports,
+          companyAddressMailing: value
+        }),
+        __nextHasNoMarginBottom: true
+      }) : null]
+    }) : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.CheckboxControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Third-party Integrations', 'badeggcup'),
+      checked: supports.integrations,
+      onChange: value => {
+        setSupports({
+          ...supports,
+          integrations: value
+        });
+        if (!value) {
+          setSupports({
+            ...supports,
+            integrations: false,
+            integrationsFathom: false,
+            integrationsPlausible: false
+          });
+        }
+      },
+      __nextHasNoMarginBottom: true
+    }), supports.integrations ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.CheckboxControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Plausible Analytics', 'badeggcup'),
+        checked: supports.integrationsPlausible,
+        onChange: value => setSupports({
+          ...supports,
+          integrationsPlausible: value
+        }),
+        __nextHasNoMarginBottom: true
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.CheckboxControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Fathom Analytics', 'badeggcup'),
+        checked: supports.integrationsFathom,
+        onChange: value => setSupports({
+          ...supports,
+          integrationsFathom: value
+        }),
+        __nextHasNoMarginBottom: true
+      })]
+    }) : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.CardDivider, {
+      margin: "4"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalHeading, {
+      level: 3,
+      size: "13",
+      children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Core Features', 'badeggcup')
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.CheckboxControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Built-in Post Type', 'badeggcup'),
+      checked: supports.defaultPost,
+      onChange: value => {
+        setSupports({
+          ...supports,
+          defaultPost: value
+        });
+        if (!value) {
+          setSupports({
+            ...supports,
+            defaultPost: false,
+            postCategory: false,
+            postTag: false
+          });
+        }
+      },
+      __nextHasNoMarginBottom: true
+    }), supports.defaultPost ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.CheckboxControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Post Tags', 'badeggcup'),
+        checked: supports.postTag,
+        onChange: value => setSupports({
+          ...supports,
+          postTag: value
+        }),
+        __nextHasNoMarginBottom: true
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.CheckboxControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Post Categories', 'badeggcup'),
+        checked: supports.postCategory,
+        onChange: value => setSupports({
+          ...supports,
+          postCategory: value
+        }),
+        __nextHasNoMarginBottom: true
+      })]
+    }) : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.CheckboxControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Comments', 'badeggcup'),
+      checked: supports.comments,
+      onChange: value => setSupports({
+        ...supports,
+        comments: value
+      }),
+      __nextHasNoMarginBottom: true
+    })]
+  });
+}
+
+/***/ },
+
 /***/ "./src/components/SectionColours.js"
 /*!******************************************!*\
   !*** ./src/components/SectionColours.js ***!
@@ -9057,16 +9234,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _json_defaults_company_info_json__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./json/defaults-company-info.json */ "./src/json/defaults-company-info.json");
 /* harmony import */ var _json_defaults_integrations_json__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./json/defaults-integrations.json */ "./src/json/defaults-integrations.json");
 /* harmony import */ var _json_defaults_supports_json__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./json/defaults-supports.json */ "./src/json/defaults-supports.json");
-/* harmony import */ var _components_SectionColours__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/SectionColours */ "./src/components/SectionColours.js");
-/* harmony import */ var _components_SectionCompany__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/SectionCompany */ "./src/components/SectionCompany.js");
-/* harmony import */ var _components_SectionSocials__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/SectionSocials */ "./src/components/SectionSocials.js");
-/* harmony import */ var _components_SectionIntegrations__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/SectionIntegrations */ "./src/components/SectionIntegrations.js");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_15__);
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_16__);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__);
+/* harmony import */ var _components_CardSupports__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/CardSupports */ "./src/components/CardSupports.js");
+/* harmony import */ var _components_SectionColours__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/SectionColours */ "./src/components/SectionColours.js");
+/* harmony import */ var _components_SectionCompany__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/SectionCompany */ "./src/components/SectionCompany.js");
+/* harmony import */ var _components_SectionSocials__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/SectionSocials */ "./src/components/SectionSocials.js");
+/* harmony import */ var _components_SectionIntegrations__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/SectionIntegrations */ "./src/components/SectionIntegrations.js");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_16__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_17__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__);
+
 
 
 
@@ -9095,22 +9274,22 @@ const Notices = () => {
   if (notices.length === 0) {
     return null;
   }
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_16__.NoticeList, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_17__.NoticeList, {
     notices: notices,
     onRemove: removeNotice
   });
 };
 const OptionsPage = () => {
-  const [loadState, setLoadState] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_15__.useState)(false);
-  const [savingSettings, setSavingSettings] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_15__.useState)(false);
-  const [colours, setColours] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_15__.useState)(_json_defaults_colours_json__WEBPACK_IMPORTED_MODULE_6__);
-  const [company, setCompany] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_15__.useState)(_json_defaults_company_info_json__WEBPACK_IMPORTED_MODULE_8__);
-  const [integrations, setIntegrations] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_15__.useState)(_json_defaults_integrations_json__WEBPACK_IMPORTED_MODULE_9__);
-  const [supports, setSupports] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_15__.useState)(_json_defaults_supports_json__WEBPACK_IMPORTED_MODULE_10__);
+  const [loadState, setLoadState] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_16__.useState)(false);
+  const [savingSettings, setSavingSettings] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_16__.useState)(false);
+  const [colours, setColours] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_16__.useState)(_json_defaults_colours_json__WEBPACK_IMPORTED_MODULE_6__);
+  const [company, setCompany] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_16__.useState)(_json_defaults_company_info_json__WEBPACK_IMPORTED_MODULE_8__);
+  const [integrations, setIntegrations] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_16__.useState)(_json_defaults_integrations_json__WEBPACK_IMPORTED_MODULE_9__);
+  const [supports, setSupports] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_16__.useState)(_json_defaults_supports_json__WEBPACK_IMPORTED_MODULE_10__);
   const {
     createSuccessNotice
   } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_4__.useDispatch)(_wordpress_notices__WEBPACK_IMPORTED_MODULE_5__.store);
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_15__.useEffect)(() => {
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_16__.useEffect)(() => {
     _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_3___default()({
       path: '/wp/v2/settings'
     }).then(settings => {
@@ -9121,7 +9300,7 @@ const OptionsPage = () => {
     });
   }, []);
   const SaveButton = () => {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_16__.Button, {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_17__.Button, {
       variant: savingSettings ? 'secondary' : 'primary',
       onClick: saveSettings,
       __next40pxDefaultSize: true,
@@ -9146,198 +9325,52 @@ const OptionsPage = () => {
       createSuccessNotice((0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Settings saved.', 'badeggcup'));
     });
   };
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_16__.__experimentalHeading, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_17__.__experimentalHeading, {
       level: 1,
       children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Website Options', 'badeggcup')
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_16__.__experimentalSpacer, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(Notices, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_16__.__experimentalSpacer, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_16__.Flex, {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_17__.__experimentalSpacer, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(Notices, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_17__.__experimentalSpacer, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_17__.Flex, {
       wrap: true,
       align: "stretch",
       gap: "4",
       className: "badeggcup-options-wrap",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_16__.Panel, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_17__.Panel, {
         className: "badeggcup-panel",
-        children: [supports.colours ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_components_SectionColours__WEBPACK_IMPORTED_MODULE_11__["default"], {
+        children: [supports.colours ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(_components_SectionColours__WEBPACK_IMPORTED_MODULE_12__["default"], {
           colours: colours,
           setColours: setColours
-        }) : null, supports.company ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_components_SectionCompany__WEBPACK_IMPORTED_MODULE_12__["default"], {
+        }) : null, supports.company ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(_components_SectionCompany__WEBPACK_IMPORTED_MODULE_13__["default"], {
           supports: supports,
           company: company,
           setCompany: setCompany
-        }) : null, supports.companySocials ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_components_SectionSocials__WEBPACK_IMPORTED_MODULE_13__["default"], {
+        }) : null, supports.companySocials ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(_components_SectionSocials__WEBPACK_IMPORTED_MODULE_14__["default"], {
           company: company,
           setCompany: setCompany
-        }) : null, supports.integrations ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_components_SectionIntegrations__WEBPACK_IMPORTED_MODULE_14__["default"], {
+        }) : null, supports.integrations ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(_components_SectionIntegrations__WEBPACK_IMPORTED_MODULE_15__["default"], {
           supports: supports,
           integrations: integrations,
           setIntegrations: setIntegrations
         }) : null]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_16__.FlexBlock, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_17__.FlexBlock, {
         className: "badeggcup-theme-supports",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_16__.Card, {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_16__.CardHeader, {
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_16__.__experimentalHeading, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_17__.Card, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_17__.CardHeader, {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_17__.__experimentalHeading, {
               level: 2,
               size: "13",
               children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Theme Support', 'badeggcup')
             })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_16__.CardBody, {
-            children: !loadState ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_16__.Spinner, {}) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.Fragment, {
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_16__.CheckboxControl, {
-                label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Brand Colours', 'badeggcup'),
-                checked: supports.colours,
-                onChange: value => setSupports({
-                  ...supports,
-                  colours: value
-                }),
-                __nextHasNoMarginBottom: true
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_16__.CheckboxControl, {
-                label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Social Channels', 'badeggcup'),
-                checked: supports.companySocials,
-                onChange: value => setSupports({
-                  ...supports,
-                  companySocials: value
-                }),
-                __nextHasNoMarginBottom: true
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_16__.CheckboxControl, {
-                label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Company Info', 'badeggcup'),
-                checked: supports.company,
-                onChange: value => {
-                  setSupports({
-                    ...supports,
-                    company: value
-                  });
-                  if (!value) {
-                    setSupports({
-                      ...supports,
-                      company: false,
-                      companyAddress: false,
-                      companyAddressMailing: false
-                    });
-                  }
-                },
-                __nextHasNoMarginBottom: true
-              }), supports.company ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.Fragment, {
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_16__.CheckboxControl, {
-                  label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Address', 'badeggcup'),
-                  checked: supports.companyAddress,
-                  onChange: value => {
-                    setSupports({
-                      ...supports,
-                      companyAddress: value
-                    });
-                    if (!value) {
-                      setSupports({
-                        ...supports,
-                        companyAddress: false,
-                        companyAddressMailing: false
-                      });
-                    }
-                  },
-                  __nextHasNoMarginBottom: true
-                }), supports.companyAddress ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_16__.CheckboxControl, {
-                  label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Mailing Address', 'badeggcup'),
-                  checked: supports.companyAddressMailing,
-                  onChange: value => setSupports({
-                    ...supports,
-                    companyAddressMailing: value
-                  }),
-                  __nextHasNoMarginBottom: true
-                }) : null]
-              }) : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_16__.CheckboxControl, {
-                label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Third-party Integrations', 'badeggcup'),
-                checked: supports.integrations,
-                onChange: value => {
-                  setSupports({
-                    ...supports,
-                    integrations: value
-                  });
-                  if (!value) {
-                    setSupports({
-                      ...supports,
-                      integrations: false,
-                      integrationsFathom: false,
-                      integrationsPlausible: false
-                    });
-                  }
-                },
-                __nextHasNoMarginBottom: true
-              }), supports.integrations ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.Fragment, {
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_16__.CheckboxControl, {
-                  label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Plausible Analytics', 'badeggcup'),
-                  checked: supports.integrationsPlausible,
-                  onChange: value => setSupports({
-                    ...supports,
-                    integrationsPlausible: value
-                  }),
-                  __nextHasNoMarginBottom: true
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_16__.CheckboxControl, {
-                  label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Fathom Analytics', 'badeggcup'),
-                  checked: supports.integrationsFathom,
-                  onChange: value => setSupports({
-                    ...supports,
-                    integrationsFathom: value
-                  }),
-                  __nextHasNoMarginBottom: true
-                })]
-              }) : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_16__.CardDivider, {
-                margin: "4"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_16__.__experimentalHeading, {
-                level: 3,
-                size: "13",
-                children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Core Features', 'badeggcup')
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_16__.CheckboxControl, {
-                label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Built-in Post Type', 'badeggcup'),
-                checked: supports.defaultPost,
-                onChange: value => {
-                  setSupports({
-                    ...supports,
-                    defaultPost: value
-                  });
-                  if (!value) {
-                    setSupports({
-                      ...supports,
-                      defaultPost: false,
-                      postCategory: false,
-                      postTag: false
-                    });
-                  }
-                },
-                __nextHasNoMarginBottom: true
-              }), supports.defaultPost ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.Fragment, {
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_16__.CheckboxControl, {
-                  label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Post Tags', 'badeggcup'),
-                  checked: supports.postTag,
-                  onChange: value => setSupports({
-                    ...supports,
-                    postTag: value
-                  }),
-                  __nextHasNoMarginBottom: true
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_16__.CheckboxControl, {
-                  label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Post Categories', 'badeggcup'),
-                  checked: supports.postCategory,
-                  onChange: value => setSupports({
-                    ...supports,
-                    postCategory: value
-                  }),
-                  __nextHasNoMarginBottom: true
-                })]
-              }) : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_16__.CheckboxControl, {
-                label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Comments', 'badeggcup'),
-                checked: supports.comments,
-                onChange: value => setSupports({
-                  ...supports,
-                  comments: value
-                }),
-                __nextHasNoMarginBottom: true
-              })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_17__.CardBody, {
+            children: !loadState ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_17__.Spinner, {}) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(_components_CardSupports__WEBPACK_IMPORTED_MODULE_11__["default"], {
+              supports: supports,
+              setSupports: setSupports
             })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_16__.CardFooter, {
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_16__.Flex, {
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_16__.FlexItem, {
-                children: savingSettings ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_16__.Spinner, {}) : null
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_16__.FlexItem, {
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(SaveButton, {})
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_17__.CardFooter, {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_17__.Flex, {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_17__.FlexItem, {
+                children: savingSettings ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_17__.Spinner, {}) : null
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_17__.FlexItem, {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(SaveButton, {})
               })]
             })
           })]
@@ -9347,8 +9380,8 @@ const OptionsPage = () => {
   });
 };
 _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_1___default()(() => {
-  const root = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_15__.createRoot)(document.getElementById('badeggcup-options'));
-  root.render(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(OptionsPage, {}));
+  const root = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_16__.createRoot)(document.getElementById('badeggcup-options'));
+  root.render(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(OptionsPage, {}));
 });
 })();
 
