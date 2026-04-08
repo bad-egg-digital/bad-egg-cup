@@ -128,18 +128,10 @@ const OptionsPage = () => {
 
       <Flex wrap={ true } align="stretch" gap="4" className="badeggcup-options-wrap">
         <Panel className="badeggcup-panel">
-          { (supports.colours) ? (
-            <SectionColours colours={ colours } setColours={ setColours } />
-          ) : null }
-
-          <SectionCompany supports={ supports } company={ company } setCompany={ setCompany } />
-
-          { supports.companySocials ? (
-            <SectionSocials company={ company } setCompany={ setCompany } />
-          ) : null }
-
-          <SectionIntegrations supports={ supports } integrations={ integrations } setIntegrations={ setIntegrations } />
-
+          { supports.colours ? <SectionColours colours={ colours } setColours={ setColours } /> : null }
+          { supports.company ? <SectionCompany supports={ supports } company={ company } setCompany={ setCompany } /> : null }
+          { supports.companySocials ? <SectionSocials company={ company } setCompany={ setCompany } /> : null }
+          { supports.integrations ? <SectionIntegrations supports={ supports } integrations={ integrations } setIntegrations={ setIntegrations } /> : null }
         </Panel>
 
         <FlexBlock className="badeggcup-theme-supports">
@@ -216,8 +208,6 @@ const OptionsPage = () => {
                             />
                           ) : null
                         }
-
-                        <CardDivider margin="4" />
                       </>
                     ) : null
                   }

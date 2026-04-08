@@ -9160,18 +9160,18 @@ const OptionsPage = () => {
         children: [supports.colours ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_components_SectionColours__WEBPACK_IMPORTED_MODULE_11__["default"], {
           colours: colours,
           setColours: setColours
-        }) : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_components_SectionCompany__WEBPACK_IMPORTED_MODULE_12__["default"], {
+        }) : null, supports.company ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_components_SectionCompany__WEBPACK_IMPORTED_MODULE_12__["default"], {
           supports: supports,
           company: company,
           setCompany: setCompany
-        }), supports.companySocials ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_components_SectionSocials__WEBPACK_IMPORTED_MODULE_13__["default"], {
+        }) : null, supports.companySocials ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_components_SectionSocials__WEBPACK_IMPORTED_MODULE_13__["default"], {
           company: company,
           setCompany: setCompany
-        }) : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_components_SectionIntegrations__WEBPACK_IMPORTED_MODULE_14__["default"], {
+        }) : null, supports.integrations ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_components_SectionIntegrations__WEBPACK_IMPORTED_MODULE_14__["default"], {
           supports: supports,
           integrations: integrations,
           setIntegrations: setIntegrations
-        })]
+        }) : null]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_16__.FlexBlock, {
         className: "badeggcup-theme-supports",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_16__.Card, {
@@ -9243,9 +9243,7 @@ const OptionsPage = () => {
                     companyAddressMailing: value
                   }),
                   __nextHasNoMarginBottom: true
-                }) : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_16__.CardDivider, {
-                  margin: "4"
-                })]
+                }) : null]
               }) : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_16__.CheckboxControl, {
                 label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Third-party Integrations', 'badeggcup'),
                 checked: supports.integrations,
