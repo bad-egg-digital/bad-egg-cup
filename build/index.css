@@ -9,7 +9,7 @@
   top: 0;
   z-index: 10;
   background: white;
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 1px solid #f0f0f0 !important;
 }
 @media (min-width: 601px) {
   .badeggcup-options-wrap .components-panel__body-title {
@@ -26,16 +26,19 @@
   container-type: inline-size;
   min-width: 300px !important;
   max-width: 100% !important;
+  flex-grow: 1;
 }
 .badeggcup-panel .components-custom-select-control,
 .badeggcup-panel .components-base-control {
   margin: 0 0 1em;
 }
 .badeggcup-theme-supports {
-  position: sticky;
-  top: 48px;
   min-width: 300px !important;
   max-width: 300px !important;
+}
+.badeggcup-theme-supports .components-card {
+  position: sticky;
+  top: 48px;
 }
 .badeggcup-theme-supports .components-base-control {
   margin: 0.5em 0;

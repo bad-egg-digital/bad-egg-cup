@@ -14,6 +14,7 @@ import {
   CardBody,
   TextControl,
   Spinner,
+  __experimentalSpacer as Spacer,
 } from '@wordpress/components';
 
 export default function SectionIntegrations({ supports, integrations, setIntegrations })
@@ -33,6 +34,8 @@ export default function SectionIntegrations({ supports, integrations, setIntegra
   if(supports.integrations) {
     return (
       <PanelBody title={ __('Third-party Integrations', 'badeggcup') } className="badeggcup-integrations">
+        <Spacer margin="4" />
+
         { !loadedIntegrations ? <Spinner /> : (
           <Flex align="stretch" justify="flex-start" gap="4">
             { supports.integrationsPlausible ? (

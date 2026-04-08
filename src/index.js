@@ -119,33 +119,28 @@ const OptionsPage = () => {
 
   return (
     <>
-      <Flex>
-        <Heading level={ 1 }>
-          { __( 'Website Options', 'badeggcup' ) }
-        </Heading>
-      </Flex>
-
+      <Heading level={ 1 }>
+        { __( 'Website Options', 'badeggcup' ) }
+      </Heading>
       <Spacer />
       <Notices />
       <Spacer />
 
-      <Flex wrap={ true } align="flex-start" gap="4" className="badeggcup-options-wrap">
-        <FlexBlock className="badeggcup-panel">
-          <Panel>
-            { (supports.colours) ? (
-              <SectionColours colours={ colours } setColours={ setColours } />
-            ) : null }
+      <Flex wrap={ true } align="stretch" gap="4" className="badeggcup-options-wrap">
+        <Panel className="badeggcup-panel">
+          { (supports.colours) ? (
+            <SectionColours colours={ colours } setColours={ setColours } />
+          ) : null }
 
-            <SectionCompany supports={ supports } company={ company } setCompany={ setCompany } />
+          <SectionCompany supports={ supports } company={ company } setCompany={ setCompany } />
 
-            { supports.companySocials ? (
-              <SectionSocials company={ company } setCompany={ setCompany } />
-            ) : null }
+          { supports.companySocials ? (
+            <SectionSocials company={ company } setCompany={ setCompany } />
+          ) : null }
 
-            <SectionIntegrations supports={ supports } integrations={ integrations } setIntegrations={ setIntegrations } />
+          <SectionIntegrations supports={ supports } integrations={ integrations } setIntegrations={ setIntegrations } />
 
-          </Panel>
-        </FlexBlock>
+        </Panel>
 
         <FlexBlock className="badeggcup-theme-supports">
           <Card>
@@ -157,163 +152,164 @@ const OptionsPage = () => {
             <CardBody>
               { !loadState ? <Spinner /> : (
                 <>
-                  <FlexItem>
-                    <CheckboxControl
-                      label={ __( 'Brand Colours', 'badeggcup' ) }
-                      checked={ supports.colours }
-                      onChange={ ( value => setSupports({ ...supports, colours: value }) ) }
-                      __nextHasNoMarginBottom
-                    />
+                  <CheckboxControl
+                    label={ __( 'Brand Colours', 'badeggcup' ) }
+                    checked={ supports.colours }
+                    onChange={ ( value => setSupports({ ...supports, colours: value }) ) }
+                    __nextHasNoMarginBottom
+                  />
 
-                    <CheckboxControl
-                      label={ __( 'Social Channels', 'badeggcup' ) }
-                      checked={ supports.companySocials }
-                      onChange={ ( value => setSupports({ ...supports, companySocials: value }) )}
-                      __nextHasNoMarginBottom
-                    />
+                  <CheckboxControl
+                    label={ __( 'Social Channels', 'badeggcup' ) }
+                    checked={ supports.companySocials }
+                    onChange={ ( value => setSupports({ ...supports, companySocials: value }) )}
+                    __nextHasNoMarginBottom
+                  />
 
-                    <CheckboxControl
-                      label={ __( 'Company Info', 'badeggcup' ) }
-                      checked={ supports.company }
-                      onChange={ ( value => {
-                        setSupports({ ...supports, company: value });
+                  <CheckboxControl
+                    label={ __( 'Company Info', 'badeggcup' ) }
+                    checked={ supports.company }
+                    onChange={ ( value => {
+                      setSupports({ ...supports, company: value });
 
-                        if(!value) {
-                          setSupports({
-                            ...supports,
-                            company: false,
-                            companyAddress: false,
-                            companyAddressMailing: false,
-                          });
-                        }
+                      if(!value) {
+                        setSupports({
+                          ...supports,
+                          company: false,
+                          companyAddress: false,
+                          companyAddressMailing: false,
+                        });
+                      }
 
-                      } ) }
-                      __nextHasNoMarginBottom
-                    />
+                    } ) }
+                    __nextHasNoMarginBottom
+                  />
 
-                    {
-                      (supports.company) ? (
-                        <>
-                          <CheckboxControl
-                            label={ __( 'Address', 'badeggcup' ) }
-                            checked={ supports.companyAddress }
-                            onChange={ ( value => {
-                              setSupports({ ...supports, companyAddress: value });
-
-                              if(!value) {
-                                setSupports({
-                                  ...supports,
-                                  companyAddress: false,
-                                  companyAddressMailing: false,
-                                });
-                              }
-
-                            } ) }
-                            __nextHasNoMarginBottom
-                          />
-                        </>
-                      ) : null
-                    }
-
-                    {
-                      (supports.companyAddress) ? (
+                  {
+                    (supports.company) ? (
+                      <>
                         <CheckboxControl
-                          label={ __( 'Mailing Address', 'badeggcup' ) }
-                          checked={ supports.companyAddressMailing }
-                          onChange={ ( value => setSupports({ ...supports, companyAddressMailing: value }) ) }
+                          label={ __( 'Address', 'badeggcup' ) }
+                          checked={ supports.companyAddress }
+                          onChange={ ( value => {
+                            setSupports({ ...supports, companyAddress: value });
+
+                            if(!value) {
+                              setSupports({
+                                ...supports,
+                                companyAddress: false,
+                                companyAddressMailing: false,
+                              });
+                            }
+
+                          } ) }
                           __nextHasNoMarginBottom
                         />
-                      ) : null
-                    }
 
-                  </FlexItem>
-                  <FlexItem>
-                    <CheckboxControl
-                      label={ __( 'Built-in Post Type', 'badeggcup' ) }
-                      checked={ supports.defaultPost }
-                      onChange={ ( value => {
-                        setSupports({ ...supports, defaultPost: value });
-
-                        if(!value) {
-                          setSupports({
-                            ...supports,
-                            defaultPost: false,
-                            postCategory: false,
-                            postTag: false,
-                          });
+                        {
+                          (supports.companyAddress) ? (
+                            <CheckboxControl
+                              label={ __( 'Mailing Address', 'badeggcup' ) }
+                              checked={ supports.companyAddressMailing }
+                              onChange={ ( value => setSupports({ ...supports, companyAddressMailing: value }) ) }
+                              __nextHasNoMarginBottom
+                            />
+                          ) : null
                         }
 
-                      } ) }
-                      __nextHasNoMarginBottom
-                    />
+                        <CardDivider margin="4" />
+                      </>
+                    ) : null
+                  }
 
-                    {
-                      (supports.defaultPost) ? (
-                        <>
-                          <CheckboxControl
-                            label={ __( 'Post Tags', 'badeggcup' ) }
-                            checked={ supports.postTag }
-                            onChange={ ( value => setSupports({ ...supports, postTag: value }) ) }
-                            __nextHasNoMarginBottom
-                          />
-                          <CheckboxControl
-                            label={ __( 'Post Categories', 'badeggcup' ) }
-                            checked={ supports.postCategory }
-                            onChange={ ( value => setSupports({ ...supports, postCategory: value }) ) }
-                            __nextHasNoMarginBottom
-                          />
-                        </>
-                      ) : null
-                    }
+                  <CheckboxControl
+                    label={ __( 'Third-party Integrations', 'badeggcup' ) }
+                    checked={ supports.integrations }
+                    onChange={ ( value => {
+                      setSupports({ ...supports, integrations: value });
 
-                    <CheckboxControl
-                      label={ __( 'Comments', 'badeggcup' ) }
-                      checked={ supports.comments }
-                      onChange={ ( value => setSupports({ ...supports, comments: value }) ) }
-                      __nextHasNoMarginBottom
-                    />
+                      if(!value) {
+                        setSupports({
+                          ...supports,
+                          integrations: false,
+                          integrationsFathom: false,
+                          integrationsPlausible: false,
+                        });
+                      }
 
-                  </FlexItem>
-                  <FlexItem>
-                    <CheckboxControl
-                      label={ __( 'Third-party Integrations', 'badeggcup' ) }
-                      checked={ supports.integrations }
-                      onChange={ ( value => {
-                        setSupports({ ...supports, integrations: value });
+                    } ) }
+                    __nextHasNoMarginBottom
+                  />
 
-                        if(!value) {
-                          setSupports({
-                            ...supports,
-                            integrations: false,
-                            integrationsFathom: false,
-                            integrationsPlausible: false,
-                          });
-                        }
+                  {
+                    (supports.integrations) ? (
+                      <>
+                        <CheckboxControl
+                          label={ __( 'Plausible Analytics', 'badeggcup' ) }
+                          checked={ supports.integrationsPlausible }
+                          onChange={ ( value => setSupports({ ...supports, integrationsPlausible: value }) ) }
+                          __nextHasNoMarginBottom
+                        />
+                        <CheckboxControl
+                          label={ __( 'Fathom Analytics', 'badeggcup' ) }
+                          checked={ supports.integrationsFathom }
+                          onChange={ ( value => setSupports({ ...supports, integrationsFathom: value }) ) }
+                          __nextHasNoMarginBottom
+                        />
+                      </>
+                    ) : null
+                  }
 
-                      } ) }
-                      __nextHasNoMarginBottom
-                    />
+                  <CardDivider margin="4" />
 
-                    {
-                      (supports.integrations) ? (
-                        <>
-                          <CheckboxControl
-                            label={ __( 'Plausible Analytics', 'badeggcup' ) }
-                            checked={ supports.integrationsPlausible }
-                            onChange={ ( value => setSupports({ ...supports, integrationsPlausible: value }) ) }
-                            __nextHasNoMarginBottom
-                          />
-                          <CheckboxControl
-                            label={ __( 'Fathom Analytics', 'badeggcup' ) }
-                            checked={ supports.integrationsFathom }
-                            onChange={ ( value => setSupports({ ...supports, integrationsFathom: value }) ) }
-                            __nextHasNoMarginBottom
-                          />
-                        </>
-                      ) : null
-                    }
+                  <Heading level={ 3 } size="13" >
+                    { __( 'Core Features', 'badeggcup' ) }
+                  </Heading>
 
-                  </FlexItem>
+                  <CheckboxControl
+                    label={ __( 'Built-in Post Type', 'badeggcup' ) }
+                    checked={ supports.defaultPost }
+                    onChange={ ( value => {
+                      setSupports({ ...supports, defaultPost: value });
+
+                      if(!value) {
+                        setSupports({
+                          ...supports,
+                          defaultPost: false,
+                          postCategory: false,
+                          postTag: false,
+                        });
+                      }
+
+                    } ) }
+                    __nextHasNoMarginBottom
+                  />
+
+                  {
+                    (supports.defaultPost) ? (
+                      <>
+                        <CheckboxControl
+                          label={ __( 'Post Tags', 'badeggcup' ) }
+                          checked={ supports.postTag }
+                          onChange={ ( value => setSupports({ ...supports, postTag: value }) ) }
+                          __nextHasNoMarginBottom
+                        />
+                        <CheckboxControl
+                          label={ __( 'Post Categories', 'badeggcup' ) }
+                          checked={ supports.postCategory }
+                          onChange={ ( value => setSupports({ ...supports, postCategory: value }) ) }
+                          __nextHasNoMarginBottom
+                        />
+                      </>
+                    ) : null
+                  }
+
+                  <CheckboxControl
+                    label={ __( 'Comments', 'badeggcup' ) }
+                    checked={ supports.comments }
+                    onChange={ ( value => setSupports({ ...supports, comments: value }) ) }
+                    __nextHasNoMarginBottom
+                  />
                 </>
               ) }
             </CardBody>

@@ -11,6 +11,7 @@ import {
   Flex,
   ColorPalette,
   Spinner,
+  __experimentalSpacer as Spacer,
 } from '@wordpress/components';
 
 import latinate from '../json/latinate.json';
@@ -31,6 +32,7 @@ export default function SectionColours({ colours, setColours })
 
   return (
     <PanelBody title={ __('Brand Colours', 'badeggcup') } className="badeggcup-brand-colours">
+      <Spacer margin="4" />
       {
         (!loadedColours ? <Spinner /> : (
           <Flex align="flex-start" justify="flex-start" gap="4" wrap={ true }>

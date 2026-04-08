@@ -37,6 +37,8 @@ export default function SectionCompany({ supports, company, setCompany })
   if(supports.company) {
     return (
       <PanelBody title={ __('Company Info', 'badeggcup') } className="badeggcup-company-info">
+        <Spacer margin="4" />
+
         { !loadedCompany ? <Spinner /> : (
           <>
             <Flex align="stretch" justify="flex-start" wrap={ true } gap="4">

@@ -45,6 +45,8 @@ export default function SectionSocials({ company, setCompany })
 
   return (
     <PanelBody title={ __('Company Social Channels', 'badeggcup') } className="badeggcup-company-socials">
+      <Spacer margin="4" />
+
       { !loadedSocials ? <Spinner /> : (
         <Flex className="badeggcup-social-rows" gap="4">
           { company.socials.map( (social, index) => {

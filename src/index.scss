@@ -7,7 +7,7 @@
       top: 0;
       z-index: 10;
       background: white;
-      border-bottom: 1px solid #f0f0f0;
+      border-bottom: 1px solid #f0f0f0 !important;
 
       @media (min-width: 601px) {
         top: 46px;
@@ -24,6 +24,7 @@
     container-type: inline-size;
     min-width: 300px !important;
     max-width: 100% !important;
+    flex-grow: 1;
 
     .components-custom-select-control,
     .components-base-control {
@@ -32,10 +33,13 @@
   }
 
   &-theme-supports {
-    position: sticky;
-    top: 48px;
     min-width: 300px !important;
     max-width: 300px !important;
+
+    .components-card {
+      position: sticky;
+      top: 48px;
+    }
 
     .components-base-control {
       margin: 0.5em 0;
