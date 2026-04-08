@@ -1,5 +1,30 @@
 .badeggcup {
+  &-options-wrap {
+    flex-wrap: wrap;
+
+    .components-panel__body-title {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: white;
+      border-bottom: 1px solid #f0f0f0;
+
+      @media (min-width: 601px) {
+        top: 46px;
+      }
+
+      @media (min-width: 783px) {
+        top: 32px;
+      }
+    }
+  }
+
   &-panel {
+    container-name: BadEggCupPanel;
+    container-type: inline-size;
+    min-width: 300px !important;
+    max-width: 100% !important;
+
     .components-custom-select-control,
     .components-base-control {
       margin: 0 0 1em;
@@ -7,14 +32,13 @@
   }
 
   &-theme-supports {
+    position: sticky;
+    top: 48px;
+    min-width: 300px !important;
+    max-width: 300px !important;
+
     .components-base-control {
       margin: 0.5em 0;
-    }
-
-    @media (max-width: 600px) {
-      .components-flex {
-        display: block;
-      }
     }
   }
 
@@ -91,7 +115,7 @@
     &-details,
     &-contact,
     &-address-group {
-      @media (max-width: 400px) {
+      @container BadEggCupPanel (max-width: 600px) {
         flex: 1 1 100%;
       }
     }
