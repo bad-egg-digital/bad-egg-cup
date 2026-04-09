@@ -1,7 +1,7 @@
 <?php
 
 namespace BadEggCup\Admin;
-use BadEggCup\Utilities;
+use BadEggCup\Tools;
 
 class Pages
 {
@@ -27,10 +27,17 @@ class Pages
 
     public function options_html()
     {
-        printf(
-            '<div class="wrap" id="badeggcup-options">%s</div>',
-            esc_html__( 'Loading…', 'badeggcup' )
-        );
+        $settings = new Tools\Settings;
+
+        ?>
+            <div class="wrap" id="badeggcup-options">
+                <?= __( 'Loading…', 'badeggcup' ) ?>
+            </div>
+
+            <?php if(WP_ENV == 'development'): ?>
+                <pre><?= print_r($settings->lookup('socials', 'company')) ?></pre>
+            <?php endif; ?>
+        <?php
     }
 
     public function options_script($admin_page)
@@ -71,9 +78,23 @@ class Pages
 
     }
 
+    public function sanitize($value)
+    {
+        // Ensure only a flat associative array is saved                                                                                                                               │
+        if(is_array($value)) {
+            foreach($value as $key => $value) {
+                if(is_array($value) && isset($value[0]) && is_array($value[0])) {
+                    $value[$key] = $value[0];
+                }
+            }
+        }
+
+        return $value;
+    }
+
     public function options_schema()
     {
-        $Settings = new Utilities\Settings;
+        $Settings = new Tools\Settings;
 
         $defaultsSupports = $Settings->loadJSON('defaults-supports');
         $defaultsColours = $Settings->loadJSON('defaults-colours');
@@ -106,7 +127,6 @@ class Pages
         ];
 
         $schema  = [
-            'type'       => 'object',
             'properties' => [
                 // Colours
                 'colours' => [
@@ -179,6 +199,7 @@ class Pages
             [
                 'type'         => 'object',
                 'default'      => $defaults,
+                'sanitize_callback' => false, //[$this, 'sanitize'],
                 'show_in_rest' => [
                     'schema' => $schema,
                 ],

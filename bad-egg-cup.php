@@ -52,7 +52,3 @@ foreach (glob(__DIR__ . '/app/*/*.php') as $badeggcup_file) {
         new $badeggcup_classname();
     }
 }
-
-add_action('wp_footer', function(){
-
-});

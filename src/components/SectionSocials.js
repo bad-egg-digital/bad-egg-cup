@@ -1,5 +1,6 @@
 import { __ } from '@wordpress/i18n';
 import apiFetch from '@wordpress/api-fetch';
+import { renderToString } from 'react-dom/server';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -80,7 +81,10 @@ export default function SectionSocials({ company, setCompany })
                             newSocials[index] = {
                               ...newSocials[index],
                               icon: icon,
+                              svg: renderToString(<FontAwesomeIcon icon={ `fa-brands fa-${ icon }` } />),
                             };
+
+                            console.log(newSocials);
 
                             return {
                               ...prev,

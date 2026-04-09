@@ -1,6 +1,6 @@
 <?php
 
-namespace BadEggCup\Utilities;
+namespace BadEggCup\Tools;
 
 class Colour
 {

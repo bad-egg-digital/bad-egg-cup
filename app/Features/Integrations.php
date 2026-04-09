@@ -1,7 +1,7 @@
 <?php
 
 namespace BadEggCup\Features;
-use BadEggCup\Utilities;
+use BadEggCup\Tools;
 
 class Integrations
 {
@@ -18,7 +18,7 @@ class Integrations
 
     public function PlausibleAnalytics()
     {
-        $Settings = new Utilities\Settings;
+        $Settings = new Tools\Settings;
 
         $host = $Settings->lookup('plausibleHost', 'integrations');
         $id = $Settings->lookup('plausibleID', 'integrations');
@@ -37,7 +37,7 @@ plausible.init()
 
     public function FathomAnalytics()
     {
-        $Settings = new Utilities\Settings;
+        $Settings = new Tools\Settings;
         $fathomID = $Settings->lookup('fathomID', 'integrations');
 
         if($fathomID && WP_ENV == 'production'): ?>

@@ -6,8 +6,5 @@
   "email": "",
   "address": {},
   "addressMailing": {},
-  "socials": [
-    { "icon": "facebook", "link": "" },
-    { "icon": "twitter", "link": "" }
-  ]
+  "socials": []
 }

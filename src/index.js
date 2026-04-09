@@ -98,10 +98,10 @@ const OptionsPage = () => {
       method: 'POST',
       data: {
         badeggcup: {
-          colours,
-          company,
-          integrations,
-          supports,
+          colours: colours,
+          company: company,
+          integrations: integrations,
+          supports: supports,
         }
       },
     }).then( () => {
