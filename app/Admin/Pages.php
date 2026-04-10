@@ -15,13 +15,13 @@ class Pages
     public function options()
     {
         add_menu_page(
-            __( 'Site Options', 'badeggcup' ),
-            __( 'Site Options', 'badeggcup' ),
+            __( 'Bad Egg Digital: Website Options', 'badeggcup' ),
+            __( 'Bad Egg Digital', 'badeggcup' ),
             'manage_options',
             'badeggcup-options',
             [$this, 'options_html'],
-            '',
-            50,
+            'data:image/svg+xml;base64,' . base64_encode(file_get_contents(BADEGGCUP_DIR . '/src/images/menu-icon.svg')),
+            90,
         );
     }
 

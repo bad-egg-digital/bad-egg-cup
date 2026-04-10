@@ -115,7 +115,7 @@ const OptionsPage = () => {
   return (
     <>
       <Heading level={ 1 }>
-        { __( 'Website Options', 'badeggcup' ) }
+        { __( 'Bad Egg Digital: Website Options', 'badeggcup' ) }
       </Heading>
       <Spacer />
       <Notices />

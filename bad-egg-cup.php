@@ -24,8 +24,10 @@ if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly.
 }
 
-define("BADEGGCUP_FILE", __FILE__);
-define("BADEGGCUP_DIR", __DIR__);
+if(!defined('BADEGGCUP_VER')) define("BADEGGCUP_VER", "1.0.1");
+if(!defined('BADEGGCUP_FILE')) define("BADEGGCUP_FILE", __FILE__);
+if(!defined('BADEGGCUP_DIR')) define("BADEGGCUP_DIR", __DIR__);
+if(!defined('BADEGGCUP_URL')) define('BADEGGCUP_URL', plugin_dir_url( __FILE__ ));
 
 $badeggcupOptions = get_option('badeggcup');
 $badeggcupSupports = ($badeggcupOptions) ? @$badeggcupOptions['supports'] : null;
