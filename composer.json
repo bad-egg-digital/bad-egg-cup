@@ -1,5 +1,5 @@
 {
-  "name": "registry/bad-egg-cup",
+  "name": "bad-egg-packagist/bad-egg-cup",
   "description": "Companion plugin to the Bad Egg Digital Wordpress Theme.",
   "homepage": "https://github.com/bad-egg-digital/bad-egg-cup",
   "type": "wordpress-plugin",
