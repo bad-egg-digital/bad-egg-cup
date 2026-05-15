@@ -44,39 +44,35 @@ export default function CardSupports({ supports, setSupports })
         __nextHasNoMarginBottom
       />
 
-      {
-        (supports.company) ? (
-          <>
+      { supports.company &&
+        <>
+          <CheckboxControl
+            label={ __( 'Address', 'badeggcup' ) }
+            checked={ supports.companyAddress }
+            onChange={ ( value => {
+              setSupports({ ...supports, companyAddress: value });
+
+              if(!value) {
+                setSupports({
+                  ...supports,
+                  companyAddress: false,
+                  companyAddressMailing: false,
+                });
+              }
+
+            } ) }
+            __nextHasNoMarginBottom
+          />
+
+          { supports.companyAddress &&
             <CheckboxControl
-              label={ __( 'Address', 'badeggcup' ) }
-              checked={ supports.companyAddress }
-              onChange={ ( value => {
-                setSupports({ ...supports, companyAddress: value });
-
-                if(!value) {
-                  setSupports({
-                    ...supports,
-                    companyAddress: false,
-                    companyAddressMailing: false,
-                  });
-                }
-
-              } ) }
+              label={ __( 'Mailing Address', 'badeggcup' ) }
+              checked={ supports.companyAddressMailing }
+              onChange={ ( value => setSupports({ ...supports, companyAddressMailing: value }) ) }
               __nextHasNoMarginBottom
             />
-
-            {
-              (supports.companyAddress) ? (
-                <CheckboxControl
-                  label={ __( 'Mailing Address', 'badeggcup' ) }
-                  checked={ supports.companyAddressMailing }
-                  onChange={ ( value => setSupports({ ...supports, companyAddressMailing: value }) ) }
-                  __nextHasNoMarginBottom
-                />
-              ) : null
-            }
-          </>
-        ) : null
+          }
+        </>
       }
 
       <CheckboxControl
@@ -98,24 +94,29 @@ export default function CardSupports({ supports, setSupports })
         __nextHasNoMarginBottom
       />
 
-      {
-        (supports.integrations) ? (
-          <>
-            <CheckboxControl
-              label={ __( 'Plausible Analytics', 'badeggcup' ) }
-              checked={ supports.integrationsPlausible }
-              onChange={ ( value => setSupports({ ...supports, integrationsPlausible: value }) ) }
-              __nextHasNoMarginBottom
-            />
-            <CheckboxControl
-              label={ __( 'Fathom Analytics', 'badeggcup' ) }
-              checked={ supports.integrationsFathom }
-              onChange={ ( value => setSupports({ ...supports, integrationsFathom: value }) ) }
-              __nextHasNoMarginBottom
-            />
-          </>
-        ) : null
+      { supports.integrations &&
+        <>
+          <CheckboxControl
+            label={ __( 'Plausible Analytics', 'badeggcup' ) }
+            checked={ supports.integrationsPlausible }
+            onChange={ ( value => setSupports({ ...supports, integrationsPlausible: value }) ) }
+            __nextHasNoMarginBottom
+          />
+          <CheckboxControl
+            label={ __( 'Fathom Analytics', 'badeggcup' ) }
+            checked={ supports.integrationsFathom }
+            onChange={ ( value => setSupports({ ...supports, integrationsFathom: value }) ) }
+            __nextHasNoMarginBottom
+          />
+        </>
       }
+
+      <CheckboxControl
+        label={ __( 'Pages for Archives', 'badeggcup' ) }
+        checked={ supports.pagesForArchives }
+        onChange={ ( value => setSupports({ ...supports, pagesForArchives: value }) ) }
+        __nextHasNoMarginBottom
+      />
 
       <CardDivider margin="4" />
 
@@ -142,23 +143,21 @@ export default function CardSupports({ supports, setSupports })
         __nextHasNoMarginBottom
       />
 
-      {
-        (supports.defaultPost) ? (
-          <>
-            <CheckboxControl
-              label={ __( 'Post Tags', 'badeggcup' ) }
-              checked={ supports.postTag }
-              onChange={ ( value => setSupports({ ...supports, postTag: value }) ) }
-              __nextHasNoMarginBottom
-            />
-            <CheckboxControl
-              label={ __( 'Post Categories', 'badeggcup' ) }
-              checked={ supports.postCategory }
-              onChange={ ( value => setSupports({ ...supports, postCategory: value }) ) }
-              __nextHasNoMarginBottom
-            />
-          </>
-        ) : null
+      { supports.defaultPost &&
+        <>
+          <CheckboxControl
+            label={ __( 'Post Tags', 'badeggcup' ) }
+            checked={ supports.postTag }
+            onChange={ ( value => setSupports({ ...supports, postTag: value }) ) }
+            __nextHasNoMarginBottom
+          />
+          <CheckboxControl
+            label={ __( 'Post Categories', 'badeggcup' ) }
+            checked={ supports.postCategory }
+            onChange={ ( value => setSupports({ ...supports, postCategory: value }) ) }
+            __nextHasNoMarginBottom
+          />
+        </>
       }
 
       <CheckboxControl

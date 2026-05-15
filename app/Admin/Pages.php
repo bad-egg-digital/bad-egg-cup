@@ -9,7 +9,7 @@ class Pages
     {
         add_action( 'admin_menu', [$this, 'options']);
         add_action( 'admin_enqueue_scripts', [$this, 'options_script'] );
-        add_action( 'init', [$this, 'options_schema'] );
+        add_action( 'init', [$this, 'options_schema'], 100 );
     }
 
     public function options()
@@ -33,10 +33,6 @@ class Pages
             <div class="wrap" id="badeggcup-options">
                 <?= __( 'Loading…', 'badeggcup' ) ?>
             </div>
-
-            <?php if(WP_ENV == 'development'): ?>
-                <pre><?= print_r($settings->lookup('socials', 'company')) ?></pre>
-            <?php endif; ?>
         <?php
     }
 
@@ -172,6 +168,12 @@ class Pages
                     ],
                 ],
 
+                // Pages for Archives
+                'pagesForArchives' => [
+                    'type' => 'object',
+                    'properties' => $this->pagesForArchivesProperties(),
+                ],
+
                 // Theme Supports
                 'supports' => [
                     'type' => 'object',
@@ -188,6 +190,7 @@ class Pages
                         'integrations' => [ 'type' => 'boolean' ],
                         'integrationsFathom' => [ 'type' => 'boolean' ],
                         'integrationsPlausible' => [ 'type' => 'boolean' ],
+                        'pagesForArchives' => [ 'type' => 'boolean' ],
                     ],
                 ],
             ],
@@ -205,5 +208,21 @@ class Pages
                 ],
             ]
         );
+    }
+
+    public function pagesForArchivesProperties()
+    {
+        $postTypes = get_post_types([ 'has_archive' => true ]);
+
+        $properties = [];
+
+        foreach($postTypes as $postType) {
+            $properties[$postType] = [
+                'type' => 'number',
+                'default' => 0,
+            ];
+        }
+
+        return $properties;
     }
 }

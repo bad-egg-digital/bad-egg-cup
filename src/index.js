@@ -17,6 +17,7 @@ import SectionColours from './components/SectionColours';
 import SectionCompany from './components/SectionCompany';
 import SectionSocials from './components/SectionSocials';
 import SectionIntegrations from './components/SectionIntegrations';
+import SectionPagesForArchives from './components/SectionPagesForArchives';
 
 import {
   createRoot,
@@ -64,6 +65,7 @@ const OptionsPage = () => {
   const [ company, setCompany ] = useState( defaultsCompanyInfo );
   const [ integrations, setIntegrations ] = useState( defaultsIntegrations );
   const [ supports, setSupports ] = useState( defaultsSupports );
+  const [ pagesForArchives, setPagesForArchives ] = useState({});
 
   const { createSuccessNotice } = useDispatch( noticesStore );
 
@@ -101,6 +103,7 @@ const OptionsPage = () => {
           colours: colours,
           company: company,
           integrations: integrations,
+          pagesForArchives: pagesForArchives,
           supports: supports,
         }
       },
@@ -123,10 +126,11 @@ const OptionsPage = () => {
 
       <Flex wrap={ true } align="stretch" gap="4" className="badeggcup-options-wrap">
         <Panel className="badeggcup-panel">
-          { supports.colours ? <SectionColours colours={ colours } setColours={ setColours } /> : null }
-          { supports.company ? <SectionCompany supports={ supports } company={ company } setCompany={ setCompany } /> : null }
-          { supports.companySocials ? <SectionSocials company={ company } setCompany={ setCompany } /> : null }
-          { supports.integrations ? <SectionIntegrations supports={ supports } integrations={ integrations } setIntegrations={ setIntegrations } /> : null }
+          { supports.colours && <SectionColours colours={ colours } setColours={ setColours } /> }
+          { supports.company && <SectionCompany supports={ supports } company={ company } setCompany={ setCompany } /> }
+          { supports.companySocials && <SectionSocials company={ company } setCompany={ setCompany } /> }
+          { supports.pagesForArchives && <SectionPagesForArchives pagesForArchives={ pagesForArchives } setPagesForArchives={ setPagesForArchives } /> }
+          { supports.integrations && <SectionIntegrations supports={ supports } integrations={ integrations } setIntegrations={ setIntegrations } /> }
         </Panel>
 
         <FlexBlock className="badeggcup-theme-supports">
@@ -146,7 +150,7 @@ const OptionsPage = () => {
             <CardFooter>
               <Flex>
                 <FlexItem>
-                  { savingSettings ? <Spinner /> : null }
+                  { savingSettings && <Spinner /> }
                 </FlexItem>
                 <FlexItem>
                   <SaveButton />

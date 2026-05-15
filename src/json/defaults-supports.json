@@ -10,5 +10,6 @@
   "companySocials": false,
   "integrations": false,
   "integrationsFathom": false,
-  "integrationsPlausible": false
+  "integrationsPlausible": false,
+  "pagesForArchives": false
 }
