@@ -269,7 +269,7 @@ function SectionArchives({
                   flex: 1
                 },
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
-                  label: `Page for ${label}`,
+                  label: `Page for Archive`,
                   value: pagesForArchives?.[postType] || '',
                   options: pages,
                   onChange: value => {
@@ -286,7 +286,7 @@ function SectionArchives({
                   flex: 1
                 },
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
-                  label: `Primary ${label} taxonomy`,
+                  label: `Primary taxonomy`,
                   value: primaryTaxonomies?.[postType] || '',
                   options: [{
                     value: '',
@@ -23545,7 +23545,7 @@ const OptionsPage = () => {
       path: '/wp/v2/settings',
       method: 'POST',
       data: {
-        badEggCup: {
+        badeggcup: {
           colours: colours,
           company: company,
           integrations: integrations,

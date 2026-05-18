@@ -184,8 +184,8 @@ class RestAPI
                     $taxonomies = get_taxonomies(['object_type' => [ $postType ]], 'objects');
                     $taxList = [];
 
-                    foreach($taxonomies as $slug => $props) {
-                        $taxList[] = [ 'value' => $slug, 'label' => $props->label ];
+                    foreach($taxonomies as $tax => $taxProps) {
+                        $taxList[] = [ 'value' => $tax, 'label' => $taxProps->label ];
                     }
 
                     $list[] = [

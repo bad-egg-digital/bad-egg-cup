@@ -102,7 +102,7 @@ const OptionsPage = () => {
       path: '/wp/v2/settings',
       method: 'POST',
       data: {
-        badEggCup: {
+        badeggcup: {
           colours: colours,
           company: company,
           integrations: integrations,

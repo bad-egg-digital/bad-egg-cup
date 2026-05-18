@@ -78,7 +78,7 @@ export default function SectionArchives({ supports, pagesForArchives, setPagesFo
                     <Flex>
                       <FlexItem style={{ flex: 1 }}>
                         <SelectControl
-                          label={ `Page for ${ label }` }
+                          label={ `Page for Archive` }
                           value={ pagesForArchives?.[ postType ] || '' }
                           options={ pages }
                           onChange={ value => {
@@ -97,7 +97,7 @@ export default function SectionArchives({ supports, pagesForArchives, setPagesFo
                       { taxonomies && taxonomies.length > 0 &&
                         <FlexItem style={{ flex: 1 }}>
                           <SelectControl
-                            label={ `Primary ${ label } taxonomy` }
+                            label={ `Primary taxonomy` }
                             value={ primaryTaxonomies?.[ postType ] || '' }
                             options={ [ { value: '', label: 'Select a taxonomy' } ].concat(taxonomies) }
                             onChange={ value => {
