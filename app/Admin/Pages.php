@@ -2,6 +2,7 @@
 
 namespace BadEggCup\Admin;
 use BadEggCup\Tools;
+use BadEggCup\Data;
 
 class Pages
 {
@@ -174,6 +175,12 @@ class Pages
                     'properties' => $this->pagesForArchivesProperties(),
                 ],
 
+                // Pages for Archives
+                'primaryTaxonomies' => [
+                    'type' => 'object',
+                    'properties' => $this->primaryTaxonomiesProperties(),
+                ],
+
                 // Theme Supports
                 'supports' => [
                     'type' => 'object',
@@ -190,7 +197,6 @@ class Pages
                         'integrations' => [ 'type' => 'boolean' ],
                         'integrationsFathom' => [ 'type' => 'boolean' ],
                         'integrationsPlausible' => [ 'type' => 'boolean' ],
-                        'pagesForArchives' => [ 'type' => 'boolean' ],
                     ],
                 ],
             ],
@@ -212,14 +218,28 @@ class Pages
 
     public function pagesForArchivesProperties()
     {
-        $postTypes = get_post_types([ 'has_archive' => true ]);
-
+        $ArchiveData = new Data\Archives;
         $properties = [];
 
-        foreach($postTypes as $postType) {
+        foreach($ArchiveData->postTypes() as $postType) {
             $properties[$postType] = [
                 'type' => 'number',
                 'default' => 0,
+            ];
+        }
+
+        return $properties;
+    }
+
+    public function primaryTaxonomiesProperties()
+    {
+        $ArchiveData = new Data\Archives;
+        $properties = [];
+
+        foreach($ArchiveData->postTypes() as $postType) {
+            $properties[$postType] = [
+                'type' => 'string',
+                'default' => '',
             ];
         }
 

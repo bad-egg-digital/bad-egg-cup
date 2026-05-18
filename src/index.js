@@ -17,7 +17,7 @@ import SectionColours from './components/SectionColours';
 import SectionCompany from './components/SectionCompany';
 import SectionSocials from './components/SectionSocials';
 import SectionIntegrations from './components/SectionIntegrations';
-import SectionPagesForArchives from './components/SectionPagesForArchives';
+import SectionArchives from './components/SectionArchives';
 
 import {
   createRoot,
@@ -66,12 +66,15 @@ const OptionsPage = () => {
   const [ integrations, setIntegrations ] = useState( defaultsIntegrations );
   const [ supports, setSupports ] = useState( defaultsSupports );
   const [ pagesForArchives, setPagesForArchives ] = useState({});
+  const [ primaryTaxonomies, setPrimaryTaxonomies ] = useState({});
 
   const { createSuccessNotice } = useDispatch( noticesStore );
 
   useEffect( () => {
     apiFetch( { path: '/wp/v2/settings' } ).then( ( settings ) => {
       setLoadState(true);
+
+      console.log(settings);
 
       if(settings?.badeggcup?.supports) {
         setSupports( settings.badeggcup.supports );
@@ -99,13 +102,14 @@ const OptionsPage = () => {
       path: '/wp/v2/settings',
       method: 'POST',
       data: {
-        badeggcup: {
+        badEggCup: {
           colours: colours,
           company: company,
           integrations: integrations,
           pagesForArchives: pagesForArchives,
+          primaryTaxonomies: primaryTaxonomies,
           supports: supports,
-        }
+        },
       },
     }).then( () => {
       setSavingSettings(false);
@@ -129,7 +133,14 @@ const OptionsPage = () => {
           { supports.colours && <SectionColours colours={ colours } setColours={ setColours } /> }
           { supports.company && <SectionCompany supports={ supports } company={ company } setCompany={ setCompany } /> }
           { supports.companySocials && <SectionSocials company={ company } setCompany={ setCompany } /> }
-          { supports.pagesForArchives && <SectionPagesForArchives pagesForArchives={ pagesForArchives } setPagesForArchives={ setPagesForArchives } /> }
+
+          <SectionArchives
+            pagesForArchives={ pagesForArchives }
+            setPagesForArchives={ setPagesForArchives }
+            primaryTaxonomies={ primaryTaxonomies }
+            setPrimaryTaxonomies={ setPrimaryTaxonomies }
+          />
+
           { supports.integrations && <SectionIntegrations supports={ supports } integrations={ integrations } setIntegrations={ setIntegrations } /> }
         </Panel>
 

@@ -123,14 +123,6 @@ function CardSupports({
         }),
         __nextHasNoMarginBottom: true
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.CheckboxControl, {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Pages for Archives', 'badeggcup'),
-      checked: supports.pagesForArchives,
-      onChange: value => setSupports({
-        ...supports,
-        pagesForArchives: value
-      }),
-      __nextHasNoMarginBottom: true
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.CardDivider, {
       margin: "4"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalHeading, {
@@ -182,6 +174,139 @@ function CardSupports({
       }),
       __nextHasNoMarginBottom: true
     })]
+  });
+}
+
+/***/ },
+
+/***/ "./src/components/SectionArchives.js"
+/*!*******************************************!*\
+  !*** ./src/components/SectionArchives.js ***!
+  \*******************************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ SectionArchives)
+/* harmony export */ });
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/api-fetch */ "@wordpress/api-fetch");
+/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__);
+
+
+
+
+
+function SectionArchives({
+  supports,
+  pagesForArchives,
+  setPagesForArchives,
+  primaryTaxonomies,
+  setPrimaryTaxonomies
+}) {
+  const [postTypes, setPostTypes] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useState)([]);
+  const [pages, setPages] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useState)([]);
+  const [isLoaded, setIsLoaded] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useState)(false);
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useEffect)(() => {
+    _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_1___default()({
+      path: '/badeggcup/v1/pages'
+    }).then(pages => {
+      if (pages?.topLevel) {
+        setPages(pages.topLevel);
+        setIsLoaded(true);
+      } else {
+        setIsLoaded(false);
+      }
+    });
+    _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_1___default()({
+      path: '/badeggcup/v1/post-types'
+    }).then(response => {
+      if (response?.hasArchive) {
+        setPostTypes(response.hasArchive);
+        setIsLoaded(true);
+      } else {
+        setIsLoaded(false);
+      }
+    });
+    _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_1___default()({
+      path: '/wp/v2/settings'
+    }).then(settings => {
+      let fetchArchives = settings?.badeggcup?.pagesForArchives;
+      let fetchTaxonomies = settings?.badeggcup?.primaryTaxonomies;
+      if (fetchArchives && fetchTaxonomies) {
+        setPagesForArchives(fetchArchives);
+        setPrimaryTaxonomies(fetchTaxonomies);
+        setIsLoaded(true);
+      } else {
+        setIsLoaded(false);
+      }
+    });
+  }, [setPagesForArchives, setPrimaryTaxonomies]);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Archive Pages', 'badeggcup'),
+    className: "badeggcup-archives",
+    children: isLoaded && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
+      children: postTypes.map((props, index) => {
+        let label = props?.label;
+        let postType = props?.postType;
+        let taxonomies = props?.taxonomies;
+        if (pages) {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(React.Fragment, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalSpacer, {
+              margin: "4"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h4", {
+              children: label
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Flex, {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.FlexItem, {
+                style: {
+                  flex: 1
+                },
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
+                  label: `Page for ${label}`,
+                  value: pagesForArchives?.[postType] || '',
+                  options: pages,
+                  onChange: value => {
+                    setPagesForArchives(prev => ({
+                      ...prev,
+                      [postType]: value
+                    }));
+                  },
+                  __next40pxDefaultSize: true,
+                  __nextHasNoMarginBottom: true
+                })
+              }), taxonomies && taxonomies.length > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.FlexItem, {
+                style: {
+                  flex: 1
+                },
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
+                  label: `Primary ${label} taxonomy`,
+                  value: primaryTaxonomies?.[postType] || '',
+                  options: [{
+                    value: '',
+                    label: 'Select a taxonomy'
+                  }].concat(taxonomies),
+                  onChange: value => {
+                    setPrimaryTaxonomies(prev => ({
+                      ...prev,
+                      [postType]: value
+                    }));
+                  },
+                  __next40pxDefaultSize: true,
+                  __nextHasNoMarginBottom: true
+                })
+              })]
+            })]
+          }, index);
+        }
+      })
+    })
   });
 }
 
@@ -562,98 +687,6 @@ function SectionIntegrations({
       })]
     });
   }
-}
-
-/***/ },
-
-/***/ "./src/components/SectionPagesForArchives.js"
-/*!***************************************************!*\
-  !*** ./src/components/SectionPagesForArchives.js ***!
-  \***************************************************/
-(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ SectionPagesForArchives)
-/* harmony export */ });
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/api-fetch */ "@wordpress/api-fetch");
-/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__);
-
-
-
-
-
-function SectionPagesForArchives({
-  pagesForArchives,
-  setPagesForArchives
-}) {
-  const [postTypes, setPostTypes] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useState)([]);
-  const [pages, setPages] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useState)([]);
-  const [isLoaded, setIsLoaded] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useState)(false);
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useEffect)(() => {
-    _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_1___default()({
-      path: '/badeggcup/v1/pages'
-    }).then(pages => {
-      if (pages?.topLevel) {
-        setPages(pages.topLevel);
-        setIsLoaded(true);
-      } else {
-        setIsLoaded(false);
-      }
-    });
-    _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_1___default()({
-      path: '/badeggcup/v1/post-types'
-    }).then(response => {
-      if (response?.hasArchive) {
-        setPostTypes(response.hasArchive);
-        setIsLoaded(true);
-      } else {
-        setIsLoaded(false);
-      }
-    });
-    _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_1___default()({
-      path: '/wp/v2/settings'
-    }).then(settings => {
-      if (settings?.badeggcup?.pagesForArchives) {
-        setPagesForArchives(settings.badeggcup.pagesForArchives);
-        setIsLoaded(true);
-      } else {
-        setIsLoaded(false);
-      }
-    });
-  }, [setPagesForArchives]);
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Archive Pages', 'badeggcup'),
-    className: "badeggcup-archives",
-    children: isLoaded && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
-      children: Object.keys(postTypes).map((postType, index) => {
-        let label = postTypes[postType];
-        if (pages) {
-          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
-            label: `Page for ${label}`,
-            value: pagesForArchives?.[postType] || '',
-            options: pages,
-            onChange: value => {
-              setPagesForArchives(prev => ({
-                ...prev,
-                [postType]: value
-              }));
-            },
-            __next40pxDefaultSize: true,
-            __nextHasNoMarginBottom: true
-          }, index);
-        }
-      })
-    })
-  });
 }
 
 /***/ },
@@ -23317,7 +23350,7 @@ module.exports = /*#__PURE__*/JSON.parse('{"fathomID":"","plausibleID":"","plaus
   \*****************************************/
 (module) {
 
-module.exports = /*#__PURE__*/JSON.parse('{"defaultPost":false,"postCategory":false,"postTag":false,"comments":false,"colours":false,"company":false,"companyAddress":false,"companyAddressMailing":false,"companySocials":false,"integrations":false,"integrationsFathom":false,"integrationsPlausible":false,"pagesForArchives":false}');
+module.exports = /*#__PURE__*/JSON.parse('{"defaultPost":false,"postCategory":false,"postTag":false,"comments":false,"colours":false,"company":false,"companyAddress":false,"companyAddressMailing":false,"companySocials":false,"integrations":false,"integrationsFathom":false,"integrationsPlausible":false}');
 
 /***/ },
 
@@ -23433,7 +23466,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_SectionCompany__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/SectionCompany */ "./src/components/SectionCompany.js");
 /* harmony import */ var _components_SectionSocials__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/SectionSocials */ "./src/components/SectionSocials.js");
 /* harmony import */ var _components_SectionIntegrations__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/SectionIntegrations */ "./src/components/SectionIntegrations.js");
-/* harmony import */ var _components_SectionPagesForArchives__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/SectionPagesForArchives */ "./src/components/SectionPagesForArchives.js");
+/* harmony import */ var _components_SectionArchives__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/SectionArchives */ "./src/components/SectionArchives.js");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_17__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
@@ -23483,6 +23516,7 @@ const OptionsPage = () => {
   const [integrations, setIntegrations] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_17__.useState)(_json_defaults_integrations_json__WEBPACK_IMPORTED_MODULE_9__);
   const [supports, setSupports] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_17__.useState)(_json_defaults_supports_json__WEBPACK_IMPORTED_MODULE_10__);
   const [pagesForArchives, setPagesForArchives] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_17__.useState)({});
+  const [primaryTaxonomies, setPrimaryTaxonomies] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_17__.useState)({});
   const {
     createSuccessNotice
   } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_4__.useDispatch)(_wordpress_notices__WEBPACK_IMPORTED_MODULE_5__.store);
@@ -23491,6 +23525,7 @@ const OptionsPage = () => {
       path: '/wp/v2/settings'
     }).then(settings => {
       setLoadState(true);
+      console.log(settings);
       if (settings?.badeggcup?.supports) {
         setSupports(settings.badeggcup.supports);
       }
@@ -23510,11 +23545,12 @@ const OptionsPage = () => {
       path: '/wp/v2/settings',
       method: 'POST',
       data: {
-        badeggcup: {
+        badEggCup: {
           colours: colours,
           company: company,
           integrations: integrations,
           pagesForArchives: pagesForArchives,
+          primaryTaxonomies: primaryTaxonomies,
           supports: supports
         }
       }
@@ -23544,9 +23580,11 @@ const OptionsPage = () => {
         }), supports.companySocials && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__.jsx)(_components_SectionSocials__WEBPACK_IMPORTED_MODULE_14__["default"], {
           company: company,
           setCompany: setCompany
-        }), supports.pagesForArchives && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__.jsx)(_components_SectionPagesForArchives__WEBPACK_IMPORTED_MODULE_16__["default"], {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__.jsx)(_components_SectionArchives__WEBPACK_IMPORTED_MODULE_16__["default"], {
           pagesForArchives: pagesForArchives,
-          setPagesForArchives: setPagesForArchives
+          setPagesForArchives: setPagesForArchives,
+          primaryTaxonomies: primaryTaxonomies,
+          setPrimaryTaxonomies: setPrimaryTaxonomies
         }), supports.integrations && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__.jsx)(_components_SectionIntegrations__WEBPACK_IMPORTED_MODULE_15__["default"], {
           supports: supports,
           integrations: integrations,

@@ -171,21 +171,35 @@ class RestAPI
 
     public function postTypes()
     {
+        $ArchiveData = new Data\Archives;
+        $Settings = new Tools\Settings;
+
         register_rest_route($this->restBase, '/post-types', [
             'methods' => 'GET',
-            'callback' => function(){
-                $args = [
-                    'has_archive' => true,
-                ];
-
-                $defaultPost = get_post_type_object('post');
-                $postTypes = get_post_types($args, 'objects');
+            'callback' => function() use($ArchiveData, $Settings) {
 
                 $list = [];
 
-                foreach($postTypes as $postType => $props) {
-                    $list[$postType] = $props->label;
+                foreach($ArchiveData->postTypes('objects') as $postType => $props) {
+                    $taxonomies = get_taxonomies(['object_type' => [ $postType ]], 'objects');
+                    $taxList = [];
+
+                    foreach($taxonomies as $slug => $props) {
+                        $taxList[] = [ 'value' => $slug, 'label' => $props->label ];
+                    }
+
+                    $list[] = [
+                        'postType' => $postType,
+                        'label' => $props->label,
+                        'primaryTaxonomy' => $Settings->lookup($postType, 'primaryTaxonomies'),
+                        'taxonomies' => $taxList,
+                    ];
                 }
+
+                $list = apply_filters(
+                    'badeggcup_archive_post_types',
+                    $list,
+                );
 
                 return rest_ensure_response([
                     'hasArchive' => $list,
