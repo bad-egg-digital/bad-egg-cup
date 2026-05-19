@@ -74,8 +74,6 @@ const OptionsPage = () => {
     apiFetch( { path: '/wp/v2/settings' } ).then( ( settings ) => {
       setLoadState(true);
 
-      console.log(settings);
-
       if(settings?.badeggcup?.supports) {
         setSupports( settings.badeggcup.supports );
       }
