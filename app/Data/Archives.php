@@ -33,6 +33,26 @@ class Archives
         return $pagesForArchives;
     }
 
+    public function primaryTaxonomies()
+    {
+        $Settings = new Tools\Settings;
+
+        $primaryTaxonomies = [
+            'post' => 'category',
+        ];
+
+        foreach($this->postTypes() as $postType) {
+            $primaryTaxonomies[$postType] = $Settings->lookup($postType, 'primaryTaxonomies');
+        }
+
+        $primaryTaxonomies = apply_filters(
+            'badeggcup_pages_for_archives',
+            $primaryTaxonomies,
+        );
+
+        return $primaryTaxonomies;
+    }
+
     public function postTypes($output = 'names')
     {
         $args = apply_filters(
