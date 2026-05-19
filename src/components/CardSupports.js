@@ -111,13 +111,6 @@ export default function CardSupports({ supports, setSupports })
         </>
       }
 
-      <CheckboxControl
-        label={ __( 'Pages for Archives', 'badeggcup' ) }
-        checked={ supports.pagesForArchives }
-        onChange={ ( value => setSupports({ ...supports, pagesForArchives: value }) ) }
-        __nextHasNoMarginBottom
-      />
-
       <CardDivider margin="4" />
 
       <Heading level={ 3 } size="13" >
