@@ -178,7 +178,21 @@ class RestAPI
             'methods' => 'GET',
             'callback' => function() use($ArchiveData, $Settings) {
 
-                $list = [];
+                $post = get_post_type_object('post');
+                $postTaxonomies = get_taxonomies(['object_type' => [ 'post' ]], 'objects');
+                $taxList = [];
+
+                foreach($postTaxonomies as $tax => $taxProps) {
+                    $taxList[] = [ 'value' => $tax, 'label' => $taxProps->label ];
+                }
+
+                $list = [
+                    'post' => [
+                        'label' => $post->label,
+                        'primaryTaxonomy' => 'category',
+                        'taxonomies' => $taxList,
+                    ],
+                ];
 
                 foreach($ArchiveData->postTypes('objects') as $postType => $props) {
                     $taxonomies = get_taxonomies(['object_type' => [ $postType ]], 'objects');
@@ -188,8 +202,7 @@ class RestAPI
                         $taxList[] = [ 'value' => $tax, 'label' => $taxProps->label ];
                     }
 
-                    $list[] = [
-                        'postType' => $postType,
+                    $list[$postType] = [
                         'label' => $props->label,
                         'primaryTaxonomy' => $Settings->lookup($postType, 'primaryTaxonomies'),
                         'taxonomies' => $taxList,
