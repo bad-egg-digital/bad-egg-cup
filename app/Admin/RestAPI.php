@@ -183,7 +183,10 @@ class RestAPI
                 $taxList = [];
 
                 foreach($postTaxonomies as $tax => $taxProps) {
-                    $taxList[] = [ 'value' => $tax, 'label' => $taxProps->label ];
+                    $taxList[$tax] = [
+                        'label' => $taxProps->label,
+                        'restBase' => $taxProps->rest_base,
+                    ];
                 }
 
                 $list = [
@@ -199,7 +202,10 @@ class RestAPI
                     $taxList = [];
 
                     foreach($taxonomies as $tax => $taxProps) {
-                        $taxList[] = [ 'value' => $tax, 'label' => $taxProps->label ];
+                        $taxList[$tax] = [
+                            'label' => $taxProps->label,
+                            'restBase' => $taxProps->rest_base,
+                        ];
                     }
 
                     $list[$postType] = [
