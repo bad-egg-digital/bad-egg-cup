@@ -130,7 +130,7 @@ class RestAPI
         if(current_theme_supports('badeggcup-companySocials')) {
             $props = [
                 'methods' => 'GET',
-                'callback' => fn() => $this->addRestData($Settings->lookup('socials')),
+                'callback' => fn() => $this->addRestData($Settings->lookup('socials', 'company')),
                 'permission_callback' => '__return_true',
             ];
 
