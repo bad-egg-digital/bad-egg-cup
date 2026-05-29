@@ -65,14 +65,16 @@ export default function SectionArchives({ supports, pagesForArchives, setPagesFo
       { isLoaded &&
         <>
           {
-            postTypes.map((props, index) => {
+            Object.entries(postTypes).map( ([ postType, props ]) => {
               let label = props?.label;
-              let postType = props?.postType;
               let taxonomies = props?.taxonomies;
+
+              let taxList = [ { value: '', label: 'Select a taxonomy' } ];
+              Object.entries(taxonomies).map( ([taxonomy, props]) => taxList.push({ value: taxonomy, label: props.label }))
 
               if(pages) {
                 return (
-                  <React.Fragment key={ index } >
+                  <React.Fragment key={ postType } >
                     <Spacer margin="4" />
                     <h4>{ label }</h4>
                     <Flex>
@@ -94,12 +96,12 @@ export default function SectionArchives({ supports, pagesForArchives, setPagesFo
                         />
                       </FlexItem>
 
-                      { taxonomies && taxonomies.length > 0 &&
+                      { taxonomies && Object.keys(taxonomies).length > 0 &&
                         <FlexItem style={{ flex: 1 }}>
                           <SelectControl
                             label={ `Primary taxonomy` }
                             value={ primaryTaxonomies?.[ postType ] || '' }
-                            options={ [ { value: '', label: 'Select a taxonomy' } ].concat(taxonomies) }
+                            options={ taxList }
                             onChange={ value => {
 
                               setPrimaryTaxonomies( prev => ({

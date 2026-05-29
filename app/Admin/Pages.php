@@ -219,7 +219,12 @@ class Pages
     public function pagesForArchivesProperties()
     {
         $ArchiveData = new Data\Archives;
-        $properties = [];
+        $properties = [
+            'post' => [
+                'type' => 'number',
+                'default' => get_option('page_for_posts'),
+            ],
+        ];
 
         foreach($ArchiveData->postTypes() as $postType) {
             $properties[$postType] = [
@@ -234,7 +239,12 @@ class Pages
     public function primaryTaxonomiesProperties()
     {
         $ArchiveData = new Data\Archives;
-        $properties = [];
+        $properties = [
+            'post' => [
+                'type' => 'string',
+                'default' => 'category',
+            ]
+        ];
 
         foreach($ArchiveData->postTypes() as $postType) {
             $properties[$postType] = [
