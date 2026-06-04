@@ -9,7 +9,7 @@
  * Plugin Name:       Bad Egg Cup
  * Plugin URI:        https://github.com/bad-egg-digital/bad-egg-cup
  * Description:       Companion plugin to the Bad Egg Digital Wordpress Theme
- * Version:           1.0.2
+ * Version:           1.0.3
  * Requires at least: 6.9
  * Requires PHP:      8.1
  * Author:            Bad Egg Digital

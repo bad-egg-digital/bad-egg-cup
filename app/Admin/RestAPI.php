@@ -192,6 +192,7 @@ class RestAPI
                 $list = [
                     'post' => [
                         'label' => $post->label,
+                        'pageForArchive' => get_option('page_for_posts'),
                         'primaryTaxonomy' => 'category',
                         'taxonomies' => $taxList,
                     ],
@@ -210,6 +211,7 @@ class RestAPI
 
                     $list[$postType] = [
                         'label' => $props->label,
+                        'pageForArchive' => $Settings->lookup($postType, 'pagesForArchives'),
                         'primaryTaxonomy' => $Settings->lookup($postType, 'primaryTaxonomies'),
                         'taxonomies' => $taxList,
                     ];
@@ -380,24 +382,22 @@ class RestAPI
     {
         $palette = [];
 
-        if(class_exists('\BadEggCup\Tools\Colour')) {
-            $Colour = new Tools\Colour;
-            $colours = $Colour->values();
+        $Colour = new Data\Colour;
+        $colours = $Colour->values();
 
-            foreach($colours as $slug => $hex) {
-                if($hex && class_exists('\ourcodeworld\NameThatColor\ColorInterpreter')) {
-                    $NameThatColour = new \ourcodeworld\NameThatColor\ColorInterpreter;
-                    $name = @$NameThatColour->name($hex)['name'];
-                } else {
-                    $name = ucfirst($slug);
-                }
-
-                $palette[] = [
-                    'name' => esc_html__($name, 'badeggcup'),
-                    'slug' => $slug,
-                    'color' => $hex,
-                ];
+        foreach($colours as $slug => $hex) {
+            if($hex && class_exists('\ourcodeworld\NameThatColor\ColorInterpreter')) {
+                $NameThatColour = new \ourcodeworld\NameThatColor\ColorInterpreter;
+                $name = @$NameThatColour->name($hex)['name'];
+            } else {
+                $name = ucfirst($slug);
             }
+
+            $palette[] = [
+                'name' => esc_html__($name, 'badeggcup'),
+                'slug' => $slug,
+                'color' => $hex,
+            ];
         }
 
         return $palette;
