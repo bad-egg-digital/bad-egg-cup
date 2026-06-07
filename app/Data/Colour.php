@@ -1,6 +1,7 @@
 <?php
 
 namespace BadEggCup\Data;
+use BadEggCup\Tools;
 
 class Colour
 {
@@ -33,7 +34,7 @@ class Colour
 
     public function values()
     {
-        $Settings = new Settings;
+        $Settings = new Tools\Settings;
         $colours = $Settings->lookup('colours');
 
         $values = [];
