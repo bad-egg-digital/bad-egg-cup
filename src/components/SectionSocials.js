@@ -1,9 +1,8 @@
 import { __ } from '@wordpress/i18n';
 import apiFetch from '@wordpress/api-fetch';
-import { renderToString } from 'react-dom/server';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { library } from '@fortawesome/fontawesome-svg-core';
+import { icon, library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 import { fontAwesomeIconClassNames } from '../lib/fontAwesomeData';
 import validateURL from '../lib/validateURL';
@@ -74,17 +73,17 @@ export default function SectionSocials({ company, setCompany })
                         __nextHasNoMarginBottom
                         label={ __('Search for an icon', 'badeggcup') }
                         onChange={ (value) => {
-                          const icon = value[0];
+                          const selectedIcon = value[0];
+                          const iconData = Object.values(fab).find( item => item.iconName === selectedIcon) || '';
+                          const iconSVG = (iconData) ? icon(iconData).html[0] : '';
 
                           setCompany(prev => {
                             const newSocials = [...prev.socials];
                             newSocials[index] = {
                               ...newSocials[index],
-                              icon: icon,
-                              svg: renderToString(<FontAwesomeIcon icon={ `fa-brands fa-${ icon }` } />),
+                              icon: selectedIcon,
+                              svg: iconSVG,
                             };
-
-                            console.log(newSocials);
 
                             return {
                               ...prev,
