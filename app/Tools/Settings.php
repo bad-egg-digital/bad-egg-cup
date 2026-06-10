@@ -76,4 +76,26 @@ class Settings
             return false;
         }
     }
+
+    public function renderAddress($field = 'address', $group = 'company')
+    {
+        $fields = $this->lookup($field, $group);
+        $html = '';
+
+        if(is_array($fields)) {
+            $html .= "<p class=\"badeggcup-$field\">\n";
+
+            foreach($fields as $key => $value) {
+                if(!$value) continue;
+
+                $value = trim($value);
+
+                $html .= "<span class=\"badeggcup-$field-$key\">$value</span>\n";
+            }
+
+            $html .= "</p>\n";
+        }
+
+        return $html;
+    }
 }
